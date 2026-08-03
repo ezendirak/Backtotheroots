@@ -1,5 +1,8 @@
 import { glob } from 'astro/loaders';
-import { defineCollection, z } from 'astro:content';
+/* `z` se importa de astro/zod, no de astro:content: es la misma instancia que
+   usa Astro por dentro y su reexport en astro:content está marcado obsoleto. */
+import { z } from 'astro/zod';
+import { defineCollection } from 'astro:content';
 
 /**
  * Texto traducible. El castellano es obligatorio porque es el idioma canónico;
@@ -52,6 +55,8 @@ const projects = defineCollection({
     /* Línea pequeña sobre el título: "EFFIC · Ribes de Freser 2024". */
     meta: z.string(),
     description: i18nText,
+    /* Versión corta para la tarjeta de la portada. */
+    summary: i18nText.optional(),
     stats: z
       .array(
         z.object({
@@ -60,7 +65,7 @@ const projects = defineCollection({
         })
       )
       .default([]),
-    date: z.string(),
+    date: z.string().optional(),
     /* Se muestra también en la portada. */
     featured: z.boolean().default(false),
     order: z.number().default(99),
@@ -80,11 +85,14 @@ const opportunities = defineCollection({
       posterAlt: i18nText,
       where: i18nText,
       summary: i18nText,
+      /* Versiones cortas para la tarjeta de la portada. */
+      whereShort: i18nText.optional(),
+      summaryShort: i18nText.optional(),
       facts: z.array(i18nText).default([]),
       findLabel: i18nText.optional(),
       findText: i18nText.optional(),
-      signupUrl: z.string().url().optional(),
-      infopackUrl: z.string().url().optional(),
+      signupUrl: z.url().optional(),
+      infopackUrl: z.url().optional(),
       order: z.number().default(99),
     }),
 });
@@ -128,7 +136,7 @@ const gallery = defineCollection({
     z.object({
       image: image(),
       alt: i18nText,
-      instagramUrl: z.string().url().startsWith('https://www.instagram.com/'),
+      instagramUrl: z.url().startsWith('https://www.instagram.com/'),
       credit: z.string().optional(),
       order: z.number().default(99),
     }),
@@ -140,15 +148,39 @@ const gallery = defineCollection({
 const config = defineCollection({
   loader: carpeta('config'),
   schema: z.object({
-    email: z.string().email(),
+    email: z.email(),
     social: z.array(
       z.object({
         name: z.string(),
-        url: z.string().url(),
+        url: z.url(),
       })
     ),
-    instagramProfile: z.string().url(),
+    instagramProfile: z.url(),
   }),
 });
 
-export const collections = { partners, projects, opportunities, archive, team, gallery, config };
+/* ---------------------------------------------------------------------------
+   Textos de cada página — todo lo que se lee en pantalla y no es una ficha de
+   otra colección: titulares, entradillas, textos de botones.
+
+   El esquema valida la forma, no una lista cerrada de campos: secciones que
+   contienen textos, y cada texto con su castellano obligatorio. Así la ONG
+   puede añadir un párrafo desde el CMS sin que haya que tocar este fichero.
+   Que un texto concreto exista lo comprueba la plantilla al leerlo: si falta,
+   el build falla (ver `usePageText` en src/lib/content.ts).
+--------------------------------------------------------------------------- */
+const pages = defineCollection({
+  loader: carpeta('pages'),
+  schema: z.record(z.string(), z.record(z.string(), i18nText)),
+});
+
+export const collections = {
+  pages,
+  partners,
+  projects,
+  opportunities,
+  archive,
+  team,
+  gallery,
+  config,
+};

@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "eyebrow": {
+      "es": "Oportunidades",
+      "ca": "Oportunitats",
+      "en": "Opportunities"
+    },
+    "h1": {
+      "es": "Extendemos nuestras ramas",
+      "ca": "Estenem les nostres branques",
+      "en": "We spread our branches"
+    },
+    "p": {
+      "es": "Como un árbol que crece y llega cada vez más lejos, nuestras acciones conectan personas, ideas y territorios. Participa en nuestras convocatorias de intercambios y formaciones para jóvenes y entidades.",
+      "ca": "Com un arbre que creix i arriba cada cop més lluny, les nostres accions connecten persones, idees i territoris. Participa en les nostres convocatòries d'intercanvis i formacions per a joves i entitats.",
+      "en": "Like a tree that grows and reaches ever further, our actions connect people, ideas and territories. Take part in our calls for exchanges and training for young people and organisations."
+    }
+  },
+  "section": {
+    "eyebrow": {
+      "es": "Inscripciones abiertas",
+      "ca": "Inscripcions obertes",
+      "en": "Registration open"
+    },
+    "h2": {
+      "es": "TerraTribe 2026",
+      "ca": "TerraTribe 2026",
+      "en": "TerraTribe 2026"
+    },
+    "p": {
+      "es": "Tras el éxito del año pasado, TerraTribe vuelve con más fuerza para ofrecer a jóvenes de 14 a 17 años una experiencia transformadora, llena de naturaleza, convivencia y conexiones internacionales.",
+      "ca": "Després de l'èxit de l'any passat, TerraTribe torna amb més força per oferir a joves de 14 a 17 anys una experiència transformadora, plena de natura, convivència i connexions internacionals.",
+      "en": "After last year's success, TerraTribe returns stronger than ever to offer young people aged 14 to 17 a transformative experience full of nature, togetherness and international connections."
+    }
+  },
+  "card": {
+    "flag": {
+      "es": "Inscripciones abiertas",
+      "ca": "Inscripcions obertes",
+      "en": "Registration open"
+    },
+    "cta1": {
+      "es": "Inscríbete ahora",
+      "ca": "Inscriu-t'hi ara",
+      "en": "Register now"
+    },
+    "cta2": {
+      "es": "Ver infopack (PDF)",
+      "ca": "Veure infopack (PDF)",
+      "en": "View infopack (PDF)"
+    }
+  },
+  "note": {
+    "text": {
+      "es": "¿Buscas más convocatorias? Escríbenos a",
+      "ca": "Busques més convocatòries? Escriu-nos a",
+      "en": "Looking for more calls? Write to us at"
+    }
+  },
+  "archive": {
+    "eyebrow": {
+      "es": "Trayectoria",
+      "ca": "Trajectòria",
+      "en": "Track record"
+    },
+    "h2": {
+      "es": "Convocatorias anteriores",
+      "ca": "Convocatòries anteriors",
+      "en": "Past calls"
+    },
+    "p": {
+      "es": "Algunas de las oportunidades que hemos coordinado en los últimos años.",
+      "ca": "Algunes de les oportunitats que hem coordinat els darrers anys.",
+      "en": "Some of the opportunities we've coordinated over the past few years."
+    }
+  }
+}

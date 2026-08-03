@@ -1,0 +1,49 @@
+{
+  "title": {
+    "es": "Curso formativo “Reaction”",
+    "ca": "Curs formatiu «Reaction»",
+    "en": "“Reaction” training course"
+  },
+  "theme": [
+    "art",
+    "youth"
+  ],
+  "tag": {
+    "es": "Inclusión",
+    "ca": "Inclusió",
+    "en": "Inclusion"
+  },
+  "youtubeId": "hMfMesNzRuw",
+  "meta": "Pujalt · 2023",
+  "description": {
+    "es": "24 participantes de 6 nacionalidades experimentaron con improvisación teatral y expresión artística para la inclusión y la conexión.",
+    "ca": "24 participants de 6 nacionalitats van experimentar amb improvisació teatral i expressió artística per a la inclusió i la connexió.",
+    "en": "24 participants from 6 nationalities experimented with theatre improv and artistic expression for inclusion and connection."
+  },
+  "summary": {
+    "es": "24 participantes de 6 nacionalidades experimentaron con improvisación teatral e inclusión.",
+    "ca": "24 participants de 6 nacionalitats van experimentar amb improvisació teatral i inclusió.",
+    "en": "24 participants from 6 nationalities experimented with theatre improv and inclusion."
+  },
+  "stats": [
+    {
+      "value": "24",
+      "label": {
+        "es": "participantes",
+        "ca": "participants",
+        "en": "participants"
+      }
+    },
+    {
+      "value": "6",
+      "label": {
+        "es": "nacionalidades",
+        "ca": "nacionalitats",
+        "en": "nationalities"
+      }
+    }
+  ],
+  "date": "2023",
+  "featured": true,
+  "order": 4
+}

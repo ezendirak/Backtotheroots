@@ -1,0 +1,194 @@
+{
+  "hero": {
+    "eyebrow": {
+      "es": "Cómo colaborar",
+      "ca": "Com col·laborar",
+      "en": "How to help"
+    },
+    "h1": {
+      "es": "Conéctate a nuestro micelio",
+      "ca": "Connecta't al nostre miceli",
+      "en": "Connect to our mycelium"
+    },
+    "p": {
+      "es": "El micelio une, nutre y hace crecer todo lo que toca. Nosotros creemos en esa misma fuerza: personas conectadas que generan oportunidades. Seas quien seas, siempre hay una manera de formar parte de esta red y hacerla crecer.",
+      "ca": "El miceli uneix, nodreix i fa créixer tot el que toca. Nosaltres creiem en aquesta mateixa força: persones connectades que generen oportunitats. Siguis qui siguis, sempre hi ha una manera de formar part d'aquesta xarxa i fer-la créixer.",
+      "en": "Mycelium connects, nourishes and grows everything it touches. We believe in that same force: connected people who create opportunities. Whoever you are, there's always a way to be part of this network and help it grow."
+    }
+  },
+  "help": {
+    "eyebrow": {
+      "es": "Formas de participar",
+      "ca": "Formes de participar",
+      "en": "Ways to get involved"
+    },
+    "h2": {
+      "es": "Elige tu raíz",
+      "ca": "Tria la teva arrel",
+      "en": "Choose your root"
+    },
+    "c1t": {
+      "es": "Jóvenes",
+      "ca": "Joves",
+      "en": "Young people"
+    },
+    "c1p": {
+      "es": "Participa en un intercambio o formación y vive una experiencia internacional en plena naturaleza.",
+      "ca": "Participa en un intercanvi o formació i viu una experiència internacional en plena natura.",
+      "en": "Join an exchange or training and live an international experience in the heart of nature."
+    },
+    "c1a": {
+      "es": "Ver oportunidades",
+      "ca": "Veure oportunitats",
+      "en": "See opportunities"
+    },
+    "c2t": {
+      "es": "Entidades",
+      "ca": "Entitats",
+      "en": "Organisations"
+    },
+    "c2p": {
+      "es": "¿Necesitas una entidad socia para tu proyecto? Descarga nuestro último PIF (Partner Identification Form) y hablemos.",
+      "ca": "Necessites una entitat sòcia per al teu projecte? Descarrega el nostre darrer PIF (Partner Identification Form) i parlem.",
+      "en": "Need a partner organisation for your project? Download our latest PIF (Partner Identification Form) and let's talk."
+    },
+    "c2a": {
+      "es": "Descargar PIF",
+      "ca": "Descarregar PIF",
+      "en": "Download PIF"
+    },
+    "c3t": {
+      "es": "Voluntariado",
+      "ca": "Voluntariat",
+      "en": "Volunteering"
+    },
+    "c3p": {
+      "es": "Suma tu tiempo y talento a nuestras actividades de educación ambiental y expresión artística.",
+      "ca": "Suma el teu temps i talent a les nostres activitats d'educació ambiental i expressió artística.",
+      "en": "Add your time and talent to our environmental education and artistic expression activities."
+    },
+    "c3a": {
+      "es": "Quiero ayudar",
+      "ca": "Vull ajudar",
+      "en": "I want to help"
+    },
+    "c4t": {
+      "es": "Difunde",
+      "ca": "Difon",
+      "en": "Spread the word"
+    },
+    "c4p": {
+      "es": "Comparte nuestros proyectos en redes sociales y ayúdanos a llegar a más jóvenes y comunidades.",
+      "ca": "Comparteix els nostres projectes a les xarxes socials i ajuda'ns a arribar a més joves i comunitats.",
+      "en": "Share our projects on social media and help us reach more young people and communities."
+    },
+    "c4a": {
+      "es": "Síguenos",
+      "ca": "Segueix-nos",
+      "en": "Follow us"
+    }
+  },
+  "map": {
+    "eyebrow": {
+      "es": "Colaboraciones",
+      "ca": "Col·laboracions",
+      "en": "Collaborations"
+    },
+    "h2": {
+      "es": "Crecemos en red",
+      "ca": "Creixem en xarxa",
+      "en": "We grow as a network"
+    },
+    "p": {
+      "es": "Asociaciones y espacios con los que hemos compartido proyectos, ideas y raíces. Toca un punto del mapa para descubrir cada colaboración.",
+      "ca": "Associacions i espais amb qui hem compartit projectes, idees i arrels. Toca un punt del mapa per descobrir cada col·laboració.",
+      "en": "Associations and spaces we've shared projects, ideas and roots with. Tap a point on the map to discover each collaboration."
+    },
+    "empty": {
+      "es": "Toca cualquier punto verde del mapa —o su nombre en la lista— para conocer a cada colaborador.",
+      "ca": "Toca qualsevol punt verd del mapa —o el seu nom a la llista— per conèixer cada col·laborador.",
+      "en": "Tap any green point on the map — or its name in the list — to meet each collaborator."
+    },
+    "clusterSub": {
+      "es": "3 colaboraciones en la ciudad — toca una para conocerla",
+      "ca": "3 col·laboracions a la ciutat — toca'n una per conèixer-la",
+      "en": "3 collaborations in the city — tap one to find out more"
+    },
+    "clusterBack": {
+      "es": "← Volver a Barcelona",
+      "ca": "← Tornar a Barcelona",
+      "en": "← Back to Barcelona"
+    }
+  },
+  "join": {
+    "name": {
+      "es": "¿Tu entidad?",
+      "ca": "La teva entitat?",
+      "en": "Your organisation?"
+    },
+    "desc": {
+      "es": "Colaboremos en el próximo proyecto.",
+      "ca": "Col·laborem en el proper projecte.",
+      "en": "Let's collaborate on the next project."
+    },
+    "cta": {
+      "es": "Escríbenos →",
+      "ca": "Escriu-nos →",
+      "en": "Write to us →"
+    }
+  },
+  "ecosystems": {
+    "eyebrow": {
+      "es": "Proyecto europeo",
+      "ca": "Projecte europeu",
+      "en": "European project"
+    },
+    "h2": {
+      "es": "ECOSystems: creciendo en comunidad",
+      "ca": "ECOSystems: creixent en comunitat",
+      "en": "ECOSystems: growing as a community"
+    },
+    "p1": {
+      "es": "Formamos parte de ECOSystems, una iniciativa europea que une jóvenes, comunidades y organizaciones para promover la sostenibilidad, la inclusión y la educación ambiental.",
+      "ca": "Formem part d'ECOSystems, una iniciativa europea que uneix joves, comunitats i organitzacions per promoure la sostenibilitat, la inclusió i l'educació ambiental.",
+      "en": "We are part of ECOSystems, a European initiative that brings together young people, communities and organisations to promote sustainability, inclusion and environmental education."
+    },
+    "p2": {
+      "es": "Un espacio para compartir aprendizajes, crear conexiones y descubrir nuevas formas de cuidar nuestro entorno desde la participación y la acción colectiva.",
+      "ca": "Un espai per compartir aprenentatges, crear connexions i descobrir noves formes de tenir cura del nostre entorn des de la participació i l'acció col·lectiva.",
+      "en": "A space to share learning, build connections and discover new ways to care for our environment through participation and collective action."
+    }
+  },
+  "give": {
+    "eyebrow": {
+      "es": "Apóyanos",
+      "ca": "Dóna'ns suport",
+      "en": "Support us"
+    },
+    "h2": {
+      "es": "Haz tu aportación",
+      "ca": "Fes la teva aportació",
+      "en": "Make your contribution"
+    },
+    "p1": {
+      "es": "Somos una entidad sin ánimo de lucro que crece gracias al apoyo de empresas, administraciones públicas y personas comprometidas con nuestra misión.",
+      "ca": "Som una entitat sense ànim de lucre que creix gràcies al suport d'empreses, administracions públiques i persones compromeses amb la nostra missió.",
+      "en": "We are a non-profit organisation that grows thanks to the support of companies, public administrations and people committed to our mission."
+    },
+    "p2": {
+      "es": "Si quieres contribuir a que sigamos impulsando proyectos con impacto social, puedes realizar una aportación económica. Envíanos un mensaje y te explicaremos las distintas formas de colaborar.",
+      "ca": "Si vols contribuir que continuem impulsant projectes amb impacte social, pots fer una aportació econòmica. Envia'ns un missatge i t'explicarem les diferents formes de col·laborar.",
+      "en": "If you'd like to help us keep driving projects with social impact, you can make a financial contribution. Send us a message and we'll explain the different ways to collaborate."
+    },
+    "p3": {
+      "es": "Cada contribución, independientemente de su importe, fortalece esta red y nos ayuda a seguir haciendo crecer nuestro micelio: una comunidad conectada que genera oportunidades y transforma su entorno.",
+      "ca": "Cada contribució, independentment del seu import, enforteix aquesta xarxa i ens ajuda a continuar fent créixer el nostre miceli: una comunitat connectada que genera oportunitats i transforma el seu entorn.",
+      "en": "Every contribution, whatever its amount, strengthens this network and helps us keep growing our mycelium: a connected community that creates opportunities and transforms its surroundings."
+    },
+    "cta": {
+      "es": "Envíanos un mensaje",
+      "ca": "Envia'ns un missatge",
+      "en": "Send us a message"
+    }
+  }
+}

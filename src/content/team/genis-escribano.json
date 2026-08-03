@@ -1,0 +1,15 @@
+{
+  "name": "Genís Escribano",
+  "role": {
+    "es": "Sonido · Música",
+    "ca": "So · Música",
+    "en": "Sound · Music"
+  },
+  "bio": {
+    "es": "Ingeniero de sonido y productor musical con más de 8 años coordinando el sonido de eventos en Barcelona. Formador en técnicas musicales y dibujo.",
+    "ca": "Enginyer de so i productor musical amb més de 8 anys coordinant el so d'esdeveniments a Barcelona. Formador en tècniques musicals i dibuix.",
+    "en": "Sound engineer and music producer with 8+ years coordinating event sound in Barcelona. Trainer in music production techniques and drawing."
+  },
+  "lead": false,
+  "order": 3
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Saúl Nebot",
+  "role": {
+    "es": "Presidente · Cofundador",
+    "ca": "President · Cofundador",
+    "en": "President · Co-founder"
+  },
+  "bio": {
+    "es": "Graduado en Ciencias Ambientales y especializado en Diseño Sostenible y Agroecología, cuenta con más de ocho años de experiencia en trabajo con jóvenes y educación ambiental. Ha colaborado con administraciones públicas en sensibilización sobre sostenibilidad, residuos cero y compostaje.",
+    "ca": "Graduat en Ciències Ambientals i especialitzat en Disseny Sostenible i Agroecologia, compta amb més de vuit anys d'experiència en treball amb joves i educació ambiental. Ha col·laborat amb administracions públiques en sensibilització sobre sostenibilitat, residus zero i compostatge.",
+    "en": "A graduate in Environmental Sciences specialising in Sustainable Design and Agroecology, with over eight years of experience in youth work and environmental education. He has worked with public administrations on sustainability awareness, zero waste and composting."
+  },
+  "photo": "../../assets/img/saul-nebot.jpg",
+  "photoAlt": {
+    "es": "Saúl Nebot, presidente y cofundador de Back to the Roots",
+    "ca": "Saúl Nebot, presidente y cofundador de Back to the Roots",
+    "en": "Saúl Nebot, presidente y cofundador de Back to the Roots"
+  },
+  "lead": true,
+  "order": 1
+}

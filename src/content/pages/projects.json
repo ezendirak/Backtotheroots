@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "eyebrow": {
+      "es": "Proyectos",
+      "ca": "Projectes",
+      "en": "Projects"
+    },
+    "h1": {
+      "es": "Los frutos de nuestro trabajo",
+      "ca": "Els fruits de la nostra feina",
+      "en": "The fruits of our work"
+    },
+    "p": {
+      "es": "Cada proyecto es el resultado de la colaboración, el compromiso y la ilusión compartida. Iniciativas que promocionan la expresión artística, promueven la educación ambiental, recuperan saberes tradicionales y generan soluciones sostenibles para las personas, el territorio y el futuro.",
+      "ca": "Cada projecte és el resultat de la col·laboració, el compromís i la il·lusió compartida. Iniciatives que promocionen l'expressió artística, promouen l'educació ambiental, recuperen sabers tradicionals i generen solucions sostenibles per a les persones, el territori i el futur.",
+      "en": "Every project is the result of collaboration, commitment and shared passion. Initiatives that promote artistic expression, foster environmental education, recover traditional knowledge and create sustainable solutions for people, the land and the future."
+    }
+  },
+  "section": {
+    "eyebrow": {
+      "es": "Algunos resultados",
+      "ca": "Alguns resultats",
+      "en": "Some results"
+    },
+    "h2": {
+      "es": "Filtra por temática",
+      "ca": "Filtra per temàtica",
+      "en": "Filter by theme"
+    },
+    "p": {
+      "es": "Cuatro proyectos, tres disciplinas, un mismo propósito: jóvenes como agentes de cambio.",
+      "ca": "Quatre projectes, tres disciplines, un mateix propòsit: joves com a agents de canvi.",
+      "en": "Four projects, three disciplines, one purpose: young people as agents of change."
+    }
+  },
+  "filters": {
+    "all": {
+      "es": "Todos",
+      "ca": "Tots",
+      "en": "All"
+    },
+    "nature": {
+      "es": "Naturaleza y sostenibilidad",
+      "ca": "Natura i sostenibilitat",
+      "en": "Nature & sustainability"
+    },
+    "art": {
+      "es": "Arte y expresión",
+      "ca": "Art i expressió",
+      "en": "Art & expression"
+    },
+    "youth": {
+      "es": "Juventud e inclusión",
+      "ca": "Jovent i inclusió",
+      "en": "Youth & inclusion"
+    }
+  },
+  "cta": {
+    "eyebrow": {
+      "es": "¿Tienes un proyecto en mente?",
+      "ca": "Tens un projecte al cap?",
+      "en": "Got a project in mind?"
+    },
+    "h2": {
+      "es": "Construyamos la próxima idea que eche raíces",
+      "ca": "Construïm la propera idea que arreli",
+      "en": "Let's build the next idea that takes root"
+    },
+    "btn1": {
+      "es": "Necesito una entidad socia",
+      "ca": "Necessito una entitat sòcia",
+      "en": "I need a partner organisation"
+    },
+    "btn2": {
+      "es": "Escríbenos",
+      "ca": "Escriu-nos",
+      "en": "Write to us"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "La Cremallera",
+  "place": {
+    "es": "Ripollès",
+    "ca": "Ripollès",
+    "en": "Ripollès"
+  },
+  "lat": 42.3057,
+  "lng": 2.1684,
+  "color": "#37503c",
+  "initials": "LC",
+  "description": {
+    "es": "Proyecto artístico que impulsa la creación escénica y la descentralización cultural en el territorio del Ripollès.",
+    "ca": "Projecte artístic que impulsa la creació escènica i la descentralització cultural al territori del Ripollès.",
+    "en": "An artistic project supporting performing-arts creation and cultural decentralisation in the Ripollès region."
+  },
+  "order": 4
+}

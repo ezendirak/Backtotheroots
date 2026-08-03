@@ -1,0 +1,15 @@
+{
+  "name": "Gisela Saló",
+  "role": {
+    "es": "Equipo educativo",
+    "ca": "Equip educatiu",
+    "en": "Education team"
+  },
+  "bio": {
+    "es": "Biografía en camino — muy pronto actualizaremos esta ficha con su presentación completa.",
+    "ca": "Biografia en camí — molt aviat actualitzarem aquesta fitxa amb la seva presentació completa.",
+    "en": "Bio coming soon — we'll update this card with her full introduction shortly."
+  },
+  "lead": false,
+  "order": 4
+}

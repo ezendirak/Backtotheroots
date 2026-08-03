@@ -1,0 +1,14 @@
+{
+  "main": {
+    "h1": {
+      "es": "¡Gracias!",
+      "ca": "Gràcies!",
+      "en": "Thank you!"
+    },
+    "text": {
+      "es": "¡Gracias! Hemos recibido tu mensaje. Te responderemos pronto.",
+      "ca": "Gràcies! Hem rebut el teu missatge. Et respondrem aviat.",
+      "en": "Thanks! We've received your message and will reply soon."
+    }
+  }
+}

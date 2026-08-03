@@ -1,0 +1,19 @@
+{
+  "name": "Cuida la Vida",
+  "place": {
+    "es": "Barcelona",
+    "ca": "Barcelona",
+    "en": "Barcelona"
+  },
+  "lat": 41.3874,
+  "lng": 2.1686,
+  "color": "#a65c2e",
+  "initials": "CV",
+  "description": {
+    "es": "Asociación de facilitadoras que promueve el bienestar psicosocial a través del arte, el movimiento y la Biodanza.",
+    "ca": "Associació de facilitadores que promou el benestar psicosocial a través de l'art, el moviment i la Biodansa.",
+    "en": "An association of facilitators promoting psychosocial wellbeing through art, movement and Biodanza."
+  },
+  "cluster": "Barcelona",
+  "order": 5
+}

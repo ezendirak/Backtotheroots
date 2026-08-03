@@ -1,0 +1,196 @@
+{
+  "hero": {
+    "eyebrow": {
+      "es": "Educación ambiental · Expresión artística",
+      "ca": "Educació ambiental · Expressió artística",
+      "en": "Environmental education · Artistic expression"
+    },
+    "title": {
+      "es": "Back to the <em>Roots</em>.",
+      "ca": "Back to the <em>Roots</em>.",
+      "en": "Back to the <em>Roots</em>."
+    },
+    "sub": {
+      "es": "Reconectamos a la juventud con la naturaleza, las tradiciones y el arte para transformar sus comunidades.",
+      "ca": "Reconnectem el jovent amb la natura, les tradicions i l'art per transformar les seves comunitats.",
+      "en": "We reconnect young people with nature, tradition and art to transform their communities."
+    },
+    "cta1": {
+      "es": "Descubre los proyectos",
+      "ca": "Descobreix els projectes",
+      "en": "Explore our projects"
+    },
+    "cta2": {
+      "es": "Quiero colaborar",
+      "ca": "Vull col·laborar",
+      "en": "I want to help"
+    },
+    "scroll": {
+      "es": "Baja y crece con nosotras",
+      "ca": "Baixa i creix amb nosaltres",
+      "en": "Scroll down and grow with us"
+    }
+  },
+  "questions": {
+    "q1": {
+      "es": "¿Quiénes somos?",
+      "ca": "Qui som?",
+      "en": "Who are we?"
+    },
+    "q2": {
+      "es": "¿Qué hacemos?",
+      "ca": "Què fem?",
+      "en": "What do we do?"
+    },
+    "q3": {
+      "es": "¿Por qué lo hacemos?",
+      "ca": "Per què ho fem?",
+      "en": "Why we do it?"
+    },
+    "q4": {
+      "es": "¿Cómo colaborar?",
+      "ca": "Com col·laborar?",
+      "en": "How to help?"
+    },
+    "q5": {
+      "es": "¿Qué impacto tiene?",
+      "ca": "Quin impacte té?",
+      "en": "What's our impact?"
+    }
+  },
+  "who": {
+    "eyebrow": {
+      "es": "Quiénes somos",
+      "ca": "Qui som",
+      "en": "Who we are"
+    },
+    "h2": {
+      "es": "Una comunidad que crece desde la raíz",
+      "ca": "Una comunitat que creix des de l'arrel",
+      "en": "A community that grows from the root"
+    },
+    "p": {
+      "es": "Somos una entidad de experiencias educativas que trabaja para proteger el medio ambiente mediante la educación ambiental y la implicación de los jóvenes en sus comunidades. Nacimos en 2021 con una idea sencilla: reconectar a las personas con la naturaleza y buscar soluciones sostenibles a la despoblación rural y la crisis climática.",
+      "ca": "Som una entitat d'experiències educatives que treballa per protegir el medi ambient mitjançant l'educació ambiental i la implicació del jovent en les seves comunitats. Vam néixer el 2021 amb una idea senzilla: reconnectar les persones amb la natura i buscar solucions sostenibles a la despoblació rural i la crisi climàtica.",
+      "en": "We're an educational experiences organisation working to protect the environment through environmental education and youth engagement in their communities. We started in 2021 with a simple idea: reconnect people with nature and find sustainable answers to rural depopulation and the climate crisis."
+    },
+    "cta": {
+      "es": "Conócenos mejor",
+      "ca": "Coneix-nos millor",
+      "en": "Get to know us"
+    }
+  },
+  "doing": {
+    "eyebrow": {
+      "es": "Qué hacemos",
+      "ca": "Què fem",
+      "en": "What we do"
+    },
+    "h2": {
+      "es": "Tres raíces, un mismo propósito",
+      "ca": "Tres arrels, un mateix propòsit",
+      "en": "Three roots, one purpose"
+    },
+    "p": {
+      "es": "Empoderamos a jóvenes europeos para ser promotores de una transformación eco-social en sus comunidades.",
+      "ca": "Empoderem joves europeus per ser promotors d'una transformació ecosocial a les seves comunitats.",
+      "en": "We empower young Europeans to become drivers of eco-social change in their communities."
+    },
+    "c1t": {
+      "es": "Educación ambiental",
+      "ca": "Educació ambiental",
+      "en": "Environmental education"
+    },
+    "c1p": {
+      "es": "Reconexión con la naturaleza, residuos cero, agroecología y soluciones frente a la despoblación rural.",
+      "ca": "Reconnexió amb la natura, residus zero, agroecologia i solucions davant la despoblació rural.",
+      "en": "Reconnecting with nature, zero waste, agroecology and answers to rural depopulation."
+    },
+    "c2t": {
+      "es": "Juventud e inclusión",
+      "ca": "Jovent i inclusió",
+      "en": "Youth & inclusion"
+    },
+    "c2p": {
+      "es": "Intercambios y formaciones que reúnen a jóvenes de toda Europa como agentes de cambio.",
+      "ca": "Intercanvis i formacions que reuneixen joves de tota Europa com a agents de canvi.",
+      "en": "Exchanges and trainings bringing together young people from across Europe as agents of change."
+    },
+    "c3t": {
+      "es": "Expresión artística",
+      "ca": "Expressió artística",
+      "en": "Artistic expression"
+    },
+    "c3p": {
+      "es": "Música, teatro, cine y fotografía como lenguaje universal para expresar ideas y provocar el cambio.",
+      "ca": "Música, teatre, cinema i fotografia com a llenguatge universal per expressar idees i provocar el canvi.",
+      "en": "Music, theatre, film and photography as a universal language to express ideas and drive change."
+    }
+  },
+  "projects": {
+    "eyebrow": {
+      "es": "Proyectos",
+      "ca": "Projectes",
+      "en": "Projects"
+    },
+    "h2": {
+      "es": "Ideas que echaron raíces",
+      "ca": "Idees que van arrelar",
+      "en": "Ideas that took root"
+    },
+    "p": {
+      "es": "Un vistazo a algunos de nuestros últimos proyectos.",
+      "ca": "Un cop d'ull a alguns dels nostres darrers projectes.",
+      "en": "A look at some of our latest projects."
+    },
+    "cta": {
+      "es": "Ver todos los proyectos",
+      "ca": "Veure tots els projectes",
+      "en": "See all projects"
+    }
+  },
+  "opportunity": {
+    "eyebrow": {
+      "es": "Oportunidad abierta",
+      "ca": "Oportunitat oberta",
+      "en": "Open opportunity"
+    },
+    "h2": {
+      "es": "Vive una experiencia que deja huella",
+      "ca": "Viu una experiència que deixa empremta",
+      "en": "Live an experience that leaves a mark"
+    },
+    "cta1": {
+      "es": "Ver todos los detalles",
+      "ca": "Veure tots els detalls",
+      "en": "See full details"
+    },
+    "cta2": {
+      "es": "Inscríbete ahora",
+      "ca": "Inscriu-t'hi ara",
+      "en": "Register now"
+    }
+  },
+  "cta": {
+    "eyebrow": {
+      "es": "Súmate",
+      "ca": "Suma't",
+      "en": "Get involved"
+    },
+    "h2": {
+      "es": "Hay muchas formas de sembrar contigo",
+      "ca": "Hi ha moltes formes de sembrar amb tu",
+      "en": "There are many ways to plant seeds with us"
+    },
+    "btn1": {
+      "es": "Cómo colaborar",
+      "ca": "Com col·laborar",
+      "en": "How to help"
+    },
+    "btn2": {
+      "es": "Escríbenos",
+      "ca": "Escriu-nos",
+      "en": "Write to us"
+    }
+  }
+}

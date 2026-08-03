@@ -1,0 +1,65 @@
+{
+  "title": "TerraTribe 2026",
+  "status": "abierta",
+  "poster": "../../assets/img/terratribe.png",
+  "posterAlt": {
+    "es": "Cartel del intercambio juvenil TerraTribe 2026",
+    "ca": "Cartel del intercambio juvenil TerraTribe 2026",
+    "en": "Cartel del intercambio juvenil TerraTribe 2026"
+  },
+  "where": {
+    "es": "9–16 agosto · Casa de Colonias Alfar, Dosrius (Barcelona)",
+    "ca": "9–16 agost · Casa de Colònies Alfar, Dosrius (Barcelona)",
+    "en": "9–16 August · Casa de Colonias Alfar, Dosrius (Barcelona)"
+  },
+  "whereShort": {
+    "es": "9–16 agosto · Dosrius (Barcelona)",
+    "ca": "9–16 agost · Dosrius (Barcelona)",
+    "en": "9–16 August · Dosrius (Barcelona)"
+  },
+  "summary": {
+    "es": "Un intercambio juvenil entre España y Francia para vivir un verano diferente, crecer personalmente y formar parte de una aventura en plena naturaleza.",
+    "ca": "Un intercanvi juvenil entre Espanya i França per viure un estiu diferent, créixer personalment i formar part d'una aventura en plena natura.",
+    "en": "A youth exchange between Spain and France to live a different summer, grow personally and be part of an adventure in the heart of nature."
+  },
+  "summaryShort": {
+    "es": "Un intercambio juvenil entre España y Francia para vivir un verano diferente en plena naturaleza.",
+    "ca": "Un intercanvi juvenil entre Espanya i França per viure un estiu diferent en plena natura.",
+    "en": "A youth exchange between Spain and France to live a different summer in the heart of nature."
+  },
+  "facts": [
+    {
+      "es": "30 jóvenes: 15 de Francia y 15 de España, de 14 a 17 años",
+      "ca": "30 joves: 15 de França i 15 d'Espanya, de 14 a 17 anys",
+      "en": "30 young people: 15 from France and 15 from Spain, aged 14–17"
+    },
+    {
+      "es": "España y Francia",
+      "ca": "Espanya i França",
+      "en": "Spain and France"
+    },
+    {
+      "es": "En inglés, en un contexto real y dinámico",
+      "ca": "En anglès, en un context real i dinàmic",
+      "en": "In English, in a real and dynamic setting"
+    },
+    {
+      "es": "Alojamiento, dietas y transporte incluidos",
+      "ca": "Allotjament, dietes i transport inclosos",
+      "en": "Accommodation, meals and travel included"
+    }
+  ],
+  "findLabel": {
+    "es": "¿Qué encontrarás?",
+    "ca": "Què hi trobaràs?",
+    "en": "What you'll find"
+  },
+  "findText": {
+    "es": "Actividades de educación ambiental y sostenibilidad, dinámicas de intercambio cultural, vida en comunidad en plena naturaleza y experiencias que te sacarán de tu zona de confort.",
+    "ca": "Activitats d'educació ambiental i sostenibilitat, dinàmiques d'intercanvi cultural, vida en comunitat en plena natura i experiències que et trauran de la teva zona de confort.",
+    "en": "Environmental and sustainability activities, cultural exchange dynamics, community life in nature and experiences that will take you out of your comfort zone."
+  },
+  "signupUrl": "https://forms.gle/Wmw66rCdxUMGSWGc8",
+  "infopackUrl": "https://drive.google.com/file/d/1ZXWwzrJFpAtYIje4-Od7d4uHj0r40PHP/view?usp=sharing",
+  "order": 1
+}
