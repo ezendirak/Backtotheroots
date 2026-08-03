@@ -125,6 +125,33 @@ textarea:focus-visible {
   background: var(--oat-100);
 }
 
+/* Fila de botones. Los modificadores sustituyen a los `style=` sueltos que
+   llevaba el markup anterior. */
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+.hero__cta--center {
+  justify-content: center;
+}
+.hero__cta--spaced {
+  margin-top: 22px;
+}
+
+.eyebrow--sprout {
+  color: var(--sprout);
+}
+.eyebrow--sprout::before {
+  background: var(--sprout);
+}
+.eyebrow--center {
+  justify-content: center;
+}
+.section--center {
+  text-align: center;
+}
+
 .hand {
   font-family: var(--ff-hand);
   font-size: 1.5em;

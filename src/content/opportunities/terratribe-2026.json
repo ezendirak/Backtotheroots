@@ -61,5 +61,10 @@
   },
   "signupUrl": "https://forms.gle/Wmw66rCdxUMGSWGc8",
   "infopackUrl": "https://drive.google.com/file/d/1ZXWwzrJFpAtYIje4-Od7d4uHj0r40PHP/view?usp=sharing",
-  "order": 1
+  "order": 1,
+  "flag": {
+    "es": "Inscripciones abiertas",
+    "ca": "Inscripcions obertes",
+    "en": "Registration open"
+  }
 }

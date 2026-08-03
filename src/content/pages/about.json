@@ -1,4 +1,12 @@
 {
+  "seo": {
+    "title": {
+      "es": "Sobre nosotras · Equipo y misión · Back to the Roots"
+    },
+    "description": {
+      "es": "Conoce a Back to the Roots: nuestra misión, por qué trabajamos por la educación ambiental y la expresión artística, y el equipo que lo hace posible."
+    }
+  },
   "hero": {
     "eyebrow": {
       "es": "Quiénes somos",

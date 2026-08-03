@@ -1,4 +1,12 @@
 {
+  "seo": {
+    "title": {
+      "es": "Back to the Roots · Educación ambiental y expresión artística para la juventud"
+    },
+    "description": {
+      "es": "Experiencias educativas que reconectan a la juventud con la naturaleza, las tradiciones y el arte a través de intercambios y formaciones educativas en Cataluña y Europa."
+    }
+  },
   "hero": {
     "eyebrow": {
       "es": "Educación ambiental · Expresión artística",
@@ -70,9 +78,9 @@
       "en": "A community that grows from the root"
     },
     "p": {
-      "es": "Somos una entidad de experiencias educativas que trabaja para proteger el medio ambiente mediante la educación ambiental y la implicación de los jóvenes en sus comunidades. Nacimos en 2021 con una idea sencilla: reconectar a las personas con la naturaleza y buscar soluciones sostenibles a la despoblación rural y la crisis climática.",
-      "ca": "Som una entitat d'experiències educatives que treballa per protegir el medi ambient mitjançant l'educació ambiental i la implicació del jovent en les seves comunitats. Vam néixer el 2021 amb una idea senzilla: reconnectar les persones amb la natura i buscar solucions sostenibles a la despoblació rural i la crisi climàtica.",
-      "en": "We're an educational experiences organisation working to protect the environment through environmental education and youth engagement in their communities. We started in 2021 with a simple idea: reconnect people with nature and find sustainable answers to rural depopulation and the climate crisis."
+      "es": "Somos una entidad de experiencias educativas que trabaja para proteger el medio ambiente mediante la educación ambiental y la implicación de los jóvenes en sus comunidades. Nacimos en 2020 con una idea sencilla: reconectar a las personas con la naturaleza y buscar soluciones sostenibles a la despoblación rural y la crisis climática.",
+      "ca": "Som una entitat d'experiències educatives que treballa per protegir el medi ambient mitjançant l'educació ambiental i la implicació del jovent en les seves comunitats. Vam néixer el 2020 amb una idea senzilla: reconnectar les persones amb la natura i buscar solucions sostenibles a la despoblació rural i la crisi climàtica.",
+      "en": "We're an educational experiences organisation working to protect the environment through environmental education and youth engagement in their communities. We started in 2020 with a simple idea: reconnect people with nature and find sustainable answers to rural depopulation and the climate crisis."
     },
     "cta": {
       "es": "Conócenos mejor",

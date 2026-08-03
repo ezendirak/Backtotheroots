@@ -37,5 +37,6 @@
   ],
   "date": "2024",
   "featured": true,
-  "order": 2
+  "order": 2,
+  "homeOrder": 2
 }

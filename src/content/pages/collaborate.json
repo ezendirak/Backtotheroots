@@ -1,4 +1,12 @@
 {
+  "seo": {
+    "title": {
+      "es": "Colabora con nosotras · Red de aliados · Back to the Roots"
+    },
+    "description": {
+      "es": "Descubre cómo colaborar con Back to the Roots: como joven, entidad, voluntario o difundiendo nuestros proyectos. Explora nuestra red de colaboraciones en el mapa."
+    }
+  },
   "hero": {
     "eyebrow": {
       "es": "Cómo colaborar",

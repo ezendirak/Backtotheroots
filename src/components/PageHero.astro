@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import { localePath, useTranslations, type Locale, type UIKey } from '../i18n';
+
+interface Props {
+  lang: Locale;
+  /** Clave del texto de la miga de pan: "Inicio ／ Colabora". */
+  crumb: UIKey;
+  eyebrow: string;
+  title: string;
+  text?: string;
+  image: ImageMetadata;
+}
+
+const { lang, crumb, eyebrow, title, text, image } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="pagehero">
+  <div class="pagehero__bg">
+    {/* Decorativa: el texto encima ya cuenta de qué va la página. */}
+    <Image src={image} alt="" widths={[720, 1200, 1800]} sizes="100vw" loading="eager" />
+  </div>
+  <div class="wrap pagehero__inner">
+    <div class="crumb">
+      <a href={localePath(lang)}>{t('common.crumb.home')}</a>
+      <span>／</span>
+      <span>{t(crumb)}</span>
+    </div>
+    <span class="eyebrow">{eyebrow}</span>
+    <h1>{title}</h1>
+    {text && <p>{text}</p>}
+  </div>
+</section>
+
+<style>
+  .pagehero {
+    position: relative;
+    background: linear-gradient(160deg, var(--forest-900), var(--forest-950));
+    color: #fff;
+    overflow: hidden;
+  }
+  .pagehero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .pagehero__bg :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.34;
+  }
+  .pagehero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(22, 33, 26, 0.55), rgba(22, 33, 26, 0.92));
+  }
+  .pagehero__inner {
+    position: relative;
+    z-index: 1;
+    padding: 64px 0 58px;
+  }
+  .pagehero :global(.eyebrow) {
+    color: var(--sprout);
+  }
+  .pagehero :global(.eyebrow)::before {
+    background: var(--sprout);
+  }
+  .pagehero h1 {
+    font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+    margin-top: 14px;
+    max-width: 18ch;
+  }
+  .pagehero p {
+    margin-top: 16px;
+    max-width: 60ch;
+    color: rgba(244, 239, 226, 0.86);
+    font-size: 1.08rem;
+  }
+  .crumb {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.85rem;
+    color: rgba(244, 239, 226, 0.6);
+    margin-bottom: 16px;
+  }
+  .crumb a {
+    color: rgba(244, 239, 226, 0.85);
+    font-weight: 600;
+  }
+  .crumb a:hover {
+    color: var(--sprout);
+  }
+</style>

@@ -1,0 +1,145 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { pickText } from '../lib/content';
+import type { Locale } from '../i18n';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  lang: Locale;
+  /** La portada usa el texto corto; /proyectos, el largo. */
+  short?: boolean;
+  /** Las estadísticas solo salen en /proyectos. */
+  showStats?: boolean;
+}
+
+const { project, lang, short = false, showStats = false } = Astro.props;
+const d = project.data;
+
+const title = pickText(d.title, lang);
+const text = short && d.summary ? pickText(d.summary, lang) : pickText(d.description, lang);
+
+/* Las miniaturas siguen viniendo de YouTube: es la única petición a un tercero
+   que se mantiene, y está decidido en CLAUDE.md §4. Si `maxresdefault` no
+   existe, YouTube devuelve un marcador gris; el reemplazo por `hqdefault` y el
+   reproductor en la propia página llegan con VideoFacade en la fase 3. */
+const thumb = `https://i.ytimg.com/vi/${d.youtubeId}/maxresdefault.jpg`;
+const watch = `https://www.youtube.com/watch?v=${d.youtubeId}`;
+---
+
+<article class="project reveal" data-theme={d.theme.join(' ')}>
+  <div class="project__img">
+    <a href={watch} target="_blank" rel="noopener" aria-label={`${title} — YouTube`}>
+      <img src={thumb} alt={title} loading="lazy" width="1280" height="720" />
+    </a>
+    <span class="project__tag">{pickText(d.tag, lang)}</span>
+  </div>
+  <div class="project__body">
+    <div class="project__meta">{d.meta}</div>
+    <h3>{title}</h3>
+    <p>{text}</p>
+    {
+      showStats && d.stats.length > 0 && (
+        <div class="project__stat">
+          {d.stats.map((s) => (
+            <div>
+              <b>{s.value}</b>
+              <span>{pickText(s.label, lang)}</span>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .project {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition:
+      transform 0.3s var(--ease),
+      box-shadow 0.3s;
+  }
+  .project:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 54px -30px rgba(30, 43, 34, 0.5);
+  }
+  .project__img {
+    aspect-ratio: 16/10;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    background: var(--forest-800);
+    overflow: hidden;
+  }
+  .project__img a {
+    position: absolute;
+    inset: 0;
+  }
+  .project__img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .project__tag {
+    position: relative;
+    z-index: 2;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: #fff;
+    color: var(--forest-900);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+  .project__body {
+    padding: 22px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .project__meta {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--moss-600);
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .project__body h3 {
+    font-size: 1.3rem;
+    margin-bottom: 9px;
+  }
+  .project__body p {
+    color: var(--muted);
+    font-size: 0.96rem;
+    flex: 1;
+  }
+  .project__stat {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+  .project__stat div b {
+    font-family: var(--ff-display);
+    font-weight: 800;
+    color: var(--forest-900);
+    font-size: 1.1rem;
+  }
+  .project__stat div span {
+    display: block;
+    font-size: 0.74rem;
+    color: var(--muted);
+  }
+</style>

@@ -1,4 +1,12 @@
 {
+  "seo": {
+    "title": {
+      "es": "Oportunidades · TerraTribe 2026 · Back to the Roots"
+    },
+    "description": {
+      "es": "Inscripciones abiertas para TerraTribe 2026, intercambio juvenil entre España y Francia. Consulta requisitos, fechas y cómo apuntarte."
+    }
+  },
   "hero": {
     "eyebrow": {
       "es": "Oportunidades",
@@ -34,11 +42,6 @@
     }
   },
   "card": {
-    "flag": {
-      "es": "Inscripciones abiertas",
-      "ca": "Inscripcions obertes",
-      "en": "Registration open"
-    },
     "cta1": {
       "es": "Inscríbete ahora",
       "ca": "Inscriu-t'hi ara",

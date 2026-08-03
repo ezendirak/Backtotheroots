@@ -1,4 +1,12 @@
 {
+  "seo": {
+    "title": {
+      "es": "Gracias · Back to the Roots"
+    },
+    "description": {
+      "es": "Hemos recibido tu mensaje. Te responderemos pronto."
+    }
+  },
   "main": {
     "h1": {
       "es": "¡Gracias!",

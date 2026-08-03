@@ -68,6 +68,8 @@ const projects = defineCollection({
     date: z.string().optional(),
     /* Se muestra también en la portada. */
     featured: z.boolean().default(false),
+    /* Orden dentro de la portada, que no es el de /proyectos. */
+    homeOrder: z.number().optional(),
     order: z.number().default(99),
   }),
 });
@@ -81,6 +83,8 @@ const opportunities = defineCollection({
     z.object({
       title: z.string(),
       status: z.enum(['abierta', 'cerrada']),
+      /* Etiqueta sobre el cartel: "Inscripciones abiertas". */
+      flag: i18nText.optional(),
       poster: image(),
       posterAlt: i18nText,
       where: i18nText,

@@ -45,5 +45,6 @@
   ],
   "date": "2023",
   "featured": true,
-  "order": 4
+  "order": 4,
+  "homeOrder": 3
 }
