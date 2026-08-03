@@ -18,10 +18,10 @@ const SOCIAL = [
 ];
 
 const EXPLORE = [
-  { slug: 'nosotras', key: 'common.nav.about' },
-  { slug: 'proyectos', key: 'common.nav.projects' },
-  { slug: 'oportunidades', key: 'common.nav.opportunities' },
-  { slug: 'colabora', key: 'common.nav.collaborate' },
+  { page: 'about', key: 'common.nav.about' },
+  { page: 'projects', key: 'common.nav.projects' },
+  { page: 'opportunities', key: 'common.nav.opportunities' },
+  { page: 'collaborate', key: 'common.nav.collaborate' },
 ] as const;
 
 /* El año se fija en el momento del build. Cada cambio de contenido reconstruye
@@ -42,7 +42,7 @@ const year = new Date().getFullYear();
       <div>
         <h4>{t('common.footer.explore')}</h4>
         <ul>
-          {EXPLORE.map((item) => <li><a href={localePath(lang, item.slug)}>{t(item.key)}</a></li>)}
+          {EXPLORE.map((item) => <li><a href={localePath(lang, item.page)}>{t(item.key)}</a></li>)}
         </ul>
       </div>
       <div>

@@ -1,8 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { localePaths, type Locale } from '../../i18n';
+import { pathsFor, type Locale } from '../../i18n';
 
-export const getStaticPaths = localePaths;
+export const getStaticPaths = () => pathsFor('opportunities');
 
 type Props = { lang: Locale };
 const { lang } = Astro.props;
@@ -13,7 +13,7 @@ const description =
   'Inscripciones abiertas para TerraTribe 2026, intercambio juvenil entre España y Francia. Consulta requisitos, fechas y cómo apuntarte.';
 ---
 
-<Base lang={lang} slug="oportunidades" title={title} description={description}>
+<Base lang={lang} page="opportunities" title={title} description={description}>
   <section class="section">
     <div class="wrap">
       <h1>Extendemos nuestras ramas</h1>

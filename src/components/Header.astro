@@ -1,19 +1,19 @@
 ---
-import { LOCALES, localePath, useTranslations, type Locale, type Slug, type UIKey } from '../i18n';
+import { LOCALES, localePath, useTranslations, type Locale, type PageId, type UIKey } from '../i18n';
 
 interface Props {
   lang: Locale;
-  slug: Slug;
+  page: PageId;
 }
 
-const { lang, slug } = Astro.props;
+const { lang, page } = Astro.props;
 const t = useTranslations(lang);
 
 /* El icono de cada enlace se anima al pasar por encima (ciclo de crecimiento:
    semilla → raíces → ramas → flor → frutos → micelio). El orden es el de la
    web actual y no se toca. */
 type NavItem = {
-  slug: Slug;
+  page: PageId;
   label: UIKey;
   hover: UIKey;
   icon: string;
@@ -23,28 +23,28 @@ type NavItem = {
 
 const NAV: NavItem[] = [
   {
-    slug: '',
+    page: 'home',
     label: 'common.nav.home',
     hover: 'common.nav.home.hover',
     icon: 'ic-seed',
     svg: `<path class="ic-seed-body" d="M12 9c-3 1.6-4.6 4-4.6 6.6a4.6 4.6 0 009.2 0C16.6 13 15 10.6 12 9z" fill="currentColor"/><path class="ic-seed-sprout" d="M12 9V3M12 5.4c-1.1 0-2.1.6-2.6 1.6M12 5.4c1.1 0 1.9.6 2.3 1.6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,
   },
   {
-    slug: 'nosotras',
+    page: 'about',
     label: 'common.nav.about',
     hover: 'common.nav.about.hover',
     icon: 'ic-roots',
     svg: `<circle cx="12" cy="6" r="2.1" fill="currentColor"/><path class="ic-roots-tendril" d="M12 8v3M12 11c-1.6 1.6-2.6 2.8-3 5.6M12 11c-.4 2.6-.4 4.4 0 6.8M12 11c1.6 1.6 2.6 2.8 3 5.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>`,
   },
   {
-    slug: 'oportunidades',
+    page: 'opportunities',
     label: 'common.nav.opportunities',
     hover: 'common.nav.opportunities.hover',
     icon: 'ic-branch',
     svg: `<path d="M4 20c4.5-2 8.5-6.5 10.5-13" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><path class="ic-branch-twig" d="M13 9.6c2-1 4-.8 5.6.4M13.6 7.4c.8-2 .8-3.6 0-5.4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle class="ic-branch-leaf" cx="19.6" cy="10.6" r="1.9" fill="currentColor"/>`,
   },
   {
-    slug: 'contacto',
+    page: 'contact',
     label: 'common.nav.contact',
     hover: 'common.nav.contact.hover',
     title: 'common.nav.contact.title',
@@ -52,14 +52,14 @@ const NAV: NavItem[] = [
     svg: `<g class="petal petal--1" transform="rotate(0 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><g class="petal petal--2" transform="rotate(72 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><g class="petal petal--3" transform="rotate(144 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><g class="petal petal--4" transform="rotate(216 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><g class="petal petal--5" transform="rotate(288 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><circle class="ic-flower-center" cx="12" cy="13" r="2.1"/>`,
   },
   {
-    slug: 'proyectos',
+    page: 'projects',
     label: 'common.nav.projects',
     hover: 'common.nav.projects.hover',
     icon: 'ic-fruit',
     svg: `<path d="M12 9.4c-.9 0-1.6.5-1.9 1.3" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/><path class="ic-fruit-leaf" d="M12 9.4c1.3-1.6 2.9-1.4 3.4.1-1.5.9-2.8.5-3.4-.1z" fill="currentColor"/><circle class="ic-fruit-body" cx="12" cy="15.6" r="5.4" fill="currentColor"/>`,
   },
   {
-    slug: 'colabora',
+    page: 'collaborate',
     label: 'common.nav.collaborate',
     hover: 'common.nav.collaborate.hover',
     icon: 'ic-myc',
@@ -79,9 +79,9 @@ const NAV: NavItem[] = [
       {
         NAV.map((item) => (
           <a
-            href={localePath(lang, item.slug)}
+            href={localePath(lang, item.page)}
             class="navlink"
-            aria-current={item.slug === slug ? 'page' : undefined}
+            aria-current={item.page === page ? 'page' : undefined}
             title={item.title ? t(item.title) : undefined}
           >
             <span class={`navlink__icon ${item.icon}`} aria-hidden="true">
@@ -101,7 +101,7 @@ const NAV: NavItem[] = [
         {
           LOCALES.map((code) => (
             <a
-              href={localePath(code, slug)}
+              href={localePath(code, page)}
               class={code === lang ? 'on' : undefined}
               aria-current={code === lang ? 'true' : undefined}
               hreflang={code}
@@ -111,7 +111,7 @@ const NAV: NavItem[] = [
           ))
         }
       </div>
-      <a class="btn btn--solid" href={localePath(lang, 'colabora')}>{t('common.nav.join')}</a>
+      <a class="btn btn--solid" href={localePath(lang, 'collaborate')}>{t('common.nav.join')}</a>
       <button class="burger" id="burger" aria-label={t('common.aria.menu')} aria-expanded="false" aria-controls="navlinks">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <path d="M4 7h16M4 12h16M4 17h16"></path>

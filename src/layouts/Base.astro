@@ -7,21 +7,21 @@ import '../styles/base.css';
 
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { DEFAULT_LOCALE, LOCALES, localePath, useTranslations, type Locale, type Slug } from '../i18n';
+import { DEFAULT_LOCALE, LOCALES, localePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
   lang: Locale;
-  slug: Slug;
+  page: PageId;
   title: string;
   description: string;
   ogImage?: string;
 }
 
-const { lang, slug, title, description, ogImage } = Astro.props;
+const { lang, page, title, description, ogImage } = Astro.props;
 const t = useTranslations(lang);
 
 /* Absolutas, no relativas: es lo que exigen canonical, hreflang y Open Graph. */
-const canonical = new URL(localePath(lang, slug), Astro.site);
+const canonical = new URL(localePath(lang, page), Astro.site);
 const image = new URL(ogImage ?? '/assets/img/logo-icon.png', Astro.site);
 ---
 
@@ -37,10 +37,10 @@ const image = new URL(ogImage ?? '/assets/img/logo-icon.png', Astro.site);
 
     {
       LOCALES.map((code) => (
-        <link rel="alternate" hreflang={code} href={new URL(localePath(code, slug), Astro.site)} />
+        <link rel="alternate" hreflang={code} href={new URL(localePath(code, page), Astro.site)} />
       ))
     }
-    <link rel="alternate" hreflang="x-default" href={new URL(localePath(DEFAULT_LOCALE, slug), Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(localePath(DEFAULT_LOCALE, page), Astro.site)} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -57,7 +57,7 @@ const image = new URL(ogImage ?? '/assets/img/logo-icon.png', Astro.site);
     </div>
     <div class="topbar" aria-hidden="true"><span></span></div>
 
-    <Header lang={lang} slug={slug} />
+    <Header lang={lang} page={page} />
 
     <main id="main">
       <slot />

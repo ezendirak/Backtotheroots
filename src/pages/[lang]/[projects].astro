@@ -1,8 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { localePaths, type Locale } from '../../i18n';
+import { pathsFor, type Locale } from '../../i18n';
 
-export const getStaticPaths = localePaths;
+export const getStaticPaths = () => pathsFor('projects');
 
 type Props = { lang: Locale };
 const { lang } = Astro.props;
@@ -13,7 +13,7 @@ const description =
   'Descubre los proyectos de Back to the Roots: intercambios educativos, talleres de sostenibilidad y expresión artística realizados en Cataluña y Europa.';
 ---
 
-<Base lang={lang} slug="proyectos" title={title} description={description}>
+<Base lang={lang} page="projects" title={title} description={description}>
   <section class="section">
     <div class="wrap">
       <h1>Los frutos de nuestro trabajo</h1>
