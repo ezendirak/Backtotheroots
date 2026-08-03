@@ -1,0 +1,140 @@
+---
+import { localePath, useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+/* TODO fase 2: email y redes pasan a la colección `config` (src/content/config/site.json)
+   para que la ONG pueda cambiarlos desde el CMS. */
+const EMAIL = 'info@backtotheroots-ngo.com';
+const SOCIAL = [
+  { name: 'Instagram', url: 'https://www.instagram.com/backtotheroots.eu/' },
+  { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=100086345329479' },
+  { name: 'YouTube', url: 'https://www.youtube.com/@backtotheroots-ngo' },
+];
+
+const EXPLORE = [
+  { slug: 'nosotras', key: 'common.nav.about' },
+  { slug: 'proyectos', key: 'common.nav.projects' },
+  { slug: 'oportunidades', key: 'common.nav.opportunities' },
+  { slug: 'colabora', key: 'common.nav.collaborate' },
+] as const;
+
+/* El año se fija en el momento del build. Cada cambio de contenido reconstruye
+   el sitio, así que no se queda atrás. */
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">
+          <img src="/assets/img/logo-icon.png" alt="" width="32" height="32" />
+          Back to the Roots
+        </div>
+        <p>{t('common.footer.tagline')}</p>
+      </div>
+      <div>
+        <h4>{t('common.footer.explore')}</h4>
+        <ul>
+          {EXPLORE.map((item) => <li><a href={localePath(lang, item.slug)}>{t(item.key)}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h4>{t('common.footer.connect')}</h4>
+        <ul>
+          <li><a href={`mailto:${EMAIL}`}>Email</a></li>
+          {SOCIAL.map((item) => <li><a href={item.url} target="_blank" rel="noopener">{item.name}</a></li>)}
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© {year} {t('common.footer.brandline')}</span>
+      <span class="hand">{t('common.footer.made')}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--forest-950);
+    color: rgba(244, 239, 226, 0.7);
+    padding: 56px 0 30px;
+  }
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 36px;
+    padding-bottom: 34px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: #fff;
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+  }
+  .footer__brand img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .footer p {
+    font-size: 0.92rem;
+    max-width: 34ch;
+  }
+  .footer h4 {
+    color: #fff;
+    font-family: var(--ff-body);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .footer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .footer ul a {
+    font-size: 0.94rem;
+    transition: color 0.2s;
+  }
+  .footer ul a:hover {
+    color: var(--sprout);
+  }
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 22px;
+    font-size: 0.82rem;
+  }
+  .footer__bottom .hand {
+    font-size: 1.3rem;
+    color: var(--sprout);
+  }
+
+  @media (max-width: 760px) {
+    .footer__top {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer__brand {
+      grid-column: 1/-1;
+    }
+  }
+</style>

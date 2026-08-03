@@ -1,0 +1,547 @@
+---
+import { LOCALES, localePath, useTranslations, type Locale, type Slug, type UIKey } from '../i18n';
+
+interface Props {
+  lang: Locale;
+  slug: Slug;
+}
+
+const { lang, slug } = Astro.props;
+const t = useTranslations(lang);
+
+/* El icono de cada enlace se anima al pasar por encima (ciclo de crecimiento:
+   semilla → raíces → ramas → flor → frutos → micelio). El orden es el de la
+   web actual y no se toca. */
+type NavItem = {
+  slug: Slug;
+  label: UIKey;
+  hover: UIKey;
+  icon: string;
+  svg: string;
+  title?: UIKey;
+};
+
+const NAV: NavItem[] = [
+  {
+    slug: '',
+    label: 'common.nav.home',
+    hover: 'common.nav.home.hover',
+    icon: 'ic-seed',
+    svg: `<path class="ic-seed-body" d="M12 9c-3 1.6-4.6 4-4.6 6.6a4.6 4.6 0 009.2 0C16.6 13 15 10.6 12 9z" fill="currentColor"/><path class="ic-seed-sprout" d="M12 9V3M12 5.4c-1.1 0-2.1.6-2.6 1.6M12 5.4c1.1 0 1.9.6 2.3 1.6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,
+  },
+  {
+    slug: 'nosotras',
+    label: 'common.nav.about',
+    hover: 'common.nav.about.hover',
+    icon: 'ic-roots',
+    svg: `<circle cx="12" cy="6" r="2.1" fill="currentColor"/><path class="ic-roots-tendril" d="M12 8v3M12 11c-1.6 1.6-2.6 2.8-3 5.6M12 11c-.4 2.6-.4 4.4 0 6.8M12 11c1.6 1.6 2.6 2.8 3 5.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/>`,
+  },
+  {
+    slug: 'oportunidades',
+    label: 'common.nav.opportunities',
+    hover: 'common.nav.opportunities.hover',
+    icon: 'ic-branch',
+    svg: `<path d="M4 20c4.5-2 8.5-6.5 10.5-13" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><path class="ic-branch-twig" d="M13 9.6c2-1 4-.8 5.6.4M13.6 7.4c.8-2 .8-3.6 0-5.4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle class="ic-branch-leaf" cx="19.6" cy="10.6" r="1.9" fill="currentColor"/>`,
+  },
+  {
+    slug: 'contacto',
+    label: 'common.nav.contact',
+    hover: 'common.nav.contact.hover',
+    title: 'common.nav.contact.title',
+    icon: 'ic-flower',
+    svg: `<g class="petal petal--1" transform="rotate(0 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><g class="petal petal--2" transform="rotate(72 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><g class="petal petal--3" transform="rotate(144 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><g class="petal petal--4" transform="rotate(216 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><g class="petal petal--5" transform="rotate(288 12 13)"><ellipse cx="12" cy="8.4" rx="1.9" ry="4" fill="currentColor"/></g><circle class="ic-flower-center" cx="12" cy="13" r="2.1"/>`,
+  },
+  {
+    slug: 'proyectos',
+    label: 'common.nav.projects',
+    hover: 'common.nav.projects.hover',
+    icon: 'ic-fruit',
+    svg: `<path d="M12 9.4c-.9 0-1.6.5-1.9 1.3" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/><path class="ic-fruit-leaf" d="M12 9.4c1.3-1.6 2.9-1.4 3.4.1-1.5.9-2.8.5-3.4-.1z" fill="currentColor"/><circle class="ic-fruit-body" cx="12" cy="15.6" r="5.4" fill="currentColor"/>`,
+  },
+  {
+    slug: 'colabora',
+    label: 'common.nav.collaborate',
+    hover: 'common.nav.collaborate.hover',
+    icon: 'ic-myc',
+    svg: `<circle cx="12" cy="13" r="1.7" fill="currentColor"/><g class="ic-myc-threads" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><path d="M12 13L6.5 9.6"/><path d="M12 13L4.4 13.6"/><path d="M12 13L7.2 19"/><path d="M12 13L17.5 9.6"/><path d="M12 13L19.6 13.6"/><path d="M12 13L16.8 19"/></g>`,
+  },
+];
+---
+
+<header class="header inner" id="top">
+  <nav class="nav" aria-label={t('common.aria.nav')}>
+    <a class="brand" href={localePath(lang)} aria-label={t('common.aria.brand')}>
+      <img src="/assets/img/logo-icon.png" alt={t('common.logo.alt')} width="38" height="38" />
+      <span>Back to the Roots<small>{t('common.brand.tagline')}</small></span>
+    </a>
+
+    <div class="navlinks" id="navlinks">
+      {
+        NAV.map((item) => (
+          <a
+            href={localePath(lang, item.slug)}
+            class="navlink"
+            aria-current={item.slug === slug ? 'page' : undefined}
+            title={item.title ? t(item.title) : undefined}
+          >
+            <span class={`navlink__icon ${item.icon}`} aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" set:html={item.svg} />
+            </span>
+            <span class="navlink__label">
+              <span class="navlink__default">{t(item.label)}</span>
+              <span class="navlink__hover">{t(item.hover)}</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label={t('common.aria.lang')}>
+        {
+          LOCALES.map((code) => (
+            <a
+              href={localePath(code, slug)}
+              class={code === lang ? 'on' : undefined}
+              aria-current={code === lang ? 'true' : undefined}
+              hreflang={code}
+            >
+              {code}
+            </a>
+          ))
+        }
+      </div>
+      <a class="btn btn--solid" href={localePath(lang, 'colabora')}>{t('common.nav.join')}</a>
+      <button class="burger" id="burger" aria-label={t('common.aria.menu')} aria-expanded="false" aria-controls="navlinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navlinks = document.getElementById('navlinks');
+
+  burger?.addEventListener('click', () => {
+    const open = navlinks?.classList.toggle('open') ?? false;
+    burger.setAttribute('aria-expanded', String(open));
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 70;
+    transition:
+      background 0.35s var(--ease),
+      box-shadow 0.35s var(--ease);
+  }
+  .header.solid {
+    background: rgba(250, 247, 239, 0.92);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 var(--line);
+  }
+  .header.inner {
+    background: rgba(250, 247, 239, 0.96);
+    box-shadow: 0 1px 0 var(--line);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 22px;
+    max-width: 1280px;
+    margin-inline: auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: 1.06rem;
+    letter-spacing: -0.02em;
+    color: var(--forest-900);
+  }
+  .brand img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 auto;
+    background: var(--moss-500);
+  }
+  .brand small {
+    display: block;
+    font-family: var(--ff-body);
+    font-weight: 600;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--moss-600);
+    text-transform: uppercase;
+  }
+
+  .navlinks {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .lang {
+    display: flex;
+    gap: 2px;
+    background: rgba(32, 38, 29, 0.06);
+    border-radius: 999px;
+    padding: 3px;
+  }
+  .lang a {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 5px 9px;
+    border-radius: 999px;
+    color: var(--muted);
+    text-transform: uppercase;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+  .lang a:hover {
+    color: var(--forest-900);
+  }
+  .lang a.on {
+    background: var(--forest-900);
+    color: var(--oat-50);
+  }
+  @media (max-width: 520px) {
+    .lang {
+      display: none;
+    }
+  }
+
+  .burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    color: var(--forest-900);
+    background: rgba(32, 38, 29, 0.06);
+  }
+  .burger svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 1040px) {
+    .navlinks {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 16px;
+      left: 16px;
+      flex-direction: column;
+      align-items: stretch;
+      background: var(--oat-50);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 10px;
+      gap: 2px;
+      box-shadow: 0 24px 50px -22px rgba(30, 43, 34, 0.5);
+    }
+    .navlinks.open {
+      display: flex;
+    }
+    .burger {
+      display: flex;
+    }
+    .nav-right .btn--solid {
+      display: none;
+    }
+  }
+</style>
+
+<!-- Los SVG de los iconos se inyectan con set:html, así que Astro no les pone
+     el atributo de scope: sus animaciones tienen que ser globales. Solo se usan
+     dentro de este componente, que aparece una vez por página. -->
+<style is:global>
+  .navlinks a.navlink {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--forest-800);
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+  .navlinks a.navlink:hover,
+  .navlinks a.navlink:focus-visible {
+    background: rgba(110, 139, 61, 0.12);
+    color: var(--forest-950);
+  }
+  .navlinks a.navlink[aria-current='page'] {
+    color: var(--forest-950);
+  }
+
+  .navlink__icon {
+    width: 21px;
+    height: 21px;
+    flex: 0 0 auto;
+    color: var(--moss-600);
+    display: flex;
+    transition: color 0.2s;
+  }
+  .navlink__icon svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .navlinks a.navlink:hover .navlink__icon,
+  .navlinks a.navlink:focus-visible .navlink__icon {
+    color: var(--clay-deep);
+  }
+
+  .navlink__label {
+    position: relative;
+    display: inline-grid;
+    min-width: 60px;
+  }
+  .navlink__default,
+  .navlink__hover {
+    grid-area: 1/1;
+    white-space: nowrap;
+    text-align: left;
+    transition:
+      opacity 0.25s var(--ease),
+      transform 0.25s var(--ease);
+  }
+  .navlink__default {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .navlink__hover {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  .navlinks a.navlink:hover .navlink__default,
+  .navlinks a.navlink:focus-visible .navlink__default {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  .navlinks a.navlink:hover .navlink__hover,
+  .navlinks a.navlink:focus-visible .navlink__hover {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .navlinks a.navlink[aria-current='page'] .navlink__default::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -9px;
+    width: 16px;
+    height: 2px;
+    background: var(--sprout);
+    border-radius: 2px;
+  }
+
+  /* 1. Semilla: el brote se dibuja hacia arriba */
+  .ic-seed-sprout {
+    stroke-dasharray: 13;
+    stroke-dashoffset: 13;
+    opacity: 0;
+    transition:
+      stroke-dashoffset 0.5s var(--ease),
+      opacity 0.3s ease;
+  }
+  .navlinks a.navlink:hover .ic-seed-sprout,
+  .navlinks a.navlink:focus-visible .ic-seed-sprout {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  .ic-seed-body {
+    transition: transform 0.3s var(--ease);
+    transform-origin: 12px 16px;
+  }
+  .navlinks a.navlink:hover .ic-seed-body {
+    transform: scale(1.08);
+  }
+
+  /* 2. Raíces: las raíces llegan más hondo */
+  .ic-roots-tendril {
+    stroke-dasharray: 20;
+    stroke-dashoffset: 9;
+    transition: stroke-dashoffset 0.45s var(--ease);
+  }
+  .navlinks a.navlink:hover .ic-roots-tendril,
+  .navlinks a.navlink:focus-visible .ic-roots-tendril {
+    stroke-dashoffset: 0;
+  }
+
+  /* 3. Ramas: brota una ramita con su hoja */
+  .ic-branch-twig {
+    stroke-dasharray: 11;
+    stroke-dashoffset: 11;
+    transition: stroke-dashoffset 0.4s var(--ease) 0.05s;
+  }
+  .ic-branch-leaf {
+    opacity: 0;
+    transform: scale(0.3);
+    transform-origin: 19.6px 10.6px;
+    transition:
+      opacity 0.3s ease 0.3s,
+      transform 0.3s var(--ease) 0.3s;
+  }
+  .navlinks a.navlink:hover .ic-branch-twig,
+  .navlinks a.navlink:focus-visible .ic-branch-twig {
+    stroke-dashoffset: 0;
+  }
+  .navlinks a.navlink:hover .ic-branch-leaf,
+  .navlinks a.navlink:focus-visible .ic-branch-leaf {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* 4. Frutos: el fruto madura con un rebote suave */
+  .ic-fruit-body {
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: 12px 15.6px;
+  }
+  .navlinks a.navlink:hover .ic-fruit-body,
+  .navlinks a.navlink:focus-visible .ic-fruit-body {
+    transform: translateY(-2px) scale(1.06);
+  }
+  .ic-fruit-leaf {
+    transition: transform 0.3s var(--ease);
+    transform-origin: 12px 9.4px;
+  }
+  .navlinks a.navlink:hover .ic-fruit-leaf,
+  .navlinks a.navlink:focus-visible .ic-fruit-leaf {
+    transform: rotate(-14deg);
+  }
+
+  /* 5. Micelio: la red subterránea se extiende */
+  .ic-myc-threads path {
+    stroke-dasharray: 8;
+    stroke-dashoffset: 4;
+    transition: stroke-dashoffset 0.4s var(--ease);
+  }
+  .ic-myc-threads {
+    opacity: 0.65;
+    transition: opacity 0.3s ease;
+  }
+  .navlinks a.navlink:hover .ic-myc-threads,
+  .navlinks a.navlink:focus-visible .ic-myc-threads {
+    opacity: 1;
+  }
+  .navlinks a.navlink:hover .ic-myc-threads path,
+  .navlinks a.navlink:focus-visible .ic-myc-threads path {
+    stroke-dashoffset: 0;
+  }
+
+  /* 6. Flor: el capullo se abre */
+  .ic-flower .petal {
+    transform-origin: 12px 13px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .ic-flower .petal--1 {
+    transform: rotate(0deg) scale(0.32);
+  }
+  .ic-flower .petal--2 {
+    transform: rotate(72deg) scale(0.32);
+    transition-delay: 0.03s;
+  }
+  .ic-flower .petal--3 {
+    transform: rotate(144deg) scale(0.32);
+    transition-delay: 0.06s;
+  }
+  .ic-flower .petal--4 {
+    transform: rotate(216deg) scale(0.32);
+    transition-delay: 0.09s;
+  }
+  .ic-flower .petal--5 {
+    transform: rotate(288deg) scale(0.32);
+    transition-delay: 0.12s;
+  }
+  .navlinks a.navlink:hover .ic-flower .petal--1,
+  .navlinks a.navlink:focus-visible .ic-flower .petal--1 {
+    transform: rotate(0deg) scale(1);
+  }
+  .navlinks a.navlink:hover .ic-flower .petal--2,
+  .navlinks a.navlink:focus-visible .ic-flower .petal--2 {
+    transform: rotate(72deg) scale(1);
+  }
+  .navlinks a.navlink:hover .ic-flower .petal--3,
+  .navlinks a.navlink:focus-visible .ic-flower .petal--3 {
+    transform: rotate(144deg) scale(1);
+  }
+  .navlinks a.navlink:hover .ic-flower .petal--4,
+  .navlinks a.navlink:focus-visible .ic-flower .petal--4 {
+    transform: rotate(216deg) scale(1);
+  }
+  .navlinks a.navlink:hover .ic-flower .petal--5,
+  .navlinks a.navlink:focus-visible .ic-flower .petal--5 {
+    transform: rotate(288deg) scale(1);
+  }
+  .ic-flower-center {
+    fill: var(--sun);
+  }
+
+  @media (max-width: 1040px) {
+    .navlinks a.navlink {
+      padding: 13px 14px;
+      font-size: 1rem;
+    }
+    .navlink__hover {
+      display: none;
+    }
+    .navlinks a.navlink:hover .navlink__default,
+    .navlinks a.navlink:focus-visible .navlink__default {
+      opacity: 1;
+      transform: none;
+    }
+    .navlinks a.navlink[aria-current='page'] {
+      background: rgba(110, 139, 61, 0.12);
+    }
+    .navlinks a.navlink[aria-current='page'] .navlink__default::after {
+      display: none;
+    }
+    .navlink__icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ic-seed-sprout,
+    .ic-seed-body,
+    .ic-roots-tendril,
+    .ic-branch-twig,
+    .ic-branch-leaf,
+    .ic-fruit-body,
+    .ic-fruit-leaf,
+    .ic-myc-threads,
+    .ic-myc-threads path,
+    .ic-flower .petal {
+      transition: none !important;
+    }
+  }
+</style>

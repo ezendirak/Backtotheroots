@@ -1,0 +1,38 @@
+/* ============================================================
+   BACK TO THE ROOTS — tokens de diseño
+   Único sitio donde se definen colores, tipografías y medidas.
+   Ningún componente escribe un color a mano.
+   ============================================================ */
+:root {
+  /* --- color --- */
+  --forest-950: #16211a;
+  --forest-900: #1e2b22;
+  --forest-800: #28382c;
+  --forest-700: #37503c;
+  --moss-600: #5e7a34;
+  --moss-500: #6e8b3d;
+  --moss-400: #88a64b;
+  --sprout: #b7ce55;
+  --clay: #c0743e;
+  --clay-deep: #a65c2e;
+  --sun: #e4a63c;
+  --oat-50: #faf7ef;
+  --oat-100: #f4efe2;
+  --oat-200: #eae1ce;
+  --ink: #20261d;
+  --muted: #6c7162;
+  --line: rgba(32, 38, 29, 0.12);
+
+  /* --- forma --- */
+  --radius: 20px;
+  --radius-sm: 12px;
+  --maxw: 1200px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* --- tipografía ---
+     Los paquetes @fontsource-variable registran la familia con el sufijo
+     "Variable"; se deja el nombre sin sufijo como segundo fallback. */
+  --ff-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, sans-serif;
+  --ff-hand: 'Caveat Variable', 'Caveat', cursive;
+}

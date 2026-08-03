@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { localePaths, type Locale } from '../../i18n';
+
+export const getStaticPaths = localePaths;
+
+type Props = { lang: Locale };
+const { lang } = Astro.props;
+
+/* Página nueva: es la que recibe el formulario cuando el visitante tiene el
+   JavaScript desactivado. El texto reutiliza el mensaje de confirmación que ya
+   existe en la web actual (clave `contact.done`, traducida a los tres idiomas);
+   se conecta a su idioma en la fase 2. */
+const title = 'Gracias · Back to the Roots';
+const description = 'Hemos recibido tu mensaje. Te responderemos pronto.';
+---
+
+<Base lang={lang} slug="gracias" title={title} description={description}>
+  <section class="section">
+    <div class="wrap">
+      <h1>¡Gracias!</h1>
+      <p>Hemos recibido tu mensaje. Te responderemos pronto.</p>
+    </div>
+  </section>
+</Base>

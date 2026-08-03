@@ -1,0 +1,293 @@
+/* ============================================================
+   BACK TO THE ROOTS — base
+   Reset, tipografía, primitivas compartidas (.wrap, .btn, .eyebrow)
+   y los dos indicadores de scroll. Todo lo demás vive con su componente.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--ff-body);
+  color: var(--ink);
+  background: var(--oat-50);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--ff-display);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+section {
+  scroll-margin-top: 84px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ============ primitivas ============ */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 22px;
+}
+
+.eyebrow {
+  font-family: var(--ff-body);
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--moss-600);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--moss-500);
+  border-radius: 2px;
+}
+
+.section {
+  padding: 88px 0;
+}
+.section__head {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+.section__head h2 {
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  margin-top: 14px;
+  color: var(--forest-950);
+}
+.section__head p {
+  margin-top: 16px;
+  color: #4a4f40;
+  font-size: 1.08rem;
+}
+.section--dark {
+  background: var(--forest-950);
+  color: var(--oat-100);
+}
+.section--dark .section__head h2 {
+  color: #fff;
+}
+.section--dark .section__head p {
+  color: rgba(244, 239, 226, 0.8);
+}
+.section--oat {
+  background: var(--oat-100);
+}
+
+.hand {
+  font-family: var(--ff-hand);
+  font-size: 1.5em;
+  color: var(--clay);
+  line-height: 1;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--forest-900);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 0 0 10px 0;
+  z-index: 999;
+}
+.skip:focus {
+  left: 0;
+}
+
+/* ============ botones ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  border-radius: 999px;
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.2s,
+    background 0.2s,
+    color 0.2s;
+  white-space: nowrap;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn--solid {
+  background: var(--forest-900);
+  color: var(--oat-50);
+  box-shadow: 0 8px 22px -12px rgba(30, 43, 34, 0.9);
+}
+.btn--solid:hover {
+  background: var(--forest-950);
+}
+.btn--moss {
+  background: var(--moss-500);
+  color: #fff;
+  box-shadow: 0 10px 24px -12px rgba(94, 122, 52, 0.9);
+}
+.btn--moss:hover {
+  background: var(--moss-600);
+}
+.btn--sun {
+  background: var(--sun);
+  color: var(--forest-950);
+}
+.btn--sun:hover {
+  background: #d99a2b;
+}
+.btn--ghost {
+  background: transparent;
+  border: 1.5px solid rgba(32, 38, 29, 0.25);
+  color: var(--forest-900);
+}
+.btn--ghost:hover {
+  border-color: var(--forest-900);
+  background: rgba(32, 38, 29, 0.04);
+}
+.btn--light {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+}
+.btn--light:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* ============ indicador de scroll: raíz que crece ============ */
+.vine {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  z-index: 60;
+  pointer-events: none;
+}
+.vine__track {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--oat-200), transparent 40%);
+}
+.vine__grow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: var(--scroll, 0%);
+  background-image: url('/assets/img/root-pattern.svg'),
+    linear-gradient(var(--moss-400), var(--moss-600) 60%, var(--forest-700));
+  background-repeat: repeat-y, no-repeat;
+  background-size:
+    14px 90px,
+    100% 100%;
+  background-position: top left, top left;
+  border-radius: 0 8px 8px 0;
+  transition: height 0.1s linear;
+}
+
+.topbar {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .vine {
+    display: none;
+  }
+  .topbar {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 4px;
+    background: var(--oat-200);
+    z-index: 60;
+  }
+  .topbar span {
+    display: block;
+    height: 100%;
+    width: var(--scroll, 0%);
+    background: linear-gradient(90deg, var(--moss-400), var(--forest-700));
+  }
+}
+
+/* ============ aparición al hacer scroll ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { localePaths, type Locale } from '../../i18n';
+
+export const getStaticPaths = localePaths;
+
+type Props = { lang: Locale };
+const { lang } = Astro.props;
+
+/* Fase 1: solo el esqueleto. Ver nota en index.astro. */
+const title = 'Proyectos · Educación ambiental y arte · Back to the Roots';
+const description =
+  'Descubre los proyectos de Back to the Roots: intercambios educativos, talleres de sostenibilidad y expresión artística realizados en Cataluña y Europa.';
+---
+
+<Base lang={lang} slug="proyectos" title={title} description={description}>
+  <section class="section">
+    <div class="wrap">
+      <h1>Los frutos de nuestro trabajo</h1>
+    </div>
+  </section>
+</Base>

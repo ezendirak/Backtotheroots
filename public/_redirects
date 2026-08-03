@@ -1,0 +1,15 @@
+# La raíz manda al castellano, que es el idioma canónico.
+/                     /es/                  302
+
+# URLs de la web anterior. 301 para que Google traslade lo poco que tenga
+# indexado en cuanto el dominio apunte al sitio nuevo.
+/index.html           /es/                  301
+/nosotras.html        /es/nosotras/         301
+/proyectos.html       /es/proyectos/        301
+/oportunidades.html   /es/oportunidades/    301
+/colabora.html        /es/colabora/         301
+/contacto.html        /es/contacto/         301
+
+# Nota: Cloudflare Pages solo compara la ruta, no la query. Los enlaces viejos
+# con ?lang=ca o ?lang=en caen en la versión castellana de la misma página.
+# Se asume: ese parámetro nunca llegó a indexarse.

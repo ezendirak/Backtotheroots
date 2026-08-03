@@ -1,0 +1,100 @@
+---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/hanken-grotesk';
+import '@fontsource-variable/caveat';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { DEFAULT_LOCALE, LOCALES, localePath, useTranslations, type Locale, type Slug } from '../i18n';
+
+interface Props {
+  lang: Locale;
+  slug: Slug;
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { lang, slug, title, description, ogImage } = Astro.props;
+const t = useTranslations(lang);
+
+/* Absolutas, no relativas: es lo que exigen canonical, hreflang y Open Graph. */
+const canonical = new URL(localePath(lang, slug), Astro.site);
+const image = new URL(ogImage ?? '/assets/img/logo-icon.png', Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/assets/img/logo-icon.png" />
+    <link rel="canonical" href={canonical} />
+
+    {
+      LOCALES.map((code) => (
+        <link rel="alternate" hreflang={code} href={new URL(localePath(code, slug), Astro.site)} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={new URL(localePath(DEFAULT_LOCALE, slug), Astro.site)} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={canonical} />
+  </head>
+
+  <body>
+    <a class="skip" href="#main">{t('common.skip')}</a>
+    <div class="vine" aria-hidden="true">
+      <div class="vine__track"></div>
+      <div class="vine__grow"></div>
+    </div>
+    <div class="topbar" aria-hidden="true"><span></span></div>
+
+    <Header lang={lang} slug={slug} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+
+    <script>
+      /* Dos efectos de la identidad visual: la cabecera se vuelve sólida al bajar
+         y la raíz lateral crece con el scroll. */
+      const header = document.querySelector('.header');
+      const root = document.documentElement;
+
+      function onScroll() {
+        const y = window.scrollY;
+        header?.classList.toggle('solid', y > 40);
+        const h = document.body.scrollHeight - window.innerHeight;
+        const progress = h > 0 ? Math.min(100, (y / h) * 100) : 0;
+        root.style.setProperty('--scroll', `${progress.toFixed(2)}%`);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* Aparición de los bloques al entrar en pantalla. */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
