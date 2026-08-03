@@ -160,14 +160,16 @@ Campos mínimos por colección:
 
 - Leaflet cargado **solo** en esta página y **solo** cuando el contenedor entra en
   viewport (`client:visible`). Leaflet entra como **dependencia npm**, nunca desde un CDN.
-- Marcadores personalizados: círculo con el color del colaborador, borde blanco, badge
-  numérico opcional (Barcelona agrupa 3 entidades). Los colores actuales son
-  **provisionales**: solo tienen que distinguirse entre sí. La intención a futuro es usar
-  los logos de cada entidad, así que el componente no debe asumir que el identificador
-  visual es un color plano.
-- El agrupamiento de Barcelona se deriva de los datos (varios colaboradores compartiendo
-  ubicación), **no se cablea a mano**. Debe poder añadirse una cuarta entidad en Barcelona
-  creando un fichero y nada más.
+- Marcadores personalizados: círculo con el color del colaborador y borde blanco. Los
+  colores actuales son **provisionales**: solo tienen que distinguirse entre sí. La
+  intención a futuro es usar los logos de cada entidad, así que el componente no debe
+  asumir que el identificador visual es un color plano.
+- **Un colaborador, un punto. No hay agrupaciones.** La web anterior juntaba las tres
+  entidades de Barcelona bajo un único marcador con badge numérico, con su mini-lista y su
+  botón "volver", porque las tres compartían la coordenada del centro de la ciudad. Con las
+  direcciones reales (agosto de 2026) cada una tiene su punto y todo eso sobra: menos
+  código, menos CSS y un campo menos que explicar en el CMS. Añadir un colaborador es
+  crear un fichero y marcar su sitio en el mapa.
 - Al pulsar un marcador o un chip de la lista: se resalta el punto, el mapa vuela hacia
   él y el panel lateral muestra su ficha.
 - Datos leídos de la colección `partners`. **Nada hardcodeado.**
@@ -414,6 +416,8 @@ bloquea el cierre de la fase 5.
 | PDF del PIF | `/colabora`. Hoy el botón "Descargar PIF" es un `mailto:`, no un PDF | Pendiente, a futuro |
 | Access key de Web3Forms | Formulario de contacto. Se genera en web3forms.com con el email de la ONG y llega por correo | Pendiente |
 | Logos de las entidades colaboradoras | Sustituir los círculos de color del mapa | A futuro |
+| Traducción de los títulos y descripciones SEO | `pages/*.json`, campo `seo`. Solo existen en castellano; las versiones CA y EN caen al castellano y eso les resta posicionamiento | Pendiente |
+| Titular de la página de gracias | Texto nuevo: "¡Gracias!" / "Gràcies!" / "Thank you!". El cuerpo reutiliza el mensaje de confirmación que ya existía traducido | Pendiente de confirmar |
 | Divergencias CA/EN respecto al castellano | Se irán listando aquí durante la fase 2 | Por detectar |
 
 Dominio `backtotheroots.cat`: **comprado**. Se conecta en la fase 5.
@@ -461,3 +465,10 @@ Escritos al cerrar la fase 1, con el esqueleto ya desplegado y verificado:
 - Cinco etiquetas de accesibilidad que estaban en castellano en las tres versiones
   (`Abrir menú`, `Principal`…) pasan a traducirse. Quedan en §11 para que la ONG las
   confirme.
+- **Octava colección, `pages`** (§3): los títulos, entradillas y textos de botón de cada
+  página no son etiquetas de interfaz ni fichas de ninguna colección, y si se quedan
+  escritos en los `.astro` la ONG no puede cambiar ni un titular desde el CMS.
+- **Los títulos y descripciones SEO viven en el contenido**, no en la plantilla. Solo
+  existen en castellano: nunca se tradujeron. Anotado en §11.
+- **Se elimina la agrupación del mapa** (§4). La ONG facilitó las direcciones reales de las
+  tres entidades de Barcelona, así que cada una tiene su punto.

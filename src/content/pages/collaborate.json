@@ -116,16 +116,6 @@
       "es": "Toca cualquier punto verde del mapa —o su nombre en la lista— para conocer a cada colaborador.",
       "ca": "Toca qualsevol punt verd del mapa —o el seu nom a la llista— per conèixer cada col·laborador.",
       "en": "Tap any green point on the map — or its name in the list — to meet each collaborator."
-    },
-    "clusterSub": {
-      "es": "3 colaboraciones en la ciudad — toca una para conocerla",
-      "ca": "3 col·laboracions a la ciutat — toca'n una per conèixer-la",
-      "en": "3 collaborations in the city — tap one to find out more"
-    },
-    "clusterBack": {
-      "es": "← Volver a Barcelona",
-      "ca": "← Tornar a Barcelona",
-      "en": "← Back to Barcelona"
     }
   },
   "join": {

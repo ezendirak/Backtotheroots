@@ -5,8 +5,8 @@
     "ca": "Barcelona",
     "en": "Barcelona"
   },
-  "lat": 41.3874,
-  "lng": 2.1686,
+  "lat": 41.3726,
+  "lng": 2.1559,
   "color": "#a65c2e",
   "initials": "CV",
   "description": {
@@ -14,6 +14,5 @@
     "ca": "Associació de facilitadores que promou el benestar psicosocial a través de l'art, el moviment i la Biodansa.",
     "en": "An association of facilitators promoting psychosocial wellbeing through art, movement and Biodanza."
   },
-  "cluster": "Barcelona",
   "order": 5
 }

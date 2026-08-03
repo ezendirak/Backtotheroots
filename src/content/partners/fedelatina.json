@@ -5,8 +5,8 @@
     "ca": "Barcelona",
     "en": "Barcelona"
   },
-  "lat": 41.3874,
-  "lng": 2.1686,
+  "lat": 41.379,
+  "lng": 2.1774,
   "color": "#6e8b3d",
   "initials": "FL",
   "description": {
@@ -14,6 +14,5 @@
     "ca": "Federació d'Entitats Llatinoamericanes de Catalunya, referent en interculturalitat i acollida al col·lectiu migrant.",
     "en": "Federation of Latin American Organisations of Catalonia, a reference point for interculturality and support for migrant communities."
   },
-  "cluster": "Barcelona",
   "order": 7
 }

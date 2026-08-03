@@ -19,8 +19,8 @@ const carpeta = (nombre: string) => glob({ pattern: '**/*.json', base: `./src/co
 
 /* ---------------------------------------------------------------------------
    Colaboradores — alimentan el mapa, la lista de chips y el panel lateral.
-   Varios colaboradores con la misma ubicación se agrupan solos: el clúster de
-   Barcelona sale de estos datos, no está escrito en ningún sitio.
+   Un colaborador, un punto en el mapa. No hay agrupaciones: añadir uno nuevo
+   es crear este fichero y marcar su sitio, nada más.
 --------------------------------------------------------------------------- */
 const partners = defineCollection({
   loader: carpeta('partners'),
@@ -35,8 +35,6 @@ const partners = defineCollection({
     /* Iniciales que se ven dentro del círculo mientras no haya logo. */
     initials: z.string().min(1).max(3),
     description: i18nText,
-    /* Agrupa a este colaborador con otros bajo un mismo punto del mapa. */
-    cluster: z.string().optional(),
     order: z.number().default(99),
   }),
 });

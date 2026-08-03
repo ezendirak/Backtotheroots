@@ -5,8 +5,8 @@
     "ca": "Barcelona",
     "en": "Barcelona"
   },
-  "lat": 41.3874,
-  "lng": 2.1686,
+  "lat": 41.4051,
+  "lng": 2.144,
   "color": "#e4a63c",
   "initials": "K",
   "description": {
@@ -14,6 +14,5 @@
     "ca": "Col·lectiu interdisciplinari artístic centrat en la creació documental, comunitària i de memòria viva.",
     "en": "An interdisciplinary artistic collective focused on documentary, community and living-memory creation."
   },
-  "cluster": "Barcelona",
   "order": 6
 }
