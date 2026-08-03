@@ -5,7 +5,7 @@ Este fichero es la fuente de verdad sobre decisiones tomadas. Si algo aquí choc
 una intuición tuya, gana este fichero; si crees que este fichero se equivoca, dilo
 antes de escribir código.
 
-> Revisión 2 — 3 de agosto de 2026. Cambios respecto a la revisión 1 en §12.
+> Revisión 3 — 4 de agosto de 2026. Cambios de la revisión 2 en §12, los de la 3 en §13.
 
 ---
 
@@ -63,7 +63,7 @@ tocar código**.
 | Mapa | **Leaflet** como isla + tiles CARTO Positron | Ya funciona, es ligero, no requiere API key |
 | Instagram | **Galería curada desde el CMS** | La API oficial murió para cuentas personales (ver §5) |
 | Diseño | **Conservar identidad, refinar detalles** | Decisión explícita del cliente |
-| Idiomas | **ES / CA / EN** con rutas `/es/ /ca/ /en/` | SEO real con `hreflang` |
+| Idiomas | **ES / CA / EN** con rutas `/es/ /ca/ /en/` y **slug traducido** | SEO real con `hreflang`: cada idioma posiciona con sus palabras |
 | Idioma canónico | **Castellano** | El texto bueno es el ES. CA y EN se derivan de él, nunca al revés |
 
 ### Quién mantiene el contenido
@@ -92,7 +92,7 @@ src/
   i18n/             es.json  ca.json  en.json   ← SOLO textos de UI
   components/       Header, Footer, VideoFacade, PartnerMap, ProjectCard, Gallery
   layouts/          Base.astro
-  pages/[lang]/     index, nosotras, proyectos, oportunidades, colabora, contacto, gracias
+  pages/[lang]/     index, [about], [projects], [opportunities], [collaborate], [contact], [thanks]
   styles/           tokens.css  base.css
 public/
   admin/            index.html + config.yml   (Decap CMS)
@@ -103,6 +103,29 @@ legacy/             la web actual, borrar al final
 
 Son **7 rutas por idioma**, no 6: `/gracias/` es lo que necesita el formulario para
 seguir funcionando con JavaScript desactivado.
+
+### URLs traducidas
+
+Cada página tiene un **identificador interno en inglés** (`about`, `collaborate`…) que
+nunca aparece en pantalla, y un **slug propio en cada idioma**:
+
+| Página | ES | CA | EN |
+|---|---|---|---|
+| about | `nosotras` | `nosaltres` | `about-us` |
+| projects | `proyectos` | `projectes` | `projects` |
+| opportunities | `oportunidades` | `oportunitats` | `opportunities` |
+| collaborate | `colabora` | `collabora` | `get-involved` |
+| contact | `contacto` | `contacte` | `contact` |
+| thanks | `gracias` | `gracies` | `thank-you` |
+
+Los slugs salen de las etiquetas del menú que la ONG ya tenía traducidas; no se inventan.
+La tabla vive **en un solo sitio**, `src/i18n/index.ts`, y de ahí se derivan el menú, el
+pie, el selector de idioma y los `hreflang`. Consecuencia buscada: cambiar de idioma deja
+al visitante en la misma página, no en la portada.
+
+Por eso los ficheros de `pages/[lang]/` se llaman `[about].astro` y no `nosotras.astro`:
+el nombre del fichero es el parámetro de ruta, y su valor concreto lo pone
+`getStaticPaths` según el idioma.
 
 ### Regla de oro
 
@@ -184,8 +207,12 @@ Campos mínimos por colección:
 
 - `hreflang` recíproco en las tres versiones de cada página + sitemap por idioma.
 - `canonical` **absoluto** (hoy son relativos: `href="index.html"`), igual que `og:image`.
-- Redirects 301 desde las URLs viejas (`/colabora.html` → `/es/colabora/`) y desde
-  `?lang=ca` / `?lang=en`, en `public/_redirects`.
+- Redirects 301 desde las URLs viejas (`/colabora.html` → `/es/colabora/`) en
+  `public/_redirects`.
+- **Los enlaces con `?lang=ca` / `?lang=en` no se pueden redirigir.** Cloudflare Pages
+  compara solo la ruta, nunca la query, así que caen en la versión castellana de la página
+  correcta. Se asume la pérdida: ese parámetro no llegó a indexarse. Resolverlo exigiría
+  una Pages Function o JavaScript en cliente, y no compensa.
 - Matiz honesto: esos redirects solo actúan en el dominio del sitio nuevo. Lo indexado
   bajo `bespoke-kelpie-2a70f2.netlify.app` se pierde al apagar Netlify. Es asumible: un
   subdominio autogenerado no posiciona prácticamente nada.
@@ -194,6 +221,11 @@ Campos mínimos por colección:
 
 - Fuentes **self-hosted** vía `@fontsource`. Fuera Google Fonts: bloquea el render y
   transmite IPs a Google (RGPD).
+- **La familia del cuerpo es `Hanken Grotesk`, no "Hanken Grotesque".** La web actual pide
+  el nombre inexistente: Google devuelve 400 si se pide sola, y en la petición combinada la
+  descarta en silencio sirviendo solo Bricolage y Caveat. Es decir, **todo el texto de
+  cuerpo de la web actual se ve con la fuente del sistema**. Al self-hostear se corrige, y
+  eso hace que el sitio nuevo no se vea idéntico al viejo: se ve como estaba diseñado.
 - Imágenes con el componente `<Image>` de Astro → AVIF/WebP responsive. Las actuales son
   JPG de hasta 1536 px sin optimizar: 3,4 MB entre 11 ficheros.
 - **Cero peticiones a terceros en runtime**, con una excepción consciente: las miniaturas
@@ -306,9 +338,14 @@ Requisitos del panel:
 ## 8. Convenciones de código
 
 - **TypeScript estricto.** Nada de `any`.
-- **Componentes `.astro` por defecto.** Solo se usa una isla con JS cuando la
-  interactividad lo exige (hoy: únicamente el mapa).
+- **Componentes `.astro` por defecto.** Solo se usa JS en cliente cuando la interactividad
+  lo exige. Hoy son dos sitios y no más: el **layout** (menú móvil, raíz de scroll y
+  aparición de bloques, ~30 líneas que ya existían en la web actual y son parte de la
+  identidad visual) y el **mapa** de colaboradores, que además es la única isla.
 - **Cero JS en cliente** en páginas que no lo necesiten. Es una web informativa.
+- **Herramientas de desarrollo aparte.** `@astrojs/check` y `typescript` son
+  `devDependencies`: hacen falta para que `npm run check` valide los tipos, y no viajan al
+  navegador. La regla de no meter dependencias se refiere a lo que acaba en la página.
 - **CSS con tokens** en `src/styles/tokens.css` (colores, tipografías, espaciados, radios).
   Estilos con scope en cada componente. **Prohibidos los hacks globales** tipo
   `.leaflet-container img { max-width: none !important }` — eso era el síntoma del problema
@@ -402,3 +439,25 @@ Tras inspeccionar el repositorio y contrastar con la ONG:
 - **El proyecto Astro va en la raíz** del repo; la web actual se conserva en `legacy/`
   hasta la fase 5.
 - Se documenta el estado real del SEO heredado y lo que se pierde al apagar Netlify.
+
+---
+
+## 13. Cambios de la revisión 3 (4 de agosto de 2026)
+
+Escritos al cerrar la fase 1, con el esqueleto ya desplegado y verificado:
+
+- **Las URLs se traducen a cada idioma** (§3). Decisión del cliente durante la fase 1: la
+  revisión 2 daba por hecho el slug castellano en las tres versiones.
+- **`?lang=ca` no se puede redirigir** en Cloudflare Pages (§4). La revisión 2 lo prometía;
+  la plataforma solo compara la ruta, no la query.
+- **El layout lleva JS**, no solo el mapa (§8). Menú móvil, raíz de scroll y aparición de
+  bloques ya existían en la web actual y son parte de la identidad.
+- **`@astrojs/check` y `typescript` entran como dependencias de desarrollo** (§8).
+- **La fuente del cuerpo estaba mal escrita** en la web actual y por eso nunca se ha
+  cargado (§4). Corregido al self-hostear; el sitio nuevo se verá distinto en el cuerpo de
+  texto, y es lo correcto.
+- El botón "Únete" apunta a `/colabora/` en las siete rutas: se resuelve la divergencia
+  descrita en §1, y la clave `common.nav.write` desaparece.
+- Cinco etiquetas de accesibilidad que estaban en castellano en las tres versiones
+  (`Abrir menú`, `Principal`…) pasan a traducirse. Quedan en §11 para que la ONG las
+  confirme.
