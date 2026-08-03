@@ -11,5 +11,6 @@
     "en": "Bio coming soon — we'll update this card with her full introduction shortly."
   },
   "lead": false,
-  "order": 4
+  "order": 4,
+  "icon": "sprout"
 }

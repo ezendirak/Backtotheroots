@@ -1,22 +1,137 @@
 ---
+import { getCollection, getEntry } from 'astro:content';
+import heroNature from '../../assets/img/hero-nature.jpg';
+import PageHero from '../../components/PageHero.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 import Base from '../../layouts/Base.astro';
-import { pathsFor, type Locale } from '../../i18n';
+import { localePath, pathsFor, type Locale } from '../../i18n';
+import { usePageText } from '../../lib/content';
 
 export const getStaticPaths = () => pathsFor('projects');
 
 type Props = { lang: Locale };
 const { lang } = Astro.props;
 
-/* Fase 1: solo el esqueleto. Ver nota en index.astro. */
-const title = 'Proyectos · Educación ambiental y arte · Back to the Roots';
-const description =
-  'Descubre los proyectos de Back to the Roots: intercambios educativos, talleres de sostenibilidad y expresión artística realizados en Cataluña y Europa.';
+const page = await getEntry('pages', 'projects');
+if (!page) throw new Error('Falta src/content/pages/projects.json');
+const t = usePageText(page.data, 'projects', lang);
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+const FILTERS = ['all', 'nature', 'art', 'youth'] as const;
 ---
 
-<Base lang={lang} page="projects" title={title} description={description}>
-  <section class="section">
+<Base lang={lang} page="projects" title={t('seo.title')} description={t('seo.description')}>
+  <PageHero
+    lang={lang}
+    crumb="common.crumb.projects"
+    eyebrow={t('hero.eyebrow')}
+    title={t('hero.h1')}
+    text={t('hero.p')}
+    image={heroNature}
+  />
+
+  <section class="section" aria-labelledby="proj-h">
     <div class="wrap">
-      <h1>Los frutos de nuestro trabajo</h1>
+      <div class="section__head reveal">
+        <span class="eyebrow">{t('section.eyebrow')}</span>
+        <h2 id="proj-h">{t('section.h2')}</h2>
+        <p>{t('section.p')}</p>
+      </div>
+
+      <div class="filters reveal" role="group" aria-label={t('section.h2')}>
+        {
+          FILTERS.map((f) => (
+            <button class:list={['filter', { on: f === 'all' }]} data-filter={f} type="button" aria-pressed={f === 'all'}>
+              {t(`filters.${f}`)}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="projects">
+        {projects.map((project) => <ProjectCard project={project} lang={lang} showStats />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark section--center" aria-labelledby="cta-h">
+    <div class="wrap">
+      <span class="eyebrow eyebrow--sprout eyebrow--center">{t('cta.eyebrow')}</span>
+      <h2 id="cta-h" class="cta-h">{t('cta.h2')}</h2>
+      <div class="hero__cta hero__cta--center">
+        <a class="btn btn--sun" href={localePath(lang, 'collaborate')}>{t('cta.btn1')}</a>
+        <a class="btn btn--light" href={localePath(lang, 'contact')}>{t('cta.btn2')}</a>
+      </div>
     </div>
   </section>
 </Base>
+
+<script>
+  /* Filtro por temática. Es la única interactividad de esta página. */
+  const filters = document.querySelectorAll<HTMLButtonElement>('.filter');
+  const projects = document.querySelectorAll<HTMLElement>('.project');
+
+  for (const filter of filters) {
+    filter.addEventListener('click', () => {
+      for (const other of filters) {
+        const active = other === filter;
+        other.classList.toggle('on', active);
+        other.setAttribute('aria-pressed', String(active));
+      }
+
+      const key = filter.dataset.filter;
+      for (const project of projects) {
+        const show = key === 'all' || (project.dataset.theme ?? '').split(' ').includes(key ?? '');
+        project.classList.toggle('hide', !show);
+      }
+    });
+  }
+</script>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .filter {
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--forest-800);
+    transition: 0.2s;
+  }
+  .filter:hover {
+    border-color: var(--moss-500);
+  }
+  .filter.on {
+    background: var(--forest-900);
+    color: var(--oat-50);
+    border-color: var(--forest-900);
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .projects :global(.project.hide) {
+    display: none;
+  }
+  @media (max-width: 720px) {
+    .projects {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cta-h {
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin: 14px auto 22px;
+    max-width: 26ch;
+  }
+</style>

@@ -417,7 +417,7 @@ bloquea el cierre de la fase 5.
 | Access key de Web3Forms | Formulario de contacto. Se genera en web3forms.com con el email de la ONG y llega por correo | Pendiente |
 | Logos de las entidades colaboradoras | Sustituir los círculos de color del mapa | A futuro |
 | Traducción de los títulos y descripciones SEO | `pages/*.json`, campo `seo`. Solo existen en castellano; las versiones CA y EN caen al castellano y eso les resta posicionamiento | Pendiente |
-| Titular de la página de gracias | Texto nuevo: "¡Gracias!" / "Gràcies!" / "Thank you!". El cuerpo reutiliza el mensaje de confirmación que ya existía traducido | Pendiente de confirmar |
+| Titular y botón de la página de gracias | Textos nuevos: "¡Gracias!" y "Volver al inicio", con sus versiones CA y EN. El cuerpo sí reutiliza el mensaje de confirmación que ya existía traducido | Pendiente de confirmar |
 | Divergencias CA/EN respecto al castellano | Se irán listando aquí durante la fase 2 | Por detectar |
 
 Dominio `backtotheroots.cat`: **comprado**. Se conecta en la fase 5.

@@ -123,6 +123,8 @@ const team = defineCollection({
       bio: i18nText,
       photo: image().optional(),
       photoAlt: i18nText.optional(),
+      /* Dibujo que acompaña a quien no tiene foto. */
+      icon: z.enum(['leaf', 'music', 'sprout']).default('leaf'),
       lead: z.boolean().default(false),
       order: z.number().default(99),
     }),

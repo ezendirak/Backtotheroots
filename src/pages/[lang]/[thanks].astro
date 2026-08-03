@@ -1,25 +1,60 @@
 ---
+import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { pathsFor, type Locale } from '../../i18n';
+import { localePath, pathsFor, type Locale } from '../../i18n';
+import { usePageText } from '../../lib/content';
 
 export const getStaticPaths = () => pathsFor('thanks');
 
 type Props = { lang: Locale };
 const { lang } = Astro.props;
 
-/* Página nueva: es la que recibe el formulario cuando el visitante tiene el
-   JavaScript desactivado. El texto reutiliza el mensaje de confirmación que ya
-   existe en la web actual (clave `contact.done`, traducida a los tres idiomas);
-   se conecta a su idioma en la fase 2. */
-const title = 'Gracias · Back to the Roots';
-const description = 'Hemos recibido tu mensaje. Te responderemos pronto.';
+const page = await getEntry('pages', 'thanks');
+if (!page) throw new Error('Falta src/content/pages/thanks.json');
+const t = usePageText(page.data, 'thanks', lang);
 ---
 
-<Base lang={lang} page="thanks" title={title} description={description}>
-  <section class="section">
+<Base lang={lang} page="thanks" title={t('seo.title')} description={t('seo.description')}>
+  <section class="section section--center thanks" aria-labelledby="gracias-h">
     <div class="wrap">
-      <h1>¡Gracias!</h1>
-      <p>Hemos recibido tu mensaje. Te responderemos pronto.</p>
+      <span class="thanks__mark" aria-hidden="true">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C7 5 4 9 4 14a8 8 0 0016 0c0-5-3-9-8-12z"></path>
+          <path d="M12 22v-8M12 16c-2 0-4-1-5-3"></path>
+        </svg>
+      </span>
+      <h1 id="gracias-h">{t('main.h1')}</h1>
+      <p>{t('main.text')}</p>
+      <div class="hero__cta hero__cta--center hero__cta--spaced">
+        <a class="btn btn--moss" href={localePath(lang)}>{t('main.back')}</a>
+      </div>
     </div>
   </section>
 </Base>
+
+<style>
+  .thanks {
+    padding-block: 110px;
+  }
+  .thanks__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: rgba(110, 139, 61, 0.14);
+    color: var(--moss-600);
+    margin-bottom: 24px;
+  }
+  .thanks h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    color: var(--forest-950);
+  }
+  .thanks p {
+    margin: 16px auto 0;
+    max-width: 46ch;
+    color: #4a4f40;
+    font-size: 1.08rem;
+  }
+</style>

@@ -151,6 +151,13 @@ textarea:focus-visible {
 .section--center {
   text-align: center;
 }
+/* Sección que va pegada a la anterior, sin aire arriba. */
+.section--tight {
+  padding-top: 0;
+}
+.section--tight .wrap {
+  padding-top: 20px;
+}
 
 .hand {
   font-family: var(--ff-hand);

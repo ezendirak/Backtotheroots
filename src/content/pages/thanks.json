@@ -17,6 +17,11 @@
       "es": "¡Gracias! Hemos recibido tu mensaje. Te responderemos pronto.",
       "ca": "Gràcies! Hem rebut el teu missatge. Et respondrem aviat.",
       "en": "Thanks! We've received your message and will reply soon."
+    },
+    "back": {
+      "es": "Volver al inicio",
+      "ca": "Torna a l'inici",
+      "en": "Back to home"
     }
   }
 }

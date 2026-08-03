@@ -1,22 +1,363 @@
 ---
+import { Image } from 'astro:assets';
+import { getCollection, getEntry } from 'astro:content';
+import ecosystemsLogo from '../../assets/img/ecosystems-logo.png';
+import vaterSeco from '../../assets/img/vater-seco.jpg';
+import PageHero from '../../components/PageHero.astro';
 import Base from '../../layouts/Base.astro';
-import { pathsFor, type Locale } from '../../i18n';
+import { localePath, pathsFor, type Locale } from '../../i18n';
+import { pickText, usePageText } from '../../lib/content';
 
 export const getStaticPaths = () => pathsFor('collaborate');
 
 type Props = { lang: Locale };
 const { lang } = Astro.props;
 
-/* Fase 1: solo el esqueleto. Ver nota en index.astro. */
-const title = 'Colabora con nosotras · Red de aliados · Back to the Roots';
-const description =
-  'Descubre cómo colaborar con Back to the Roots: como joven, entidad, voluntario o difundiendo nuestros proyectos. Explora nuestra red de colaboraciones en el mapa.';
+const page = await getEntry('pages', 'collaborate');
+if (!page) throw new Error('Falta src/content/pages/collaborate.json');
+const t = usePageText(page.data, 'collaborate', lang);
+
+const partners = (await getCollection('partners')).sort((a, b) => a.data.order - b.data.order);
+const site = await getEntry('config', 'site');
+
+const ARROW =
+  '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+/* Las cuatro formas de participar. El PIF sigue siendo un correo hasta que la
+   ONG facilite el PDF (CLAUDE.md §11). */
+const HELP = [
+  {
+    n: 1,
+    icon: '<circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0116 0"/>',
+    href: localePath(lang, 'opportunities'),
+  },
+  {
+    n: 2,
+    icon: '<path d="M14 2v6h6M14 2l6 6v12H6V2z"/><path d="M9 13h6M9 17h4"/>',
+    href: site ? `mailto:${site.data.email}?subject=Solicitud%20de%20PIF%20%2F%20Partnership` : '#',
+    download: true,
+  },
+  {
+    n: 3,
+    icon: '<path d="M20 8v6a8 8 0 01-16 0V8M12 2v10M8 6l4-4 4 4"/>',
+    href: localePath(lang, 'contact'),
+  },
+  {
+    n: 4,
+    icon: '<path d="M12 21s-7-4.4-9.5-8.5C1 9 3 5.5 6.5 5.5 9 5.5 10.5 7 12 9c1.5-2 3-3.5 5.5-3.5C21 5.5 23 9 21.5 12.5 19 16.6 12 21 12 21z"/>',
+    href: localePath(lang, 'contact'),
+  },
+];
+
+const DOWNLOAD_ICON =
+  '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 4v12M6 12l6 6 6-6M4 20h16"/></svg>';
 ---
 
-<Base lang={lang} page="collaborate" title={title} description={description}>
-  <section class="section">
+<Base lang={lang} page="collaborate" title={t('seo.title')} description={t('seo.description')}>
+  <PageHero
+    lang={lang}
+    crumb="common.crumb.collab"
+    eyebrow={t('hero.eyebrow')}
+    title={t('hero.h1')}
+    text={t('hero.p')}
+    image={vaterSeco}
+  />
+
+  <section class="section" aria-labelledby="help-h">
     <div class="wrap">
-      <h1>Conéctate a nuestro micelio</h1>
+      <div class="section__head reveal">
+        <span class="eyebrow">{t('help.eyebrow')}</span>
+        <h2 id="help-h">{t('help.h2')}</h2>
+      </div>
+      <div class="help">
+        {
+          HELP.map((card) => (
+            <article class="helpcard reveal">
+              <div class="helpcard__ic">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  set:html={card.icon}
+                />
+              </div>
+              <h3>{t(`help.c${card.n}t`)}</h3>
+              <p>{t(`help.c${card.n}p`)}</p>
+              <a href={card.href}>
+                {t(`help.c${card.n}a`)}
+                <Fragment set:html={card.download ? DOWNLOAD_ICON : ARROW} />
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--oat" aria-labelledby="colab-h">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="eyebrow">{t('map.eyebrow')}</span>
+        <h2 id="colab-h">{t('map.h2')}</h2>
+        <p>{t('map.p')}</p>
+      </div>
+
+      {/* Fase 3: esta rejilla la sustituye el mapa de Leaflet con su panel lateral.
+          Los datos ya son los definitivos, solo cambia cómo se presentan. */}
+      <div class="partners">
+        {
+          partners.map((partner) => (
+            <article class="partner reveal">
+              <div class="partner__logo" style={`background:${partner.data.color}`}>
+                {partner.data.initials}
+              </div>
+              <h3>{partner.data.name}</h3>
+              <p class="partner__place">{pickText(partner.data.place, lang)}</p>
+              <p>{pickText(partner.data.description, lang)}</p>
+            </article>
+          ))
+        }
+        <article class="partner partner--join reveal">
+          <div class="partner__logo partner__logo--dark">+</div>
+          <h3>{t('join.name')}</h3>
+          <p>{t('join.desc')}</p>
+          <a class="btn btn--moss" href={localePath(lang, 'contact')}>{t('join.cta')}</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ecosys-h">
+    <div class="wrap">
+      <div class="ecosys reveal">
+        <div class="ecosys__logo">
+          <Image src={ecosystemsLogo} alt="Logo de ECOSystems" widths={[220, 250, 500]} sizes="250px" />
+        </div>
+        <div class="ecosys__body">
+          <span class="eyebrow">{t('ecosystems.eyebrow')}</span>
+          <h2 id="ecosys-h">{t('ecosystems.h2')}</h2>
+          <p>{t('ecosystems.p1')}</p>
+          <p>{t('ecosystems.p2')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="give-h">
+    <div class="wrap">
+      <div class="section__head section__head--center reveal">
+        <span class="eyebrow eyebrow--sprout eyebrow--center">{t('give.eyebrow')}</span>
+        <h2 id="give-h">{t('give.h2')}</h2>
+      </div>
+      <div class="give reveal">
+        <p>{t('give.p1')}</p>
+        <p>{t('give.p2')}</p>
+        <p>{t('give.p3')}</p>
+        <div class="hero__cta hero__cta--center hero__cta--spaced">
+          <a class="btn btn--sun" href={localePath(lang, 'contact')}>{t('give.cta')}</a>
+        </div>
+      </div>
     </div>
   </section>
 </Base>
+
+<style>
+  .help {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .helpcard {
+    border-radius: var(--radius);
+    padding: 28px 24px 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: 230px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .helpcard:nth-child(1) {
+    background: linear-gradient(160deg, #6e8b3d, #4a6330);
+  }
+  .helpcard:nth-child(2) {
+    background: linear-gradient(160deg, #c0743e, #8a4f2c);
+  }
+  .helpcard:nth-child(3) {
+    background: linear-gradient(160deg, #37503c, #1e2b22);
+  }
+  .helpcard:nth-child(4) {
+    background: linear-gradient(160deg, #e4a63c, #c88a26);
+  }
+  .helpcard__ic {
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .helpcard h3 {
+    font-size: 1.28rem;
+    margin-bottom: 8px;
+  }
+  .helpcard p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.94rem;
+    flex: 1;
+  }
+  .helpcard a {
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #fff;
+  }
+  .helpcard a :global(svg) {
+    transition: transform 0.2s;
+  }
+  .helpcard a:hover :global(svg) {
+    transform: translateX(4px);
+  }
+
+  .partners {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .partner {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 22px 18px;
+    text-align: center;
+    transition:
+      transform 0.25s var(--ease),
+      box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .partner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -26px rgba(30, 43, 34, 0.5);
+  }
+  .partner__logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  .partner__logo--dark {
+    background: var(--ink);
+  }
+  .partner h3 {
+    font-size: 1.02rem;
+  }
+  .partner p {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .partner__place {
+    color: var(--moss-600);
+    font-weight: 700;
+  }
+  .partner .btn {
+    margin-top: auto;
+  }
+
+  .ecosys {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    align-items: center;
+    background: var(--oat-100);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 38px;
+    box-shadow: 0 24px 50px -38px rgba(30, 43, 34, 0.4);
+  }
+  .ecosys__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 30px 26px;
+  }
+  .ecosys__logo :global(img) {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    object-fit: contain;
+  }
+  .ecosys__body h2 {
+    font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+    color: var(--forest-950);
+    margin: 8px 0 14px;
+  }
+  .ecosys__body p {
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .section__head--center {
+    text-align: center;
+    margin-inline: auto;
+  }
+  .give {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .give p {
+    color: rgba(244, 239, 226, 0.85);
+  }
+  .give p + p {
+    margin-top: 14px;
+  }
+
+  @media (max-width: 900px) {
+    .help,
+    .partners {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 760px) {
+    .ecosys {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 24px;
+      padding: 26px;
+    }
+    .ecosys__logo {
+      padding: 22px;
+    }
+    .ecosys__body :global(.eyebrow) {
+      justify-content: center;
+    }
+  }
+  @media (max-width: 520px) {
+    .help,
+    .partners {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
