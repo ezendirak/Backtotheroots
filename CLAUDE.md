@@ -564,6 +564,18 @@ Lo que queda **necesita la cuenta de la ONG y la URL pública**, no se puede hac
 Web3Forms (falta la access key), sitemap con `hreflang`, Lighthouse, dominio
 `backtotheroots.cat`, borrar `legacy/` y dar de baja Netlify.
 
+Al conectar el dominio hay **tres sitios** que apuntan todavía a `*.pages.dev`, y los tres
+se cambian el mismo día:
+
+1. `site` en `astro.config.mjs` — de ahí salen los `canonical`, los `hreflang` y el sitemap.
+2. **«Decap CMS login URL» en la ficha del sitio en DecapBridge** — es a dónde devuelve
+   tras autenticarse. Cloudflare no apaga el `.pages.dev` al añadir un dominio propio, así
+   que `/admin` existirá en las dos direcciones: si la URL de login apunta a una y se entra
+   por la otra, el login rebota a la primera. No rompe nada, pero desconcierta. Nada más de
+   DecapBridge depende del dominio: `identity_url` y `gateway_url` son suyos, y `repo` es
+   de GitHub.
+3. Los `_redirects` de las URLs viejas, para comprobar que siguen resolviendo.
+
 ### Lo que hoy se ve a medias, a propósito
 
 - **El formulario de contacto no envía.** Le falta la access key de Web3Forms (§11). El
