@@ -481,3 +481,59 @@ Escritos al cerrar la fase 1, con el esqueleto ya desplegado y verificado:
   existen en castellano: nunca se tradujeron. Anotado en §11.
 - **Se elimina la agrupación del mapa** (§4). La ONG facilitó las direcciones reales de las
   tres entidades de Barcelona, así que cada una tiene su punto.
+
+---
+
+## 14. Dónde estamos (4 de agosto de 2026)
+
+**Fases 0 a 3 cerradas y verificadas en `backtotheroots.pages.dev`.** Cada push a `main`
+construye y publica solo.
+
+| Fase | Estado |
+|---|---|
+| 0 · Base | Hecha. Repo en GitHub + proyecto en Cloudflare Pages (`NODE_VERSION=22`) |
+| 1 · Esqueleto | Hecha. Tokens, layout, 7 rutas × 3 idiomas con slug traducido, `_redirects` |
+| 2 · Contenido | Hecha. 8 colecciones, 39 ficheros, 240 de 242 claves migradas |
+| 3 · Componentes | Hecha. Mapa de Leaflet diferido y facade de vídeo |
+| 4 · CMS | **Siguiente** |
+| 5 · Pulido y corte | Pendiente |
+
+Las 2 claves sin migrar (`about.learn.toolkit.soon`, `collab.ecosys.cta`) son huérfanas:
+no las referenciaba ningún HTML de la web anterior.
+
+### Cómo retomar
+
+```bash
+npm install
+npm run dev      # localhost:4321
+npm run check    # tipos: tiene que dar 0 errores
+```
+
+### Lo siguiente: fase 4 (CMS)
+
+1. `public/admin/index.html` + `public/admin/config.yml` con las colecciones de §7,
+   etiquetas en castellano y textos de ayuda en cada campo.
+2. Alta en DecapBridge y `backend` apuntando ahí. **Necesita la URL pública**: el login no
+   se puede probar en local, por eso esta fase va después del despliegue.
+3. Widget de mapa para la ubicación de colaboradores, nunca coordenadas a mano.
+4. `i18n` nativo de Decap con el castellano por defecto.
+5. Invitar a una editora de prueba y comprobar el ciclo entero: entrar, cambiar un texto,
+   guardar, ver el cambio publicado.
+6. Guía corta en castellano con capturas.
+
+### Y después: fase 5
+
+Web3Forms (falta la access key), sitemap con `hreflang`, Lighthouse, dominio
+`backtotheroots.cat`, borrar `legacy/` y dar de baja Netlify.
+
+### Lo que hoy se ve a medias, a propósito
+
+- **El formulario de contacto no envía.** Le falta la access key de Web3Forms (§11). El
+  `redirect` a `/gracias/` ya apunta al idioma correcto de cada página.
+- **La galería enlaza al perfil de Instagram, no a publicaciones** (§11).
+
+### Decisión abierta
+
+Con todo Cataluña encuadrado, los tres puntos de Barcelona se ven pegados: están a 1,9 km
+el más cercano, unos 8 píxeles a ese zoom. Al pulsar un chip el mapa vuela a zoom 12 y se
+separan bien. Pendiente de decidir si el encuadre inicial molesta; se ajusta con una línea.
