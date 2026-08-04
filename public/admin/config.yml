@@ -16,9 +16,10 @@ backend:
   name: git-gateway
   repo: ezendirak/Backtotheroots
   branch: main
-  # PENDIENTE: los dos valores que da DecapBridge al crear el sitio. Hasta que
-  # estén puestos, /admin carga pero no deja iniciar sesión.
-  identity_url: https://auth.decapbridge.com/sites/PENDIENTE-ID-DE-DECAPBRIDGE
+  # Los da DecapBridge al crear el sitio. No son secretos: viajan en este mismo
+  # fichero, que es público. El secreto es el token de GitHub, y ese lo guarda
+  # DecapBridge, nunca el repositorio.
+  identity_url: https://auth.decapbridge.com/sites/013b3ae3-58b2-4f81-9ef1-b90be7763931
   gateway_url: https://gateway.decapbridge.com
   commit_messages:
     create: 'añade {{collection}} «{{slug}}»'

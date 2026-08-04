@@ -528,7 +528,7 @@ construye y publica solo.
 | 1 · Esqueleto | Hecha. Tokens, layout, 7 rutas × 3 idiomas con slug traducido, `_redirects` |
 | 2 · Contenido | Hecha. 8 colecciones, 39 ficheros, 240 de 242 claves migradas |
 | 3 · Componentes | Hecha. Mapa de Leaflet diferido y facade de vídeo |
-| 4 · CMS | **Casi.** Panel escrito y probado; falta el alta en DecapBridge |
+| 4 · CMS | **Casi.** Panel escrito, probado y enlazado a DecapBridge; falta probar el login real e invitar |
 | 5 · Pulido y corte | Pendiente |
 
 Las 2 claves sin migrar (`about.learn.toolkit.soon`, `collab.ecosys.cta`) son huérfanas:
@@ -550,14 +550,17 @@ formato de Decap. Verificado en local con el backend `test-repo`: el panel carga
 errores de configuración, muestra las columnas ES/CA/EN y **lee correctamente los ficheros
 ya migrados**, con los campos no traducibles ocultos fuera del castellano.
 
-Lo que queda **necesita la cuenta de la ONG y la URL pública**, no se puede hacer en local:
+Hecha también el alta en DecapBridge: el sitio está creado y su `identity_url` ya está en
+`public/admin/config.yml`. El token de GitHub (contenido, lectura y escritura, solo este
+repositorio) lo guarda DecapBridge; **no está ni debe estar en el repositorio**. Si algún
+día caduca, el panel deja de guardar y hay que generar otro y actualizarlo allí.
 
-1. Alta del sitio en [decapbridge.com](https://decapbridge.com) enlazando el repo
-   `ezendirak/Backtotheroots`. Devuelve un `identity_url` con el ID del sitio.
-2. Sustituir `PENDIENTE-ID-DE-DECAPBRIDGE` en `public/admin/config.yml` por ese ID.
-3. Invitar a una editora y comprobar el ciclo entero: entrar, cambiar un texto, guardar,
-   ver el cambio publicado en `backtotheroots.pages.dev`.
-4. Guía corta en castellano con capturas.
+Lo que queda **necesita la URL pública**, no se puede hacer en local:
+
+1. Probar el login real en `backtotheroots.pages.dev/admin/`.
+2. Invitar a una editora y comprobar el ciclo entero: entrar, cambiar un texto, guardar,
+   ver el cambio publicado.
+3. Guía corta en castellano con capturas.
 
 ### Y después: fase 5
 
