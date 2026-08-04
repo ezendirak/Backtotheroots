@@ -350,6 +350,12 @@ Requisitos del panel:
 
 - Las editoras entran con **email y contraseña**, por invitación. Nunca se les pide una
   cuenta de GitHub ni entender qué es un commit.
+  El sitio de DecapBridge está en **auth type «Classic»**, y con Classic el panel dibuja
+  solo email y contraseña: no hay botón de Google aunque la cuenta de DecapBridge se haya
+  creado con Google, que son dos puertas distintas. Si algún día se quiere entrar con
+  Google o Microsoft, se cambia el sitio a **PKCE** en DecapBridge y el `backend` pasa a
+  usar `auth_type: pkce` con `base_url` y `app_id` en vez de `identity_url`. Entonces el
+  panel redirige a la página de login de DecapBridge, que es donde viven esos botones.
 - La ubicación de un colaborador se elige con el **widget de mapa**, no escribiendo
   coordenadas a mano.
 - Los campos por idioma usan la configuración `i18n` nativa de Decap con
