@@ -1,16 +1,18 @@
 {
-  "name": "Alba Sáez",
-  "role": {
-    "es": "Agroecología · Arte",
-    "ca": "Agroecologia · Art",
-    "en": "Agroecology · Art"
+  "es": {
+    "name": "Alba Sáez",
+    "role": "Agroecología · Arte",
+    "bio": "Máster en agroecología y expresidenta de una organización sueca contra el desperdicio de alimentos. Educadora climática y artista de música y danza contemporánea.",
+    "lead": false,
+    "order": 2,
+    "icon": "leaf"
   },
-  "bio": {
-    "es": "Máster en agroecología y expresidenta de una organización sueca contra el desperdicio de alimentos. Educadora climática y artista de música y danza contemporánea.",
-    "ca": "Màster en agroecologia i expresidenta d'una organització sueca contra el malbaratament d'aliments. Educadora climàtica i artista de música i dansa contemporània.",
-    "en": "Master's in agroecology and former president of a Swedish organisation fighting food waste. Climate educator and contemporary music and dance artist."
+  "ca": {
+    "role": "Agroecologia · Art",
+    "bio": "Màster en agroecologia i expresidenta d'una organització sueca contra el malbaratament d'aliments. Educadora climàtica i artista de música i dansa contemporània."
   },
-  "lead": false,
-  "order": 2,
-  "icon": "leaf"
+  "en": {
+    "role": "Agroecology · Art",
+    "bio": "Master's in agroecology and former president of a Swedish organisation fighting food waste. Climate educator and contemporary music and dance artist."
+  }
 }

@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import VideoFacade from './VideoFacade.astro';
-import { pickText } from '../lib/content';
+import { localize } from '../lib/content';
 import type { Locale } from '../i18n';
 
 interface Props {
@@ -14,16 +14,16 @@ interface Props {
 }
 
 const { project, lang, short = false, showStats = false } = Astro.props;
-const d = project.data;
+const d = localize(project.data, lang);
 
-const title = pickText(d.title, lang);
-const text = short && d.summary ? pickText(d.summary, lang) : pickText(d.description, lang);
+const title = d.title;
+const text = short && d.summary ? d.summary : d.description;
 ---
 
 <article class="project reveal" data-theme={d.theme.join(' ')}>
   <div class="project__img">
     <VideoFacade youtubeId={d.youtubeId} title={title} />
-    <span class="project__tag">{pickText(d.tag, lang)}</span>
+    <span class="project__tag">{d.tag}</span>
   </div>
   <div class="project__body">
     <div class="project__meta">{d.meta}</div>
@@ -35,7 +35,7 @@ const text = short && d.summary ? pickText(d.summary, lang) : pickText(d.descrip
           {d.stats.map((s) => (
             <div>
               <b>{s.value}</b>
-              <span>{pickText(s.label, lang)}</span>
+              <span>{s.label}</span>
             </div>
           ))}
         </div>

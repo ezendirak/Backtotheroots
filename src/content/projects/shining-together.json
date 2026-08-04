@@ -1,42 +1,48 @@
 {
-  "title": {
-    "es": "Videoclip “Shining Together”",
-    "ca": "Videoclip «Shining Together»",
-    "en": "“Shining Together” music video"
-  },
-  "theme": [
-    "art",
-    "youth"
-  ],
-  "tag": {
-    "es": "Arte",
-    "ca": "Art",
-    "en": "Art"
-  },
-  "youtubeId": "VCJAQsBgVBs",
-  "meta": "EFFIC · Ribes de Freser 2024",
-  "description": {
-    "es": "Intercambio juvenil donde 30 jóvenes exploraron música, dibujo y teatro improvisado para expresar sus ideas y emociones.",
-    "ca": "Intercanvi juvenil on 30 joves van explorar música, dibuix i teatre improvisat per expressar les seves idees i emocions.",
-    "en": "A youth exchange where 30 young people explored music, drawing and improv theatre to express their ideas and emotions."
-  },
-  "summary": {
-    "es": "30 jóvenes exploraron música, dibujo y teatro improvisado para expresar sus ideas y emociones.",
-    "ca": "30 joves van explorar música, dibuix i teatre improvisat per expressar les seves idees i emocions.",
-    "en": "30 young people explored music, drawing and improv theatre to express their ideas and emotions."
-  },
-  "stats": [
-    {
-      "value": "30",
-      "label": {
-        "es": "participantes",
-        "ca": "participants",
-        "en": "participants"
+  "es": {
+    "title": "Videoclip “Shining Together”",
+    "theme": [
+      "art",
+      "youth"
+    ],
+    "tag": "Arte",
+    "youtubeId": "VCJAQsBgVBs",
+    "meta": "EFFIC · Ribes de Freser 2024",
+    "description": "Intercambio juvenil donde 30 jóvenes exploraron música, dibujo y teatro improvisado para expresar sus ideas y emociones.",
+    "summary": "30 jóvenes exploraron música, dibujo y teatro improvisado para expresar sus ideas y emociones.",
+    "stats": [
+      {
+        "value": "30",
+        "label": "participantes"
       }
-    }
-  ],
-  "date": "2024",
-  "featured": true,
-  "order": 3,
-  "homeOrder": 1
+    ],
+    "date": "2024",
+    "featured": true,
+    "order": 3,
+    "homeOrder": 1
+  },
+  "ca": {
+    "title": "Videoclip «Shining Together»",
+    "tag": "Art",
+    "description": "Intercanvi juvenil on 30 joves van explorar música, dibuix i teatre improvisat per expressar les seves idees i emocions.",
+    "summary": "30 joves van explorar música, dibuix i teatre improvisat per expressar les seves idees i emocions.",
+    "stats": [
+      {
+        "value": "30",
+        "label": "participants"
+      }
+    ]
+  },
+  "en": {
+    "title": "“Shining Together” music video",
+    "tag": "Art",
+    "description": "A youth exchange where 30 young people explored music, drawing and improv theatre to express their ideas and emotions.",
+    "summary": "30 young people explored music, drawing and improv theatre to express their ideas and emotions.",
+    "stats": [
+      {
+        "value": "30",
+        "label": "participants"
+      }
+    ]
+  }
 }

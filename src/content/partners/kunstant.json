@@ -1,18 +1,19 @@
 {
-  "name": "Kunstant",
-  "place": {
-    "es": "Barcelona",
-    "ca": "Barcelona",
-    "en": "Barcelona"
+  "es": {
+    "name": "Kunstant",
+    "place": "Barcelona",
+    "location": "{\"type\":\"Point\",\"coordinates\":[2.144,41.4051]}",
+    "color": "#e4a63c",
+    "initials": "K",
+    "description": "Colectivo interdisciplinar artístico centrado en la creación documental, comunitaria y de memoria viva.",
+    "order": 6
   },
-  "lat": 41.4051,
-  "lng": 2.144,
-  "color": "#e4a63c",
-  "initials": "K",
-  "description": {
-    "es": "Colectivo interdisciplinar artístico centrado en la creación documental, comunitaria y de memoria viva.",
-    "ca": "Col·lectiu interdisciplinari artístic centrat en la creació documental, comunitària i de memòria viva.",
-    "en": "An interdisciplinary artistic collective focused on documentary, community and living-memory creation."
+  "ca": {
+    "place": "Barcelona",
+    "description": "Col·lectiu interdisciplinari artístic centrat en la creació documental, comunitària i de memòria viva."
   },
-  "order": 6
+  "en": {
+    "place": "Barcelona",
+    "description": "An interdisciplinary artistic collective focused on documentary, community and living-memory creation."
+  }
 }

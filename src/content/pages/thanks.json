@@ -1,27 +1,27 @@
 {
-  "seo": {
-    "title": {
-      "es": "Gracias · Back to the Roots"
+  "es": {
+    "seo": {
+      "title": "Gracias · Back to the Roots",
+      "description": "Hemos recibido tu mensaje. Te responderemos pronto."
     },
-    "description": {
-      "es": "Hemos recibido tu mensaje. Te responderemos pronto."
+    "main": {
+      "h1": "¡Gracias!",
+      "text": "¡Gracias! Hemos recibido tu mensaje. Te responderemos pronto.",
+      "back": "Volver al inicio"
     }
   },
-  "main": {
-    "h1": {
-      "es": "¡Gracias!",
-      "ca": "Gràcies!",
-      "en": "Thank you!"
-    },
-    "text": {
-      "es": "¡Gracias! Hemos recibido tu mensaje. Te responderemos pronto.",
-      "ca": "Gràcies! Hem rebut el teu missatge. Et respondrem aviat.",
-      "en": "Thanks! We've received your message and will reply soon."
-    },
-    "back": {
-      "es": "Volver al inicio",
-      "ca": "Torna a l'inici",
-      "en": "Back to home"
+  "ca": {
+    "main": {
+      "h1": "Gràcies!",
+      "text": "Gràcies! Hem rebut el teu missatge. Et respondrem aviat.",
+      "back": "Torna a l'inici"
+    }
+  },
+  "en": {
+    "main": {
+      "h1": "Thank you!",
+      "text": "Thanks! We've received your message and will reply soon.",
+      "back": "Back to home"
     }
   }
 }

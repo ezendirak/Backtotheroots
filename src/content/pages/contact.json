@@ -1,96 +1,78 @@
 {
-  "seo": {
-    "title": {
-      "es": "Contacto · Escríbenos · Back to the Roots"
+  "es": {
+    "seo": {
+      "title": "Contacto · Escríbenos · Back to the Roots",
+      "description": "Contacta con Back to the Roots por email o redes sociales. Resolvemos dudas sobre proyectos, colaboraciones y oportunidades de experiencias educativas."
     },
-    "description": {
-      "es": "Contacta con Back to the Roots por email o redes sociales. Resolvemos dudas sobre proyectos, colaboraciones y oportunidades de experiencias educativas."
+    "intro": {
+      "eyebrow": "Contacto",
+      "h1": "Ayúdanos a polinizar el cambio",
+      "p": "Las grandes transformaciones nacen de pequeñas conexiones. Una idea compartida, una colaboración o una conversación pueden abrir nuevos caminos. Cuéntanos qué tienes en mente y hagamos que nuevas iniciativas florezcan juntas.",
+      "loc": "Cataluña, España"
+    },
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "¿Cómo te llamas?",
+      "email": "Email",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntanos tu idea…",
+      "send": "Enviar mensaje",
+      "done": "¡Gracias! Hemos recibido tu mensaje. Te responderemos pronto.",
+      "error": "Ups, algo ha fallado. Escríbenos directamente a info@backtotheroots-ngo.com."
+    },
+    "faq": {
+      "h2": "¿Buscabas otra cosa?",
+      "btn1": "Oportunidades abiertas",
+      "btn2": "Cómo colaborar",
+      "btn3": "Sobre nosotras"
     }
   },
-  "intro": {
-    "eyebrow": {
-      "es": "Contacto",
-      "ca": "Contacte",
-      "en": "Contact"
+  "ca": {
+    "intro": {
+      "eyebrow": "Contacte",
+      "h1": "Ajuda'ns a pol·linitzar el canvi",
+      "p": "Les grans transformacions neixen de petites connexions. Una idea compartida, una col·laboració o una conversa poden obrir nous camins. Explica'ns què tens al cap i fem que noves iniciatives floreixin juntes.",
+      "loc": "Catalunya, Espanya"
     },
-    "h1": {
-      "es": "Ayúdanos a polinizar el cambio",
-      "ca": "Ajuda'ns a pol·linitzar el canvi",
-      "en": "Help us pollinate change"
+    "form": {
+      "name": "Nom",
+      "namePlaceholder": "Com et dius?",
+      "email": "Email",
+      "message": "Missatge",
+      "messagePlaceholder": "Explica'ns la teva idea…",
+      "send": "Enviar missatge",
+      "done": "Gràcies! Hem rebut el teu missatge. Et respondrem aviat.",
+      "error": "Ui, alguna cosa ha fallat. Escriu-nos directament a info@backtotheroots-ngo.com."
     },
-    "p": {
-      "es": "Las grandes transformaciones nacen de pequeñas conexiones. Una idea compartida, una colaboración o una conversación pueden abrir nuevos caminos. Cuéntanos qué tienes en mente y hagamos que nuevas iniciativas florezcan juntas.",
-      "ca": "Les grans transformacions neixen de petites connexions. Una idea compartida, una col·laboració o una conversa poden obrir nous camins. Explica'ns què tens al cap i fem que noves iniciatives floreixin juntes.",
-      "en": "Great transformations are born from small connections. A shared idea, a collaboration or a conversation can open new paths. Tell us what you have in mind and let's make new initiatives bloom together."
-    },
-    "loc": {
-      "es": "Cataluña, España",
-      "ca": "Catalunya, Espanya",
-      "en": "Catalonia, Spain"
+    "faq": {
+      "h2": "Buscaves una altra cosa?",
+      "btn1": "Oportunitats obertes",
+      "btn2": "Com col·laborar",
+      "btn3": "Sobre nosaltres"
     }
   },
-  "form": {
-    "name": {
-      "es": "Nombre",
-      "ca": "Nom",
-      "en": "Name"
+  "en": {
+    "intro": {
+      "eyebrow": "Contact",
+      "h1": "Help us pollinate change",
+      "p": "Great transformations are born from small connections. A shared idea, a collaboration or a conversation can open new paths. Tell us what you have in mind and let's make new initiatives bloom together.",
+      "loc": "Catalonia, Spain"
     },
-    "namePlaceholder": {
-      "es": "¿Cómo te llamas?",
-      "ca": "Com et dius?",
-      "en": "What's your name?"
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "What's your name?",
+      "email": "Email",
+      "message": "Message",
+      "messagePlaceholder": "Tell us your idea…",
+      "send": "Send message",
+      "done": "Thanks! We've received your message and will reply soon.",
+      "error": "Oops, something went wrong. Email us directly at info@backtotheroots-ngo.com."
     },
-    "email": {
-      "es": "Email",
-      "ca": "Email",
-      "en": "Email"
-    },
-    "message": {
-      "es": "Mensaje",
-      "ca": "Missatge",
-      "en": "Message"
-    },
-    "messagePlaceholder": {
-      "es": "Cuéntanos tu idea…",
-      "ca": "Explica'ns la teva idea…",
-      "en": "Tell us your idea…"
-    },
-    "send": {
-      "es": "Enviar mensaje",
-      "ca": "Enviar missatge",
-      "en": "Send message"
-    },
-    "done": {
-      "es": "¡Gracias! Hemos recibido tu mensaje. Te responderemos pronto.",
-      "ca": "Gràcies! Hem rebut el teu missatge. Et respondrem aviat.",
-      "en": "Thanks! We've received your message and will reply soon."
-    },
-    "error": {
-      "es": "Ups, algo ha fallado. Escríbenos directamente a info@backtotheroots-ngo.com.",
-      "ca": "Ui, alguna cosa ha fallat. Escriu-nos directament a info@backtotheroots-ngo.com.",
-      "en": "Oops, something went wrong. Email us directly at info@backtotheroots-ngo.com."
-    }
-  },
-  "faq": {
-    "h2": {
-      "es": "¿Buscabas otra cosa?",
-      "ca": "Buscaves una altra cosa?",
-      "en": "Looking for something else?"
-    },
-    "btn1": {
-      "es": "Oportunidades abiertas",
-      "ca": "Oportunitats obertes",
-      "en": "Open opportunities"
-    },
-    "btn2": {
-      "es": "Cómo colaborar",
-      "ca": "Com col·laborar",
-      "en": "How to help"
-    },
-    "btn3": {
-      "es": "Sobre nosotras",
-      "ca": "Sobre nosaltres",
-      "en": "About us"
+    "faq": {
+      "h2": "Looking for something else?",
+      "btn1": "Open opportunities",
+      "btn2": "How to help",
+      "btn3": "About us"
     }
   }
 }

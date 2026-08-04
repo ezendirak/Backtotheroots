@@ -1,204 +1,162 @@
 {
-  "seo": {
-    "title": {
-      "es": "Back to the Roots · Educación ambiental y expresión artística para la juventud"
+  "es": {
+    "seo": {
+      "title": "Back to the Roots · Educación ambiental y expresión artística para la juventud",
+      "description": "Experiencias educativas que reconectan a la juventud con la naturaleza, las tradiciones y el arte a través de intercambios y formaciones educativas en Cataluña y Europa."
     },
-    "description": {
-      "es": "Experiencias educativas que reconectan a la juventud con la naturaleza, las tradiciones y el arte a través de intercambios y formaciones educativas en Cataluña y Europa."
-    }
-  },
-  "hero": {
-    "eyebrow": {
-      "es": "Educación ambiental · Expresión artística",
-      "ca": "Educació ambiental · Expressió artística",
-      "en": "Environmental education · Artistic expression"
+    "hero": {
+      "eyebrow": "Educación ambiental · Expresión artística",
+      "title": "Back to the <em>Roots</em>.",
+      "sub": "Reconectamos a la juventud con la naturaleza, las tradiciones y el arte para transformar sus comunidades.",
+      "cta1": "Descubre los proyectos",
+      "cta2": "Quiero colaborar",
+      "scroll": "Baja y crece con nosotras"
     },
-    "title": {
-      "es": "Back to the <em>Roots</em>.",
-      "ca": "Back to the <em>Roots</em>.",
-      "en": "Back to the <em>Roots</em>."
+    "questions": {
+      "q1": "¿Quiénes somos?",
+      "q2": "¿Qué hacemos?",
+      "q3": "¿Por qué lo hacemos?",
+      "q4": "¿Cómo colaborar?",
+      "q5": "¿Qué impacto tiene?"
     },
-    "sub": {
-      "es": "Reconectamos a la juventud con la naturaleza, las tradiciones y el arte para transformar sus comunidades.",
-      "ca": "Reconnectem el jovent amb la natura, les tradicions i l'art per transformar les seves comunitats.",
-      "en": "We reconnect young people with nature, tradition and art to transform their communities."
+    "who": {
+      "eyebrow": "Quiénes somos",
+      "h2": "Una comunidad que crece desde la raíz",
+      "p": "Somos una entidad de experiencias educativas que trabaja para proteger el medio ambiente mediante la educación ambiental y la implicación de los jóvenes en sus comunidades. Nacimos en 2020 con una idea sencilla: reconectar a las personas con la naturaleza y buscar soluciones sostenibles a la despoblación rural y la crisis climática.",
+      "cta": "Conócenos mejor"
     },
-    "cta1": {
-      "es": "Descubre los proyectos",
-      "ca": "Descobreix els projectes",
-      "en": "Explore our projects"
+    "doing": {
+      "eyebrow": "Qué hacemos",
+      "h2": "Tres raíces, un mismo propósito",
+      "p": "Empoderamos a jóvenes europeos para ser promotores de una transformación eco-social en sus comunidades.",
+      "c1t": "Educación ambiental",
+      "c1p": "Reconexión con la naturaleza, residuos cero, agroecología y soluciones frente a la despoblación rural.",
+      "c2t": "Juventud e inclusión",
+      "c2p": "Intercambios y formaciones que reúnen a jóvenes de toda Europa como agentes de cambio.",
+      "c3t": "Expresión artística",
+      "c3p": "Música, teatro, cine y fotografía como lenguaje universal para expresar ideas y provocar el cambio."
     },
-    "cta2": {
-      "es": "Quiero colaborar",
-      "ca": "Vull col·laborar",
-      "en": "I want to help"
+    "projects": {
+      "eyebrow": "Proyectos",
+      "h2": "Ideas que echaron raíces",
+      "p": "Un vistazo a algunos de nuestros últimos proyectos.",
+      "cta": "Ver todos los proyectos"
     },
-    "scroll": {
-      "es": "Baja y crece con nosotras",
-      "ca": "Baixa i creix amb nosaltres",
-      "en": "Scroll down and grow with us"
-    }
-  },
-  "questions": {
-    "q1": {
-      "es": "¿Quiénes somos?",
-      "ca": "Qui som?",
-      "en": "Who are we?"
-    },
-    "q2": {
-      "es": "¿Qué hacemos?",
-      "ca": "Què fem?",
-      "en": "What do we do?"
-    },
-    "q3": {
-      "es": "¿Por qué lo hacemos?",
-      "ca": "Per què ho fem?",
-      "en": "Why we do it?"
-    },
-    "q4": {
-      "es": "¿Cómo colaborar?",
-      "ca": "Com col·laborar?",
-      "en": "How to help?"
-    },
-    "q5": {
-      "es": "¿Qué impacto tiene?",
-      "ca": "Quin impacte té?",
-      "en": "What's our impact?"
-    }
-  },
-  "who": {
-    "eyebrow": {
-      "es": "Quiénes somos",
-      "ca": "Qui som",
-      "en": "Who we are"
-    },
-    "h2": {
-      "es": "Una comunidad que crece desde la raíz",
-      "ca": "Una comunitat que creix des de l'arrel",
-      "en": "A community that grows from the root"
-    },
-    "p": {
-      "es": "Somos una entidad de experiencias educativas que trabaja para proteger el medio ambiente mediante la educación ambiental y la implicación de los jóvenes en sus comunidades. Nacimos en 2020 con una idea sencilla: reconectar a las personas con la naturaleza y buscar soluciones sostenibles a la despoblación rural y la crisis climática.",
-      "ca": "Som una entitat d'experiències educatives que treballa per protegir el medi ambient mitjançant l'educació ambiental i la implicació del jovent en les seves comunitats. Vam néixer el 2020 amb una idea senzilla: reconnectar les persones amb la natura i buscar solucions sostenibles a la despoblació rural i la crisi climàtica.",
-      "en": "We're an educational experiences organisation working to protect the environment through environmental education and youth engagement in their communities. We started in 2020 with a simple idea: reconnect people with nature and find sustainable answers to rural depopulation and the climate crisis."
+    "opportunity": {
+      "eyebrow": "Oportunidad abierta",
+      "h2": "Vive una experiencia que deja huella",
+      "cta1": "Ver todos los detalles",
+      "cta2": "Inscríbete ahora"
     },
     "cta": {
-      "es": "Conócenos mejor",
-      "ca": "Coneix-nos millor",
-      "en": "Get to know us"
+      "eyebrow": "Súmate",
+      "h2": "Hay muchas formas de sembrar contigo",
+      "btn1": "Cómo colaborar",
+      "btn2": "Escríbenos"
     }
   },
-  "doing": {
-    "eyebrow": {
-      "es": "Qué hacemos",
-      "ca": "Què fem",
-      "en": "What we do"
+  "ca": {
+    "hero": {
+      "eyebrow": "Educació ambiental · Expressió artística",
+      "title": "Back to the <em>Roots</em>.",
+      "sub": "Reconnectem el jovent amb la natura, les tradicions i l'art per transformar les seves comunitats.",
+      "cta1": "Descobreix els projectes",
+      "cta2": "Vull col·laborar",
+      "scroll": "Baixa i creix amb nosaltres"
     },
-    "h2": {
-      "es": "Tres raíces, un mismo propósito",
-      "ca": "Tres arrels, un mateix propòsit",
-      "en": "Three roots, one purpose"
+    "questions": {
+      "q1": "Qui som?",
+      "q2": "Què fem?",
+      "q3": "Per què ho fem?",
+      "q4": "Com col·laborar?",
+      "q5": "Quin impacte té?"
     },
-    "p": {
-      "es": "Empoderamos a jóvenes europeos para ser promotores de una transformación eco-social en sus comunidades.",
-      "ca": "Empoderem joves europeus per ser promotors d'una transformació ecosocial a les seves comunitats.",
-      "en": "We empower young Europeans to become drivers of eco-social change in their communities."
+    "who": {
+      "eyebrow": "Qui som",
+      "h2": "Una comunitat que creix des de l'arrel",
+      "p": "Som una entitat d'experiències educatives que treballa per protegir el medi ambient mitjançant l'educació ambiental i la implicació del jovent en les seves comunitats. Vam néixer el 2020 amb una idea senzilla: reconnectar les persones amb la natura i buscar solucions sostenibles a la despoblació rural i la crisi climàtica.",
+      "cta": "Coneix-nos millor"
     },
-    "c1t": {
-      "es": "Educación ambiental",
-      "ca": "Educació ambiental",
-      "en": "Environmental education"
+    "doing": {
+      "eyebrow": "Què fem",
+      "h2": "Tres arrels, un mateix propòsit",
+      "p": "Empoderem joves europeus per ser promotors d'una transformació ecosocial a les seves comunitats.",
+      "c1t": "Educació ambiental",
+      "c1p": "Reconnexió amb la natura, residus zero, agroecologia i solucions davant la despoblació rural.",
+      "c2t": "Jovent i inclusió",
+      "c2p": "Intercanvis i formacions que reuneixen joves de tota Europa com a agents de canvi.",
+      "c3t": "Expressió artística",
+      "c3p": "Música, teatre, cinema i fotografia com a llenguatge universal per expressar idees i provocar el canvi."
     },
-    "c1p": {
-      "es": "Reconexión con la naturaleza, residuos cero, agroecología y soluciones frente a la despoblación rural.",
-      "ca": "Reconnexió amb la natura, residus zero, agroecologia i solucions davant la despoblació rural.",
-      "en": "Reconnecting with nature, zero waste, agroecology and answers to rural depopulation."
+    "projects": {
+      "eyebrow": "Projectes",
+      "h2": "Idees que van arrelar",
+      "p": "Un cop d'ull a alguns dels nostres darrers projectes.",
+      "cta": "Veure tots els projectes"
     },
-    "c2t": {
-      "es": "Juventud e inclusión",
-      "ca": "Jovent i inclusió",
-      "en": "Youth & inclusion"
-    },
-    "c2p": {
-      "es": "Intercambios y formaciones que reúnen a jóvenes de toda Europa como agentes de cambio.",
-      "ca": "Intercanvis i formacions que reuneixen joves de tota Europa com a agents de canvi.",
-      "en": "Exchanges and trainings bringing together young people from across Europe as agents of change."
-    },
-    "c3t": {
-      "es": "Expresión artística",
-      "ca": "Expressió artística",
-      "en": "Artistic expression"
-    },
-    "c3p": {
-      "es": "Música, teatro, cine y fotografía como lenguaje universal para expresar ideas y provocar el cambio.",
-      "ca": "Música, teatre, cinema i fotografia com a llenguatge universal per expressar idees i provocar el canvi.",
-      "en": "Music, theatre, film and photography as a universal language to express ideas and drive change."
-    }
-  },
-  "projects": {
-    "eyebrow": {
-      "es": "Proyectos",
-      "ca": "Projectes",
-      "en": "Projects"
-    },
-    "h2": {
-      "es": "Ideas que echaron raíces",
-      "ca": "Idees que van arrelar",
-      "en": "Ideas that took root"
-    },
-    "p": {
-      "es": "Un vistazo a algunos de nuestros últimos proyectos.",
-      "ca": "Un cop d'ull a alguns dels nostres darrers projectes.",
-      "en": "A look at some of our latest projects."
+    "opportunity": {
+      "eyebrow": "Oportunitat oberta",
+      "h2": "Viu una experiència que deixa empremta",
+      "cta1": "Veure tots els detalls",
+      "cta2": "Inscriu-t'hi ara"
     },
     "cta": {
-      "es": "Ver todos los proyectos",
-      "ca": "Veure tots els projectes",
-      "en": "See all projects"
+      "eyebrow": "Suma't",
+      "h2": "Hi ha moltes formes de sembrar amb tu",
+      "btn1": "Com col·laborar",
+      "btn2": "Escriu-nos"
     }
   },
-  "opportunity": {
-    "eyebrow": {
-      "es": "Oportunidad abierta",
-      "ca": "Oportunitat oberta",
-      "en": "Open opportunity"
+  "en": {
+    "hero": {
+      "eyebrow": "Environmental education · Artistic expression",
+      "title": "Back to the <em>Roots</em>.",
+      "sub": "We reconnect young people with nature, tradition and art to transform their communities.",
+      "cta1": "Explore our projects",
+      "cta2": "I want to help",
+      "scroll": "Scroll down and grow with us"
     },
-    "h2": {
-      "es": "Vive una experiencia que deja huella",
-      "ca": "Viu una experiència que deixa empremta",
-      "en": "Live an experience that leaves a mark"
+    "questions": {
+      "q1": "Who are we?",
+      "q2": "What do we do?",
+      "q3": "Why we do it?",
+      "q4": "How to help?",
+      "q5": "What's our impact?"
     },
-    "cta1": {
-      "es": "Ver todos los detalles",
-      "ca": "Veure tots els detalls",
-      "en": "See full details"
+    "who": {
+      "eyebrow": "Who we are",
+      "h2": "A community that grows from the root",
+      "p": "We're an educational experiences organisation working to protect the environment through environmental education and youth engagement in their communities. We started in 2020 with a simple idea: reconnect people with nature and find sustainable answers to rural depopulation and the climate crisis.",
+      "cta": "Get to know us"
     },
-    "cta2": {
-      "es": "Inscríbete ahora",
-      "ca": "Inscriu-t'hi ara",
-      "en": "Register now"
-    }
-  },
-  "cta": {
-    "eyebrow": {
-      "es": "Súmate",
-      "ca": "Suma't",
-      "en": "Get involved"
+    "doing": {
+      "eyebrow": "What we do",
+      "h2": "Three roots, one purpose",
+      "p": "We empower young Europeans to become drivers of eco-social change in their communities.",
+      "c1t": "Environmental education",
+      "c1p": "Reconnecting with nature, zero waste, agroecology and answers to rural depopulation.",
+      "c2t": "Youth & inclusion",
+      "c2p": "Exchanges and trainings bringing together young people from across Europe as agents of change.",
+      "c3t": "Artistic expression",
+      "c3p": "Music, theatre, film and photography as a universal language to express ideas and drive change."
     },
-    "h2": {
-      "es": "Hay muchas formas de sembrar contigo",
-      "ca": "Hi ha moltes formes de sembrar amb tu",
-      "en": "There are many ways to plant seeds with us"
+    "projects": {
+      "eyebrow": "Projects",
+      "h2": "Ideas that took root",
+      "p": "A look at some of our latest projects.",
+      "cta": "See all projects"
     },
-    "btn1": {
-      "es": "Cómo colaborar",
-      "ca": "Com col·laborar",
-      "en": "How to help"
+    "opportunity": {
+      "eyebrow": "Open opportunity",
+      "h2": "Live an experience that leaves a mark",
+      "cta1": "See full details",
+      "cta2": "Register now"
     },
-    "btn2": {
-      "es": "Escríbenos",
-      "ca": "Escriu-nos",
-      "en": "Write to us"
+    "cta": {
+      "eyebrow": "Get involved",
+      "h2": "There are many ways to plant seeds with us",
+      "btn1": "How to help",
+      "btn2": "Write to us"
     }
   }
 }

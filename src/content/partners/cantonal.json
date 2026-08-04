@@ -1,18 +1,19 @@
 {
-  "name": "Can Tonal",
-  "place": {
-    "es": "Sant Antoni de Vilamajor, Baix Montseny",
-    "ca": "Sant Antoni de Vilamajor, Baix Montseny",
-    "en": "Sant Antoni de Vilamajor, Baix Montseny"
+  "es": {
+    "name": "Can Tonal",
+    "place": "Sant Antoni de Vilamajor, Baix Montseny",
+    "location": "{\"type\":\"Point\",\"coordinates\":[2.4,41.6724]}",
+    "color": "#c0743e",
+    "initials": "CT",
+    "description": "Espacio social y comunitario que experimenta con la cooperación, la autogestión y la vida en equilibrio con el entorno natural.",
+    "order": 2
   },
-  "lat": 41.6724,
-  "lng": 2.4,
-  "color": "#c0743e",
-  "initials": "CT",
-  "description": {
-    "es": "Espacio social y comunitario que experimenta con la cooperación, la autogestión y la vida en equilibrio con el entorno natural.",
-    "ca": "Espai social i comunitari que experimenta amb la cooperació, l'autogestió i la vida en equilibri amb l'entorn natural.",
-    "en": "A social and community space experimenting with cooperation, self-management and life in balance with nature."
+  "ca": {
+    "place": "Sant Antoni de Vilamajor, Baix Montseny",
+    "description": "Espai social i comunitari que experimenta amb la cooperació, l'autogestió i la vida en equilibri amb l'entorn natural."
   },
-  "order": 2
+  "en": {
+    "place": "Sant Antoni de Vilamajor, Baix Montseny",
+    "description": "A social and community space experimenting with cooperation, self-management and life in balance with nature."
+  }
 }

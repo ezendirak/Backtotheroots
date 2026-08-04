@@ -1,18 +1,19 @@
 {
-  "name": "Morera",
-  "place": {
-    "es": "El Brull, Montseny",
-    "ca": "El Brull, Montseny",
-    "en": "El Brull, Montseny"
+  "es": {
+    "name": "Morera",
+    "place": "El Brull, Montseny",
+    "location": "{\"type\":\"Point\",\"coordinates\":[2.3054,41.8168]}",
+    "color": "#5e7a34",
+    "initials": "M",
+    "description": "Masía en el Parque Natural del Montseny, un espacio para desacelerar, conectar con la naturaleza y vivir en comunidad.",
+    "order": 3
   },
-  "lat": 41.8168,
-  "lng": 2.3054,
-  "color": "#5e7a34",
-  "initials": "M",
-  "description": {
-    "es": "Masía en el Parque Natural del Montseny, un espacio para desacelerar, conectar con la naturaleza y vivir en comunidad.",
-    "ca": "Masia al Parc Natural del Montseny, un espai per desaccelerar, connectar amb la natura i viure en comunitat.",
-    "en": "A farmhouse in the Montseny Natural Park, a space to slow down, connect with nature and live in community."
+  "ca": {
+    "place": "El Brull, Montseny",
+    "description": "Masia al Parc Natural del Montseny, un espai per desaccelerar, connectar amb la natura i viure en comunitat."
   },
-  "order": 3
+  "en": {
+    "place": "El Brull, Montseny",
+    "description": "A farmhouse in the Montseny Natural Park, a space to slow down, connect with nature and live in community."
+  }
 }

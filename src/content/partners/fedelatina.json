@@ -1,18 +1,19 @@
 {
-  "name": "Fede Latina",
-  "place": {
-    "es": "Barcelona",
-    "ca": "Barcelona",
-    "en": "Barcelona"
+  "es": {
+    "name": "Fede Latina",
+    "place": "Barcelona",
+    "location": "{\"type\":\"Point\",\"coordinates\":[2.1774,41.379]}",
+    "color": "#6e8b3d",
+    "initials": "FL",
+    "description": "Federación de Entidades Latinoamericanas de Catalunya, referente en interculturalidad y acogida al colectivo migrante.",
+    "order": 7
   },
-  "lat": 41.379,
-  "lng": 2.1774,
-  "color": "#6e8b3d",
-  "initials": "FL",
-  "description": {
-    "es": "Federación de Entidades Latinoamericanas de Catalunya, referente en interculturalidad y acogida al colectivo migrante.",
-    "ca": "Federació d'Entitats Llatinoamericanes de Catalunya, referent en interculturalitat i acollida al col·lectiu migrant.",
-    "en": "Federation of Latin American Organisations of Catalonia, a reference point for interculturality and support for migrant communities."
+  "ca": {
+    "place": "Barcelona",
+    "description": "Federació d'Entitats Llatinoamericanes de Catalunya, referent en interculturalitat i acollida al col·lectiu migrant."
   },
-  "order": 7
+  "en": {
+    "place": "Barcelona",
+    "description": "Federation of Latin American Organisations of Catalonia, a reference point for interculturality and support for migrant communities."
+  }
 }

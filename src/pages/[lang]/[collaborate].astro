@@ -18,7 +18,7 @@ const page = await getEntry('pages', 'collaborate');
 if (!page) throw new Error('Falta src/content/pages/collaborate.json');
 const t = usePageText(page.data, 'collaborate', lang);
 
-const partners = (await getCollection('partners')).sort((a, b) => a.data.order - b.data.order);
+const partners = (await getCollection('partners')).sort((a, b) => a.data.es.order - b.data.es.order);
 const site = await getEntry('config', 'site');
 
 const ARROW =

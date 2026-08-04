@@ -1,18 +1,19 @@
 {
-  "name": "La Cremallera",
-  "place": {
-    "es": "Ripollès",
-    "ca": "Ripollès",
-    "en": "Ripollès"
+  "es": {
+    "name": "La Cremallera",
+    "place": "Ripollès",
+    "location": "{\"type\":\"Point\",\"coordinates\":[2.1684,42.3057]}",
+    "color": "#37503c",
+    "initials": "LC",
+    "description": "Proyecto artístico que impulsa la creación escénica y la descentralización cultural en el territorio del Ripollès.",
+    "order": 4
   },
-  "lat": 42.3057,
-  "lng": 2.1684,
-  "color": "#37503c",
-  "initials": "LC",
-  "description": {
-    "es": "Proyecto artístico que impulsa la creación escénica y la descentralización cultural en el territorio del Ripollès.",
-    "ca": "Projecte artístic que impulsa la creació escènica i la descentralització cultural al territori del Ripollès.",
-    "en": "An artistic project supporting performing-arts creation and cultural decentralisation in the Ripollès region."
+  "ca": {
+    "place": "Ripollès",
+    "description": "Projecte artístic que impulsa la creació escènica i la descentralització cultural al territori del Ripollès."
   },
-  "order": 4
+  "en": {
+    "place": "Ripollès",
+    "description": "An artistic project supporting performing-arts creation and cultural decentralisation in the Ripollès region."
+  }
 }

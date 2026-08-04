@@ -1,301 +1,225 @@
 {
-  "seo": {
-    "title": {
-      "es": "Sobre nosotras · Equipo y misión · Back to the Roots"
+  "es": {
+    "seo": {
+      "title": "Sobre nosotras · Equipo y misión · Back to the Roots",
+      "description": "Conoce a Back to the Roots: nuestra misión, por qué trabajamos por la educación ambiental y la expresión artística, y el equipo que lo hace posible."
     },
-    "description": {
-      "es": "Conoce a Back to the Roots: nuestra misión, por qué trabajamos por la educación ambiental y la expresión artística, y el equipo que lo hace posible."
+    "hero": {
+      "eyebrow": "Quiénes somos",
+      "h1": "Una comunidad que crece desde la raíz",
+      "p": "Educadores, artistas y ambientalistas que empoderan a la juventud europea para transformar sus comunidades."
+    },
+    "mission": {
+      "eyebrow": "Nuestra misión",
+      "h2": "Volver a lo esencial",
+      "p1": "Somos una entidad comprometida con la educación ambiental y la expresión artística como herramientas para reconectar a las personas con la naturaleza, fortalecer las comunidades y generar cambios positivos en nuestro entorno.",
+      "p2": "Nacimos en 2020 con una idea sencilla: recuperar el vínculo con la tierra, poner en valor las tradiciones y crear nuevas formas de afrontar retos actuales como la despoblación rural y la crisis climática.",
+      "p3": "A través de proyectos nacionales y europeos, combinamos el aprendizaje, la creatividad y la participación juvenil en ámbitos como el cine, el teatro y la música, porque creemos que el arte es un lenguaje universal capaz de inspirar, unir personas y transformar realidades.",
+      "v1": "Sostenibilidad",
+      "v2": "Inclusión",
+      "v3": "Creatividad",
+      "v4": "Europa",
+      "v5": "Naturaleza"
+    },
+    "doing": {
+      "eyebrow": "Qué hacemos",
+      "h2": "Tres raíces, un mismo propósito",
+      "p": "Impulsamos experiencias educativas que capacitan a jóvenes europeos para ser promotores de una transformación eco-social en sus comunidades.",
+      "c1t": "Educación ambiental",
+      "c1p": "Reconexión con la naturaleza, residuos cero, agroecología y soluciones frente a la despoblación rural y la crisis climática.",
+      "c2t": "Juventud e inclusión",
+      "c2p": "Intercambios y formaciones que reúnen a jóvenes de toda Europa y los convierten en agentes de cambio.",
+      "c3t": "Expresión artística",
+      "c3p": "Música, teatro, cine y fotografía como lenguaje universal para expresar ideas, emociones y provocar el cambio."
+    },
+    "learn": {
+      "eyebrow": "Recursos y talleres",
+      "toolkitTag": "Recurso educativo",
+      "toolkitTitle": "The Green Playground",
+      "toolkitSub": "Gamificación y educación ambiental",
+      "toolkitP": "Descarga nuestro último recurso educativo: un toolkit para llevar la gamificación y la educación ambiental a cualquier aula o espacio al aire libre.",
+      "toolkitCta": "Solicitar el toolkit",
+      "workshopsTag": "Talleres",
+      "workshopsTitle": "Aprende haciendo",
+      "workshopsP": "Ofrecemos talleres de educación ambiental y expresión artística, adaptados a cada grupo y espacio.",
+      "chip1": "Compostaje",
+      "chip2": "Agroecología",
+      "chip3": "Elaboración de jabón",
+      "chip4": "Fermentados",
+      "chip5": "Limpieza de residuos",
+      "ctaText": "¿Quieres realizar un taller?",
+      "ctaBtn": "Contáctanos"
+    },
+    "why": {
+      "eyebrow": "Por qué lo hacemos",
+      "quote": "Porque un joven que se reconecta con la tierra <span>siembra un futuro más justo y sostenible</span> para toda su comunidad.",
+      "text": "Frente a la desconexión con la naturaleza, la despoblación rural y la crisis climática, apostamos por experiencias que sacan a los jóvenes de su zona de confort y les devuelven algo esencial: pertenencia, propósito y la certeza de que el cambio empieza en ellos."
+    },
+    "impact": {
+      "stat1n": "Desde 2020",
+      "stat1l": "Sembrando cambio",
+      "stat2n": "25+",
+      "stat2l": "proyectos de experiencias educativas y cooperación",
+      "stat3n": "150+",
+      "stat3l": "jóvenes con experiencias internacionales",
+      "stat4n": "∞",
+      "stat4l": "Red viva de conexiones que siguen creciendo"
+    },
+    "team": {
+      "eyebrow": "El equipo",
+      "h2": "Personas detrás de las raíces",
+      "p": "Educadores, artistas y ambientalistas que comparten una misma vocación: transformar a través de la experiencia."
+    },
+    "cta": {
+      "h2": "¿Quieres formar parte del equipo?",
+      "btn1": "Cómo colaborar",
+      "btn2": "Escríbenos"
     }
   },
-  "hero": {
-    "eyebrow": {
-      "es": "Quiénes somos",
-      "ca": "Qui som",
-      "en": "Who we are"
+  "ca": {
+    "hero": {
+      "eyebrow": "Qui som",
+      "h1": "Una comunitat que creix des de l'arrel",
+      "p": "Educadors, artistes i ambientalistes que empoderen el jovent europeu per transformar les seves comunitats."
     },
-    "h1": {
-      "es": "Una comunidad que crece desde la raíz",
-      "ca": "Una comunitat que creix des de l'arrel",
-      "en": "A community that grows from the root"
+    "mission": {
+      "eyebrow": "La nostra missió",
+      "h2": "Tornar a l'essencial",
+      "p1": "Som una entitat compromesa amb l'educació ambiental i l'expressió artística com a eines per reconnectar les persones amb la natura, enfortir les comunitats i generar canvis positius en el nostre entorn.",
+      "p2": "Vam néixer el 2020 amb una idea senzilla: recuperar el vincle amb la terra, posar en valor les tradicions i crear noves formes d'afrontar reptes actuals com la despoblació rural i la crisi climàtica.",
+      "p3": "A través de projectes nacionals i europeus, combinem l'aprenentatge, la creativitat i la participació juvenil en àmbits com el cinema, el teatre i la música, perquè creiem que l'art és un llenguatge universal capaç d'inspirar, unir persones i transformar realitats.",
+      "v1": "Sostenibilitat",
+      "v2": "Inclusió",
+      "v3": "Creativitat",
+      "v4": "Europa",
+      "v5": "Natura"
     },
-    "p": {
-      "es": "Educadores, artistas y ambientalistas que empoderan a la juventud europea para transformar sus comunidades.",
-      "ca": "Educadors, artistes i ambientalistes que empoderen el jovent europeu per transformar les seves comunitats.",
-      "en": "Educators, artists and environmentalists empowering young Europeans to transform their communities."
+    "doing": {
+      "eyebrow": "Què fem",
+      "h2": "Tres arrels, un mateix propòsit",
+      "p": "Impulsem experiències educatives que capaciten joves europeus per ser promotors d'una transformació ecosocial a les seves comunitats.",
+      "c1t": "Educació ambiental",
+      "c1p": "Reconnexió amb la natura, residus zero, agroecologia i solucions davant la despoblació rural i la crisi climàtica.",
+      "c2t": "Jovent i inclusió",
+      "c2p": "Intercanvis i formacions que reuneixen joves de tota Europa i els converteixen en agents de canvi.",
+      "c3t": "Expressió artística",
+      "c3p": "Música, teatre, cinema i fotografia com a llenguatge universal per expressar idees, emocions i provocar el canvi."
+    },
+    "learn": {
+      "eyebrow": "Recursos i tallers",
+      "toolkitTag": "Recurs educatiu",
+      "toolkitTitle": "The Green Playground",
+      "toolkitSub": "Gamificació i educació ambiental",
+      "toolkitP": "Descarrega el nostre darrer recurs educatiu: un toolkit per portar la gamificació i l'educació ambiental a qualsevol aula o espai a l'aire lliure.",
+      "toolkitCta": "Sol·licitar el toolkit",
+      "workshopsTag": "Tallers",
+      "workshopsTitle": "Aprèn fent",
+      "workshopsP": "Oferim tallers d'educació ambiental i expressió artística, adaptats a cada grup i espai.",
+      "chip1": "Compostatge",
+      "chip2": "Agroecologia",
+      "chip3": "Elaboració de sabó",
+      "chip4": "Fermentats",
+      "chip5": "Neteja de residus",
+      "ctaText": "Vols fer un taller?",
+      "ctaBtn": "Contacta'ns"
+    },
+    "why": {
+      "eyebrow": "Per què ho fem",
+      "quote": "Perquè un jove que es reconnecta amb la terra <span>sembra un futur més just i sostenible</span> per a tota la seva comunitat.",
+      "text": "Davant la desconnexió amb la natura, la despoblació rural i la crisi climàtica, apostem per experiències que treuen el jovent de la seva zona de confort i els retornen quelcom essencial: pertinença, propòsit i la certesa que el canvi comença en ells."
+    },
+    "impact": {
+      "stat1n": "Des del 2020",
+      "stat1l": "Sembrant canvi",
+      "stat2n": "25+",
+      "stat2l": "projectes d'experiències educatives i cooperació",
+      "stat3n": "150+",
+      "stat3l": "joves amb experiències internacionals",
+      "stat4n": "∞",
+      "stat4l": "Xarxa viva de connexions que no paren de créixer"
+    },
+    "team": {
+      "eyebrow": "L'equip",
+      "h2": "Persones darrere de les arrels",
+      "p": "Educadors, artistes i ambientalistes que comparteixen una mateixa vocació: transformar a través de l'experiència."
+    },
+    "cta": {
+      "h2": "Vols formar part de l'equip?",
+      "btn1": "Com col·laborar",
+      "btn2": "Escriu-nos"
     }
   },
-  "mission": {
-    "eyebrow": {
-      "es": "Nuestra misión",
-      "ca": "La nostra missió",
-      "en": "Our mission"
+  "en": {
+    "hero": {
+      "eyebrow": "Who we are",
+      "h1": "A community that grows from the root",
+      "p": "Educators, artists and environmentalists empowering young Europeans to transform their communities."
     },
-    "h2": {
-      "es": "Volver a lo esencial",
-      "ca": "Tornar a l'essencial",
-      "en": "Back to what matters"
+    "mission": {
+      "eyebrow": "Our mission",
+      "h2": "Back to what matters",
+      "p1": "We are an organisation committed to environmental education and artistic expression as tools to reconnect people with nature, strengthen communities and bring about positive change in our surroundings.",
+      "p2": "We were born in 2020 with a simple idea: to recover our bond with the land, value traditions and create new ways to face today's challenges, such as rural depopulation and the climate crisis.",
+      "p3": "Through national and European projects, we combine learning, creativity and youth participation in fields such as film, theatre and music, because we believe art is a universal language able to inspire, bring people together and transform realities.",
+      "v1": "Sustainability",
+      "v2": "Inclusion",
+      "v3": "Creativity",
+      "v4": "Europe",
+      "v5": "Nature"
     },
-    "p1": {
-      "es": "Somos una entidad comprometida con la educación ambiental y la expresión artística como herramientas para reconectar a las personas con la naturaleza, fortalecer las comunidades y generar cambios positivos en nuestro entorno.",
-      "ca": "Som una entitat compromesa amb l'educació ambiental i l'expressió artística com a eines per reconnectar les persones amb la natura, enfortir les comunitats i generar canvis positius en el nostre entorn.",
-      "en": "We are an organisation committed to environmental education and artistic expression as tools to reconnect people with nature, strengthen communities and bring about positive change in our surroundings."
+    "doing": {
+      "eyebrow": "What we do",
+      "h2": "Three roots, one purpose",
+      "p": "We create educational experiences that train young Europeans to become drivers of eco-social change in their communities.",
+      "c1t": "Environmental education",
+      "c1p": "Reconnecting with nature, zero waste, agroecology and answers to rural depopulation and the climate crisis.",
+      "c2t": "Youth & inclusion",
+      "c2p": "Exchanges and trainings bringing together young people from across Europe as agents of change.",
+      "c3t": "Artistic expression",
+      "c3p": "Music, theatre, film and photography as a universal language to express ideas, emotions and drive change."
     },
-    "p2": {
-      "es": "Nacimos en 2020 con una idea sencilla: recuperar el vínculo con la tierra, poner en valor las tradiciones y crear nuevas formas de afrontar retos actuales como la despoblación rural y la crisis climática.",
-      "ca": "Vam néixer el 2020 amb una idea senzilla: recuperar el vincle amb la terra, posar en valor les tradicions i crear noves formes d'afrontar reptes actuals com la despoblació rural i la crisi climàtica.",
-      "en": "We were born in 2020 with a simple idea: to recover our bond with the land, value traditions and create new ways to face today's challenges, such as rural depopulation and the climate crisis."
+    "learn": {
+      "eyebrow": "Resources and workshops",
+      "toolkitTag": "Educational resource",
+      "toolkitTitle": "The Green Playground",
+      "toolkitSub": "Gamification and environmental education",
+      "toolkitP": "Download our latest educational resource: a toolkit for bringing gamification and environmental education to any classroom or outdoor space.",
+      "toolkitCta": "Request the toolkit",
+      "workshopsTag": "Workshops",
+      "workshopsTitle": "Learn by doing",
+      "workshopsP": "We offer environmental-education and artistic-expression workshops, tailored to each group and space.",
+      "chip1": "Composting",
+      "chip2": "Agroecology",
+      "chip3": "Soap making",
+      "chip4": "Fermentation",
+      "chip5": "Waste clean-ups",
+      "ctaText": "Want to run a workshop?",
+      "ctaBtn": "Contact us"
     },
-    "p3": {
-      "es": "A través de proyectos nacionales y europeos, combinamos el aprendizaje, la creatividad y la participación juvenil en ámbitos como el cine, el teatro y la música, porque creemos que el arte es un lenguaje universal capaz de inspirar, unir personas y transformar realidades.",
-      "ca": "A través de projectes nacionals i europeus, combinem l'aprenentatge, la creativitat i la participació juvenil en àmbits com el cinema, el teatre i la música, perquè creiem que l'art és un llenguatge universal capaç d'inspirar, unir persones i transformar realitats.",
-      "en": "Through national and European projects, we combine learning, creativity and youth participation in fields such as film, theatre and music, because we believe art is a universal language able to inspire, bring people together and transform realities."
+    "why": {
+      "eyebrow": "Why we do it",
+      "quote": "Because a young person who reconnects with the land <span>plants a fairer, more sustainable future</span> for their whole community.",
+      "text": "Against disconnection from nature, rural depopulation and the climate crisis, we choose experiences that push young people out of their comfort zone and give back something essential: belonging, purpose and the certainty that change starts with them."
     },
-    "v1": {
-      "es": "Sostenibilidad",
-      "ca": "Sostenibilitat",
-      "en": "Sustainability"
+    "impact": {
+      "stat1n": "Since 2020",
+      "stat1l": "Planting change",
+      "stat2n": "25+",
+      "stat2l": "educational-experience projects and cooperation",
+      "stat3n": "150+",
+      "stat3l": "young people with international experiences",
+      "stat4n": "∞",
+      "stat4l": "A living network of connections that keeps growing"
     },
-    "v2": {
-      "es": "Inclusión",
-      "ca": "Inclusió",
-      "en": "Inclusion"
+    "team": {
+      "eyebrow": "The team",
+      "h2": "The people behind the roots",
+      "p": "Educators, artists and environmentalists who share one calling: to transform through experience."
     },
-    "v3": {
-      "es": "Creatividad",
-      "ca": "Creativitat",
-      "en": "Creativity"
-    },
-    "v4": {
-      "es": "Europa",
-      "ca": "Europa",
-      "en": "Europe"
-    },
-    "v5": {
-      "es": "Naturaleza",
-      "ca": "Natura",
-      "en": "Nature"
-    }
-  },
-  "doing": {
-    "eyebrow": {
-      "es": "Qué hacemos",
-      "ca": "Què fem",
-      "en": "What we do"
-    },
-    "h2": {
-      "es": "Tres raíces, un mismo propósito",
-      "ca": "Tres arrels, un mateix propòsit",
-      "en": "Three roots, one purpose"
-    },
-    "p": {
-      "es": "Impulsamos experiencias educativas que capacitan a jóvenes europeos para ser promotores de una transformación eco-social en sus comunidades.",
-      "ca": "Impulsem experiències educatives que capaciten joves europeus per ser promotors d'una transformació ecosocial a les seves comunitats.",
-      "en": "We create educational experiences that train young Europeans to become drivers of eco-social change in their communities."
-    },
-    "c1t": {
-      "es": "Educación ambiental",
-      "ca": "Educació ambiental",
-      "en": "Environmental education"
-    },
-    "c1p": {
-      "es": "Reconexión con la naturaleza, residuos cero, agroecología y soluciones frente a la despoblación rural y la crisis climática.",
-      "ca": "Reconnexió amb la natura, residus zero, agroecologia i solucions davant la despoblació rural i la crisi climàtica.",
-      "en": "Reconnecting with nature, zero waste, agroecology and answers to rural depopulation and the climate crisis."
-    },
-    "c2t": {
-      "es": "Juventud e inclusión",
-      "ca": "Jovent i inclusió",
-      "en": "Youth & inclusion"
-    },
-    "c2p": {
-      "es": "Intercambios y formaciones que reúnen a jóvenes de toda Europa y los convierten en agentes de cambio.",
-      "ca": "Intercanvis i formacions que reuneixen joves de tota Europa i els converteixen en agents de canvi.",
-      "en": "Exchanges and trainings bringing together young people from across Europe as agents of change."
-    },
-    "c3t": {
-      "es": "Expresión artística",
-      "ca": "Expressió artística",
-      "en": "Artistic expression"
-    },
-    "c3p": {
-      "es": "Música, teatro, cine y fotografía como lenguaje universal para expresar ideas, emociones y provocar el cambio.",
-      "ca": "Música, teatre, cinema i fotografia com a llenguatge universal per expressar idees, emocions i provocar el canvi.",
-      "en": "Music, theatre, film and photography as a universal language to express ideas, emotions and drive change."
-    }
-  },
-  "learn": {
-    "eyebrow": {
-      "es": "Recursos y talleres",
-      "ca": "Recursos i tallers",
-      "en": "Resources and workshops"
-    },
-    "toolkitTag": {
-      "es": "Recurso educativo",
-      "ca": "Recurs educatiu",
-      "en": "Educational resource"
-    },
-    "toolkitTitle": {
-      "es": "The Green Playground",
-      "ca": "The Green Playground",
-      "en": "The Green Playground"
-    },
-    "toolkitSub": {
-      "es": "Gamificación y educación ambiental",
-      "ca": "Gamificació i educació ambiental",
-      "en": "Gamification and environmental education"
-    },
-    "toolkitP": {
-      "es": "Descarga nuestro último recurso educativo: un toolkit para llevar la gamificación y la educación ambiental a cualquier aula o espacio al aire libre.",
-      "ca": "Descarrega el nostre darrer recurs educatiu: un toolkit per portar la gamificació i l'educació ambiental a qualsevol aula o espai a l'aire lliure.",
-      "en": "Download our latest educational resource: a toolkit for bringing gamification and environmental education to any classroom or outdoor space."
-    },
-    "toolkitCta": {
-      "es": "Solicitar el toolkit",
-      "ca": "Sol·licitar el toolkit",
-      "en": "Request the toolkit"
-    },
-    "workshopsTag": {
-      "es": "Talleres",
-      "ca": "Tallers",
-      "en": "Workshops"
-    },
-    "workshopsTitle": {
-      "es": "Aprende haciendo",
-      "ca": "Aprèn fent",
-      "en": "Learn by doing"
-    },
-    "workshopsP": {
-      "es": "Ofrecemos talleres de educación ambiental y expresión artística, adaptados a cada grupo y espacio.",
-      "ca": "Oferim tallers d'educació ambiental i expressió artística, adaptats a cada grup i espai.",
-      "en": "We offer environmental-education and artistic-expression workshops, tailored to each group and space."
-    },
-    "chip1": {
-      "es": "Compostaje",
-      "ca": "Compostatge",
-      "en": "Composting"
-    },
-    "chip2": {
-      "es": "Agroecología",
-      "ca": "Agroecologia",
-      "en": "Agroecology"
-    },
-    "chip3": {
-      "es": "Elaboración de jabón",
-      "ca": "Elaboració de sabó",
-      "en": "Soap making"
-    },
-    "chip4": {
-      "es": "Fermentados",
-      "ca": "Fermentats",
-      "en": "Fermentation"
-    },
-    "chip5": {
-      "es": "Limpieza de residuos",
-      "ca": "Neteja de residus",
-      "en": "Waste clean-ups"
-    },
-    "ctaText": {
-      "es": "¿Quieres realizar un taller?",
-      "ca": "Vols fer un taller?",
-      "en": "Want to run a workshop?"
-    },
-    "ctaBtn": {
-      "es": "Contáctanos",
-      "ca": "Contacta'ns",
-      "en": "Contact us"
-    }
-  },
-  "why": {
-    "eyebrow": {
-      "es": "Por qué lo hacemos",
-      "ca": "Per què ho fem",
-      "en": "Why we do it"
-    },
-    "quote": {
-      "es": "Porque un joven que se reconecta con la tierra <span>siembra un futuro más justo y sostenible</span> para toda su comunidad.",
-      "ca": "Perquè un jove que es reconnecta amb la terra <span>sembra un futur més just i sostenible</span> per a tota la seva comunitat.",
-      "en": "Because a young person who reconnects with the land <span>plants a fairer, more sustainable future</span> for their whole community."
-    },
-    "text": {
-      "es": "Frente a la desconexión con la naturaleza, la despoblación rural y la crisis climática, apostamos por experiencias que sacan a los jóvenes de su zona de confort y les devuelven algo esencial: pertenencia, propósito y la certeza de que el cambio empieza en ellos.",
-      "ca": "Davant la desconnexió amb la natura, la despoblació rural i la crisi climàtica, apostem per experiències que treuen el jovent de la seva zona de confort i els retornen quelcom essencial: pertinença, propòsit i la certesa que el canvi comença en ells.",
-      "en": "Against disconnection from nature, rural depopulation and the climate crisis, we choose experiences that push young people out of their comfort zone and give back something essential: belonging, purpose and the certainty that change starts with them."
-    }
-  },
-  "impact": {
-    "stat1n": {
-      "es": "Desde 2020",
-      "ca": "Des del 2020",
-      "en": "Since 2020"
-    },
-    "stat1l": {
-      "es": "Sembrando cambio",
-      "ca": "Sembrant canvi",
-      "en": "Planting change"
-    },
-    "stat2n": {
-      "es": "25+",
-      "ca": "25+",
-      "en": "25+"
-    },
-    "stat2l": {
-      "es": "proyectos de experiencias educativas y cooperación",
-      "ca": "projectes d'experiències educatives i cooperació",
-      "en": "educational-experience projects and cooperation"
-    },
-    "stat3n": {
-      "es": "150+",
-      "ca": "150+",
-      "en": "150+"
-    },
-    "stat3l": {
-      "es": "jóvenes con experiencias internacionales",
-      "ca": "joves amb experiències internacionals",
-      "en": "young people with international experiences"
-    },
-    "stat4n": {
-      "es": "∞",
-      "ca": "∞",
-      "en": "∞"
-    },
-    "stat4l": {
-      "es": "Red viva de conexiones que siguen creciendo",
-      "ca": "Xarxa viva de connexions que no paren de créixer",
-      "en": "A living network of connections that keeps growing"
-    }
-  },
-  "team": {
-    "eyebrow": {
-      "es": "El equipo",
-      "ca": "L'equip",
-      "en": "The team"
-    },
-    "h2": {
-      "es": "Personas detrás de las raíces",
-      "ca": "Persones darrere de les arrels",
-      "en": "The people behind the roots"
-    },
-    "p": {
-      "es": "Educadores, artistas y ambientalistas que comparten una misma vocación: transformar a través de la experiencia.",
-      "ca": "Educadors, artistes i ambientalistes que comparteixen una mateixa vocació: transformar a través de l'experiència.",
-      "en": "Educators, artists and environmentalists who share one calling: to transform through experience."
-    }
-  },
-  "cta": {
-    "h2": {
-      "es": "¿Quieres formar parte del equipo?",
-      "ca": "Vols formar part de l'equip?",
-      "en": "Want to join the team?"
-    },
-    "btn1": {
-      "es": "Cómo colaborar",
-      "ca": "Com col·laborar",
-      "en": "How to help"
-    },
-    "btn2": {
-      "es": "Escríbenos",
-      "ca": "Escriu-nos",
-      "en": "Write to us"
+    "cta": {
+      "h2": "Want to join the team?",
+      "btn1": "How to help",
+      "btn2": "Write to us"
     }
   }
 }

@@ -1,11 +1,15 @@
 {
-  "image": "../../assets/img/ecoexperiences.jpg",
-  "alt": {
-    "es": "El equipo de Back to the Roots en el terreno",
-    "ca": "El equipo de Back to the Roots en el terreno",
-    "en": "El equipo de Back to the Roots en el terreno"
+  "es": {
+    "image": "../../assets/img/ecoexperiences.jpg",
+    "alt": "El equipo de Back to the Roots en el terreno",
+    "instagramUrl": "https://www.instagram.com/backtotheroots.eu/",
+    "credit": "@yompyz",
+    "order": 1
   },
-  "instagramUrl": "https://www.instagram.com/backtotheroots.eu/",
-  "credit": "@yompyz",
-  "order": 1
+  "ca": {
+    "alt": "El equipo de Back to the Roots en el terreno"
+  },
+  "en": {
+    "alt": "El equipo de Back to the Roots en el terreno"
+  }
 }

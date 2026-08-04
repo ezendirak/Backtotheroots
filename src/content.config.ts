@@ -4,18 +4,59 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { defineCollection } from 'astro:content';
 
-/**
- * Texto traducible. El castellano es obligatorio porque es el idioma canónico;
- * catalán e inglés son opcionales y, si faltan, la página cae al castellano.
- * Nunca se queda en blanco.
- */
-const i18nText = z.object({
-  es: z.string(),
-  ca: z.string().optional(),
-  en: z.string().optional(),
-});
-
 const carpeta = (nombre: string) => glob({ pattern: '**/*.json', base: `./src/content/${nombre}` });
+
+/**
+ * Compone una colección traducible con la forma exacta que escribe Decap CMS
+ * cuando la i18n es `single_file`:
+ *
+ *     { "es": { …todo… }, "ca": { …solo lo traducible… }, "en": { … } }
+ *
+ * El castellano es obligatorio y lleva todos los campos porque es el idioma
+ * canónico. Catalán e inglés son opcionales, y dentro de ellos cada campo
+ * también: lo que falte cae al castellano en tiempo de render (`localize` en
+ * src/lib/content.ts). Una página nunca se queda con un hueco.
+ *
+ * Que los otros idiomas solo tengan lo traducible no es una convención nuestra:
+ * un campo sin `i18n` en config.yml es I18N_FIELD.NONE y Decap no lo escribe
+ * fuera del idioma por defecto.
+ */
+function traducible<C extends z.ZodRawShape, T extends z.ZodRawShape>(compartido: C, traducido: T) {
+  const otroIdioma = z.object(traducido).partial().optional();
+  return z.object({
+    es: z.object({ ...compartido, ...traducido }),
+    ca: otroIdioma,
+    en: otroIdioma,
+  });
+}
+
+/**
+ * El punto que escribe el widget de mapa de Decap: una geometría GeoJSON
+ * serializada, `{"type":"Point","coordinates":[lng, lat]}`. Se traduce aquí a
+ * latitud y longitud para que nadie más tenga que saber de GeoJSON, y para que
+ * un punto mal formado rompa el build en vez de dejar el mapa en blanco.
+ */
+const punto = z.string().transform((valor, ctx) => {
+  let coordenadas: unknown;
+  try {
+    coordenadas = (JSON.parse(valor) as { coordinates?: unknown }).coordinates;
+  } catch {
+    ctx.addIssue({ code: 'custom', message: `La ubicación no es un punto válido: ${valor}` });
+    return z.NEVER;
+  }
+
+  const [lng, lat] = Array.isArray(coordenadas) ? coordenadas : [];
+  if (typeof lat !== 'number' || typeof lng !== 'number') {
+    ctx.addIssue({ code: 'custom', message: `La ubicación no tiene coordenadas: ${valor}` });
+    return z.NEVER;
+  }
+  if (lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+    ctx.addIssue({ code: 'custom', message: `La ubicación cae fuera del mundo: ${valor}` });
+    return z.NEVER;
+  }
+
+  return { lat, lng };
+});
 
 /* ---------------------------------------------------------------------------
    Colaboradores — alimentan el mapa, la lista de chips y el panel lateral.
@@ -24,19 +65,22 @@ const carpeta = (nombre: string) => glob({ pattern: '**/*.json', base: `./src/co
 --------------------------------------------------------------------------- */
 const partners = defineCollection({
   loader: carpeta('partners'),
-  schema: z.object({
-    name: z.string(),
-    place: i18nText,
-    lat: z.number().min(-90).max(90),
-    lng: z.number().min(-180).max(180),
-    /* Provisional: solo tiene que distinguirse del resto. La intención a futuro
-       es sustituirlo por el logo de la entidad. */
-    color: z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Usa un color en formato #rrggbb'),
-    /* Iniciales que se ven dentro del círculo mientras no haya logo. */
-    initials: z.string().min(1).max(3),
-    description: i18nText,
-    order: z.number().default(99),
-  }),
+  schema: traducible(
+    {
+      name: z.string(),
+      location: punto,
+      /* Provisional: solo tiene que distinguirse del resto. La intención a futuro
+         es sustituirlo por el logo de la entidad. */
+      color: z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Usa un color en formato #rrggbb'),
+      /* Iniciales que se ven dentro del círculo mientras no haya logo. */
+      initials: z.string().min(1).max(3),
+      order: z.number().default(99),
+    },
+    {
+      place: z.string(),
+      description: z.string(),
+    }
+  ),
 });
 
 /* ---------------------------------------------------------------------------
@@ -44,32 +88,38 @@ const partners = defineCollection({
 --------------------------------------------------------------------------- */
 const projects = defineCollection({
   loader: carpeta('projects'),
-  schema: z.object({
-    title: i18nText,
-    /* Las temáticas del filtro de /proyectos. */
-    theme: z.array(z.enum(['nature', 'art', 'youth'])).min(1),
-    tag: i18nText,
-    youtubeId: z.string().min(5),
-    /* Línea pequeña sobre el título: "EFFIC · Ribes de Freser 2024". */
-    meta: z.string(),
-    description: i18nText,
-    /* Versión corta para la tarjeta de la portada. */
-    summary: i18nText.optional(),
-    stats: z
-      .array(
-        z.object({
-          value: z.string(),
-          label: i18nText,
-        })
-      )
-      .default([]),
-    date: z.string().optional(),
-    /* Se muestra también en la portada. */
-    featured: z.boolean().default(false),
-    /* Orden dentro de la portada, que no es el de /proyectos. */
-    homeOrder: z.number().optional(),
-    order: z.number().default(99),
-  }),
+  schema: traducible(
+    {
+      /* Las temáticas del filtro de /proyectos. */
+      theme: z.array(z.enum(['nature', 'art', 'youth'])).min(1),
+      youtubeId: z.string().min(5),
+      /* Línea pequeña sobre el título: "EFFIC · Ribes de Freser 2024". */
+      meta: z.string(),
+      date: z.string().optional(),
+      /* Se muestra también en la portada. */
+      featured: z.boolean().default(false),
+      /* Orden dentro de la portada, que no es el de /proyectos. */
+      homeOrder: z.number().optional(),
+      order: z.number().default(99),
+    },
+    {
+      title: z.string(),
+      tag: z.string(),
+      description: z.string(),
+      /* Versión corta para la tarjeta de la portada. */
+      summary: z.string().optional(),
+      /* La cifra no se traduce, pero viaja con la etiqueta: Decap guarda la
+         lista entera por idioma, no campo a campo. */
+      stats: z
+        .array(
+          z.object({
+            value: z.string(),
+            label: z.string(),
+          })
+        )
+        .default([]),
+    }
+  ),
 });
 
 /* ---------------------------------------------------------------------------
@@ -78,29 +128,34 @@ const projects = defineCollection({
 const opportunities = defineCollection({
   loader: carpeta('opportunities'),
   schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      status: z.enum(['abierta', 'cerrada']),
-      /* Etiqueta sobre el cartel: "Inscripciones abiertas". */
-      flag: i18nText.optional(),
-      poster: image(),
-      posterAlt: i18nText,
-      where: i18nText,
-      summary: i18nText,
-      /* Versiones cortas para la tarjeta de la portada. */
-      whereShort: i18nText.optional(),
-      summaryShort: i18nText.optional(),
-      facts: z.array(i18nText).default([]),
-      findLabel: i18nText.optional(),
-      findText: i18nText.optional(),
-      signupUrl: z.url().optional(),
-      infopackUrl: z.url().optional(),
-      order: z.number().default(99),
-    }),
+    traducible(
+      {
+        title: z.string(),
+        status: z.enum(['abierta', 'cerrada']),
+        poster: image(),
+        signupUrl: z.url().optional(),
+        infopackUrl: z.url().optional(),
+        order: z.number().default(99),
+      },
+      {
+        /* Etiqueta sobre el cartel: "Inscripciones abiertas". */
+        flag: z.string().optional(),
+        posterAlt: z.string(),
+        where: z.string(),
+        summary: z.string(),
+        /* Versiones cortas para la tarjeta de la portada. */
+        whereShort: z.string().optional(),
+        summaryShort: z.string().optional(),
+        facts: z.array(z.string()).default([]),
+        findLabel: z.string().optional(),
+        findText: z.string().optional(),
+      }
+    ),
 });
 
 /* ---------------------------------------------------------------------------
    Convocatorias anteriores — solo el nombre, es un listado de trayectoria.
+   Sin i18n: son nombres propios de proyecto, no se traducen.
 --------------------------------------------------------------------------- */
 const archive = defineCollection({
   loader: carpeta('archive'),
@@ -117,17 +172,21 @@ const archive = defineCollection({
 const team = defineCollection({
   loader: carpeta('team'),
   schema: ({ image }) =>
-    z.object({
-      name: z.string(),
-      role: i18nText,
-      bio: i18nText,
-      photo: image().optional(),
-      photoAlt: i18nText.optional(),
-      /* Dibujo que acompaña a quien no tiene foto. */
-      icon: z.enum(['leaf', 'music', 'sprout']).default('leaf'),
-      lead: z.boolean().default(false),
-      order: z.number().default(99),
-    }),
+    traducible(
+      {
+        name: z.string(),
+        photo: image().optional(),
+        /* Dibujo que acompaña a quien no tiene foto. */
+        icon: z.enum(['leaf', 'music', 'sprout']).default('leaf'),
+        lead: z.boolean().default(false),
+        order: z.number().default(99),
+      },
+      {
+        role: z.string(),
+        bio: z.string(),
+        photoAlt: z.string().optional(),
+      }
+    ),
 });
 
 /* ---------------------------------------------------------------------------
@@ -137,17 +196,22 @@ const team = defineCollection({
 const gallery = defineCollection({
   loader: carpeta('gallery'),
   schema: ({ image }) =>
-    z.object({
-      image: image(),
-      alt: i18nText,
-      instagramUrl: z.url().startsWith('https://www.instagram.com/'),
-      credit: z.string().optional(),
-      order: z.number().default(99),
-    }),
+    traducible(
+      {
+        image: image(),
+        instagramUrl: z.url().startsWith('https://www.instagram.com/'),
+        credit: z.string().optional(),
+        order: z.number().default(99),
+      },
+      {
+        alt: z.string(),
+      }
+    ),
 });
 
 /* ---------------------------------------------------------------------------
    Ajustes — un único fichero con lo que se repite en todo el sitio.
+   Sin i18n: correos, URLs y nombres de red social son iguales en los tres.
 --------------------------------------------------------------------------- */
 const config = defineCollection({
   loader: carpeta('config'),
@@ -168,14 +232,19 @@ const config = defineCollection({
    otra colección: titulares, entradillas, textos de botones.
 
    El esquema valida la forma, no una lista cerrada de campos: secciones que
-   contienen textos, y cada texto con su castellano obligatorio. Así la ONG
-   puede añadir un párrafo desde el CMS sin que haya que tocar este fichero.
-   Que un texto concreto exista lo comprueba la plantilla al leerlo: si falta,
-   el build falla (ver `usePageText` en src/lib/content.ts).
+   contienen textos. Así la ONG puede añadir un párrafo desde el CMS sin que
+   haya que tocar este fichero. Que un texto concreto exista lo comprueba la
+   plantilla al leerlo: si falta, el build falla (ver `usePageText` en
+   src/lib/content.ts).
 --------------------------------------------------------------------------- */
+const secciones = z.record(z.string(), z.record(z.string(), z.string()));
 const pages = defineCollection({
   loader: carpeta('pages'),
-  schema: z.record(z.string(), z.record(z.string(), i18nText)),
+  schema: z.object({
+    es: secciones,
+    ca: secciones.optional(),
+    en: secciones.optional(),
+  }),
 });
 
 export const collections = {

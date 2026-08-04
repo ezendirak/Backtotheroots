@@ -6,7 +6,7 @@ import reaction from '../../assets/img/reaction.jpg';
 import PageHero from '../../components/PageHero.astro';
 import Base from '../../layouts/Base.astro';
 import { localePath, pathsFor, type Locale } from '../../i18n';
-import { pickText, usePageText } from '../../lib/content';
+import { localize, usePageText } from '../../lib/content';
 
 export const getStaticPaths = () => pathsFor('about');
 
@@ -17,10 +17,14 @@ const page = await getEntry('pages', 'about');
 if (!page) throw new Error('Falta src/content/pages/about.json');
 const t = usePageText(page.data, 'about', lang);
 
-const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
-const lead = team.find((m) => m.data.lead);
-const members = team.filter((m) => !m.data.lead);
-const gallery = (await getCollection('gallery')).sort((a, b) => a.data.order - b.data.order);
+const team = (await getCollection('team'))
+  .sort((a, b) => a.data.es.order - b.data.es.order)
+  .map((m) => localize(m.data, lang));
+const lead = team.find((m) => m.lead);
+const members = team.filter((m) => !m.lead);
+const gallery = (await getCollection('gallery'))
+  .sort((a, b) => a.data.es.order - b.data.es.order)
+  .map((g) => localize(g.data, lang));
 
 /* Enlace externo al recurso educativo. No es texto en pantalla, por eso no
    está en el contenido; si algún día cambia, se cambia aquí. */
@@ -196,19 +200,19 @@ const STATS = [1, 2, 3, 4];
         lead && (
           <div class="lead-member reveal">
             <div class="lead-member__ph">
-              {lead.data.photo && (
+              {lead.photo && (
                 <Image
-                  src={lead.data.photo}
-                  alt={lead.data.photoAlt ? pickText(lead.data.photoAlt, lang) : lead.data.name}
+                  src={lead.photo}
+                  alt={lead.photoAlt ?? lead.name}
                   widths={[320, 600]}
                   sizes="(max-width: 760px) 100vw, 33vw"
                 />
               )}
             </div>
             <div class="lead-member__body">
-              <h3>{lead.data.name}</h3>
-              <div class="lead-member__role">{pickText(lead.data.role, lang)}</div>
-              <p>{pickText(lead.data.bio, lang)}</p>
+              <h3>{lead.name}</h3>
+              <div class="lead-member__role">{lead.role}</div>
+              <p>{lead.bio}</p>
             </div>
           </div>
         )
@@ -228,12 +232,12 @@ const STATS = [1, 2, 3, 4];
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  set:html={ICONS[m.data.icon]}
+                  set:html={ICONS[m.icon]}
                 />
               </div>
-              <h3>{m.data.name}</h3>
-              <div class="member__role">{pickText(m.data.role, lang)}</div>
-              <p>{pickText(m.data.bio, lang)}</p>
+              <h3>{m.name}</h3>
+              <div class="member__role">{m.role}</div>
+              <p>{m.bio}</p>
             </article>
           ))
         }
@@ -243,8 +247,8 @@ const STATS = [1, 2, 3, 4];
         {
           gallery.map((g) => (
             <figure class="reveal">
-              <a href={g.data.instagramUrl} target="_blank" rel="noopener" aria-label="Instagram">
-                <Image src={g.data.image} alt={pickText(g.data.alt, lang)} widths={[300, 600]} sizes="(max-width: 760px) 50vw, 25vw" />
+              <a href={g.instagramUrl} target="_blank" rel="noopener" aria-label="Instagram">
+                <Image src={g.image} alt={g.alt} widths={[300, 600]} sizes="(max-width: 760px) 50vw, 25vw" />
                 <span class="gallery-strip__ig" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -253,7 +257,7 @@ const STATS = [1, 2, 3, 4];
                   </svg>
                 </span>
               </a>
-              {g.data.credit && <figcaption>📷 {g.data.credit}</figcaption>}
+              {g.credit && <figcaption>📷 {g.credit}</figcaption>}
             </figure>
           ))
         }

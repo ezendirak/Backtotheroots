@@ -5,7 +5,7 @@ import shining from '../../assets/img/shining.jpg';
 import PageHero from '../../components/PageHero.astro';
 import Base from '../../layouts/Base.astro';
 import { pathsFor, type Locale } from '../../i18n';
-import { pickText, usePageText } from '../../lib/content';
+import { localize, usePageText } from '../../lib/content';
 
 export const getStaticPaths = () => pathsFor('opportunities');
 
@@ -16,9 +16,10 @@ const page = await getEntry('pages', 'opportunities');
 if (!page) throw new Error('Falta src/content/pages/opportunities.json');
 const t = usePageText(page.data, 'opportunities', lang);
 
-const [opportunity] = (await getCollection('opportunities', (o) => o.data.status === 'abierta')).sort(
-  (a, b) => a.data.order - b.data.order
+const [entrada] = (await getCollection('opportunities', (o) => o.data.es.status === 'abierta')).sort(
+  (a, b) => a.data.es.order - b.data.es.order
 );
+const opportunity = entrada ? localize(entrada.data, lang) : undefined;
 const archive = (await getCollection('archive')).sort((a, b) => a.data.order - b.data.order);
 
 const site = await getEntry('config', 'site');
@@ -55,28 +56,28 @@ const FACT_ICONS = [
 
           <div class="opp reveal">
             <div class="opp__poster">
-              {opportunity.data.flag && <span class="flag">{pickText(opportunity.data.flag, lang)}</span>}
+              {opportunity.flag && <span class="flag">{opportunity.flag}</span>}
               <Image
-                src={opportunity.data.poster}
-                alt={pickText(opportunity.data.posterAlt, lang)}
+                src={opportunity.poster}
+                alt={opportunity.posterAlt}
                 widths={[400, 700]}
                 sizes="(max-width: 820px) 100vw, 40vw"
               />
             </div>
             <div class="opp__body">
-              <h3>{opportunity.data.title}</h3>
+              <h3>{opportunity.title}</h3>
               <span class="opp__where">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z" />
                   <circle cx="12" cy="10" r="2.5" />
                 </svg>
-                <span>{pickText(opportunity.data.where, lang)}</span>
+                <span>{opportunity.where}</span>
               </span>
-              <p>{pickText(opportunity.data.summary, lang)}</p>
+              <p>{opportunity.summary}</p>
 
-              {opportunity.data.facts.length > 0 && (
+              {opportunity.facts.length > 0 && (
                 <div class="opp__facts">
-                  {opportunity.data.facts.map((fact, i) => (
+                  {opportunity.facts.map((fact, i) => (
                     <div class="opp__fact">
                       <svg
                         width="18"
@@ -87,23 +88,23 @@ const FACT_ICONS = [
                         stroke-width="2"
                         set:html={FACT_ICONS[i] ?? FACT_ICONS[0]}
                       />
-                      <span>{pickText(fact, lang)}</span>
+                      <span>{fact}</span>
                     </div>
                   ))}
                 </div>
               )}
 
-              {opportunity.data.findLabel && <p class="opp__find">{pickText(opportunity.data.findLabel, lang)}</p>}
-              {opportunity.data.findText && <p class="opp__findtext">{pickText(opportunity.data.findText, lang)}</p>}
+              {opportunity.findLabel && <p class="opp__find">{opportunity.findLabel}</p>}
+              {opportunity.findText && <p class="opp__findtext">{opportunity.findText}</p>}
 
               <div class="opp__cta">
-                {opportunity.data.signupUrl && (
-                  <a class="btn btn--sun" href={opportunity.data.signupUrl} target="_blank" rel="noopener">
+                {opportunity.signupUrl && (
+                  <a class="btn btn--sun" href={opportunity.signupUrl} target="_blank" rel="noopener">
                     {t('card.cta1')}
                   </a>
                 )}
-                {opportunity.data.infopackUrl && (
-                  <a class="btn btn--light" href={opportunity.data.infopackUrl} target="_blank" rel="noopener">
+                {opportunity.infopackUrl && (
+                  <a class="btn btn--light" href={opportunity.infopackUrl} target="_blank" rel="noopener">
                     {t('card.cta2')}
                   </a>
                 )}

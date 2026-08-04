@@ -1,11 +1,15 @@
 {
-  "image": "../../assets/img/hero-nature.jpg",
-  "alt": {
-    "es": "Equipo trabajando en un proyecto de Back to the Roots",
-    "ca": "Equipo trabajando en un proyecto de Back to the Roots",
-    "en": "Equipo trabajando en un proyecto de Back to the Roots"
+  "es": {
+    "image": "../../assets/img/hero-nature.jpg",
+    "alt": "Equipo trabajando en un proyecto de Back to the Roots",
+    "instagramUrl": "https://www.instagram.com/backtotheroots.eu/",
+    "credit": "@yompyz",
+    "order": 4
   },
-  "instagramUrl": "https://www.instagram.com/backtotheroots.eu/",
-  "credit": "@yompyz",
-  "order": 4
+  "ca": {
+    "alt": "Equipo trabajando en un proyecto de Back to the Roots"
+  },
+  "en": {
+    "alt": "Equipo trabajando en un proyecto de Back to the Roots"
+  }
 }

@@ -1,18 +1,19 @@
 {
-  "name": "Irehom",
-  "place": {
-    "es": "Castellgalí, Bages",
-    "ca": "Castellgalí, Bages",
-    "en": "Castellgalí, Bages"
+  "es": {
+    "name": "Irehom",
+    "place": "Castellgalí, Bages",
+    "location": "{\"type\":\"Point\",\"coordinates\":[1.8435,41.6747]}",
+    "color": "#6e8b3d",
+    "initials": "I",
+    "description": "Institut de Recerca Holística de Montserrat: comunidad rural dedicada a la sostenibilidad, la agroecología y el crecimiento personal.",
+    "order": 1
   },
-  "lat": 41.6747,
-  "lng": 1.8435,
-  "color": "#6e8b3d",
-  "initials": "I",
-  "description": {
-    "es": "Institut de Recerca Holística de Montserrat: comunidad rural dedicada a la sostenibilidad, la agroecología y el crecimiento personal.",
-    "ca": "Institut de Recerca Holística de Montserrat: comunitat rural dedicada a la sostenibilitat, l'agroecologia i el creixement personal.",
-    "en": "Institut de Recerca Holística de Montserrat: a rural community devoted to sustainability, agroecology and personal growth."
+  "ca": {
+    "place": "Castellgalí, Bages",
+    "description": "Institut de Recerca Holística de Montserrat: comunitat rural dedicada a la sostenibilitat, l'agroecologia i el creixement personal."
   },
-  "order": 1
+  "en": {
+    "place": "Castellgalí, Bages",
+    "description": "Institut de Recerca Holística de Montserrat: a rural community devoted to sustainability, agroecology and personal growth."
+  }
 }

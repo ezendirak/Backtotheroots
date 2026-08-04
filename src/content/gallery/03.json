@@ -1,11 +1,15 @@
 {
-  "image": "../../assets/img/vater-seco.jpg",
-  "alt": {
-    "es": "Taller de Back to the Roots",
-    "ca": "Taller de Back to the Roots",
-    "en": "Taller de Back to the Roots"
+  "es": {
+    "image": "../../assets/img/vater-seco.jpg",
+    "alt": "Taller de Back to the Roots",
+    "instagramUrl": "https://www.instagram.com/backtotheroots.eu/",
+    "credit": "@yompyz",
+    "order": 3
   },
-  "instagramUrl": "https://www.instagram.com/backtotheroots.eu/",
-  "credit": "@yompyz",
-  "order": 3
+  "ca": {
+    "alt": "Taller de Back to the Roots"
+  },
+  "en": {
+    "alt": "Taller de Back to the Roots"
+  }
 }

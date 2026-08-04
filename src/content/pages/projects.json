@@ -1,88 +1,78 @@
 {
-  "seo": {
-    "title": {
-      "es": "Proyectos · Educación ambiental y arte · Back to the Roots"
+  "es": {
+    "seo": {
+      "title": "Proyectos · Educación ambiental y arte · Back to the Roots",
+      "description": "Descubre los proyectos de Back to the Roots: intercambios educativos, talleres de sostenibilidad y expresión artística realizados en Cataluña y Europa."
     },
-    "description": {
-      "es": "Descubre los proyectos de Back to the Roots: intercambios educativos, talleres de sostenibilidad y expresión artística realizados en Cataluña y Europa."
+    "hero": {
+      "eyebrow": "Proyectos",
+      "h1": "Los frutos de nuestro trabajo",
+      "p": "Cada proyecto es el resultado de la colaboración, el compromiso y la ilusión compartida. Iniciativas que promocionan la expresión artística, promueven la educación ambiental, recuperan saberes tradicionales y generan soluciones sostenibles para las personas, el territorio y el futuro."
+    },
+    "section": {
+      "eyebrow": "Algunos resultados",
+      "h2": "Filtra por temática",
+      "p": "Cuatro proyectos, tres disciplinas, un mismo propósito: jóvenes como agentes de cambio."
+    },
+    "filters": {
+      "all": "Todos",
+      "nature": "Naturaleza y sostenibilidad",
+      "art": "Arte y expresión",
+      "youth": "Juventud e inclusión"
+    },
+    "cta": {
+      "eyebrow": "¿Tienes un proyecto en mente?",
+      "h2": "Construyamos la próxima idea que eche raíces",
+      "btn1": "Necesito una entidad socia",
+      "btn2": "Escríbenos"
     }
   },
-  "hero": {
-    "eyebrow": {
-      "es": "Proyectos",
-      "ca": "Projectes",
-      "en": "Projects"
+  "ca": {
+    "hero": {
+      "eyebrow": "Projectes",
+      "h1": "Els fruits de la nostra feina",
+      "p": "Cada projecte és el resultat de la col·laboració, el compromís i la il·lusió compartida. Iniciatives que promocionen l'expressió artística, promouen l'educació ambiental, recuperen sabers tradicionals i generen solucions sostenibles per a les persones, el territori i el futur."
     },
-    "h1": {
-      "es": "Los frutos de nuestro trabajo",
-      "ca": "Els fruits de la nostra feina",
-      "en": "The fruits of our work"
+    "section": {
+      "eyebrow": "Alguns resultats",
+      "h2": "Filtra per temàtica",
+      "p": "Quatre projectes, tres disciplines, un mateix propòsit: joves com a agents de canvi."
     },
-    "p": {
-      "es": "Cada proyecto es el resultado de la colaboración, el compromiso y la ilusión compartida. Iniciativas que promocionan la expresión artística, promueven la educación ambiental, recuperan saberes tradicionales y generan soluciones sostenibles para las personas, el territorio y el futuro.",
-      "ca": "Cada projecte és el resultat de la col·laboració, el compromís i la il·lusió compartida. Iniciatives que promocionen l'expressió artística, promouen l'educació ambiental, recuperen sabers tradicionals i generen solucions sostenibles per a les persones, el territori i el futur.",
-      "en": "Every project is the result of collaboration, commitment and shared passion. Initiatives that promote artistic expression, foster environmental education, recover traditional knowledge and create sustainable solutions for people, the land and the future."
+    "filters": {
+      "all": "Tots",
+      "nature": "Natura i sostenibilitat",
+      "art": "Art i expressió",
+      "youth": "Jovent i inclusió"
+    },
+    "cta": {
+      "eyebrow": "Tens un projecte al cap?",
+      "h2": "Construïm la propera idea que arreli",
+      "btn1": "Necessito una entitat sòcia",
+      "btn2": "Escriu-nos"
     }
   },
-  "section": {
-    "eyebrow": {
-      "es": "Algunos resultados",
-      "ca": "Alguns resultats",
-      "en": "Some results"
+  "en": {
+    "hero": {
+      "eyebrow": "Projects",
+      "h1": "The fruits of our work",
+      "p": "Every project is the result of collaboration, commitment and shared passion. Initiatives that promote artistic expression, foster environmental education, recover traditional knowledge and create sustainable solutions for people, the land and the future."
     },
-    "h2": {
-      "es": "Filtra por temática",
-      "ca": "Filtra per temàtica",
-      "en": "Filter by theme"
+    "section": {
+      "eyebrow": "Some results",
+      "h2": "Filter by theme",
+      "p": "Four projects, three disciplines, one purpose: young people as agents of change."
     },
-    "p": {
-      "es": "Cuatro proyectos, tres disciplinas, un mismo propósito: jóvenes como agentes de cambio.",
-      "ca": "Quatre projectes, tres disciplines, un mateix propòsit: joves com a agents de canvi.",
-      "en": "Four projects, three disciplines, one purpose: young people as agents of change."
-    }
-  },
-  "filters": {
-    "all": {
-      "es": "Todos",
-      "ca": "Tots",
-      "en": "All"
+    "filters": {
+      "all": "All",
+      "nature": "Nature & sustainability",
+      "art": "Art & expression",
+      "youth": "Youth & inclusion"
     },
-    "nature": {
-      "es": "Naturaleza y sostenibilidad",
-      "ca": "Natura i sostenibilitat",
-      "en": "Nature & sustainability"
-    },
-    "art": {
-      "es": "Arte y expresión",
-      "ca": "Art i expressió",
-      "en": "Art & expression"
-    },
-    "youth": {
-      "es": "Juventud e inclusión",
-      "ca": "Jovent i inclusió",
-      "en": "Youth & inclusion"
-    }
-  },
-  "cta": {
-    "eyebrow": {
-      "es": "¿Tienes un proyecto en mente?",
-      "ca": "Tens un projecte al cap?",
-      "en": "Got a project in mind?"
-    },
-    "h2": {
-      "es": "Construyamos la próxima idea que eche raíces",
-      "ca": "Construïm la propera idea que arreli",
-      "en": "Let's build the next idea that takes root"
-    },
-    "btn1": {
-      "es": "Necesito una entidad socia",
-      "ca": "Necessito una entitat sòcia",
-      "en": "I need a partner organisation"
-    },
-    "btn2": {
-      "es": "Escríbenos",
-      "ca": "Escriu-nos",
-      "en": "Write to us"
+    "cta": {
+      "eyebrow": "Got a project in mind?",
+      "h2": "Let's build the next idea that takes root",
+      "btn1": "I need a partner organisation",
+      "btn2": "Write to us"
     }
   }
 }

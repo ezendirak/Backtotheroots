@@ -16,7 +16,7 @@ const page = await getEntry('pages', 'projects');
 if (!page) throw new Error('Falta src/content/pages/projects.json');
 const t = usePageText(page.data, 'projects', lang);
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const projects = (await getCollection('projects')).sort((a, b) => a.data.es.order - b.data.es.order);
 
 const FILTERS = ['all', 'nature', 'art', 'youth'] as const;
 ---

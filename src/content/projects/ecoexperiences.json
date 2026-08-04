@@ -1,43 +1,55 @@
 {
-  "title": {
-    "es": "Ecoexperiences",
-    "ca": "Ecoexperiences",
-    "en": "Ecoexperiences"
-  },
-  "theme": [
-    "youth",
-    "nature"
-  ],
-  "tag": {
-    "es": "Naturaleza",
-    "ca": "Natura",
-    "en": "Nature"
-  },
-  "youtubeId": "RY4lQUcJbK4",
-  "meta": "Discover EU Inclusion",
-  "description": {
-    "es": "Acompañamiento a jóvenes de 18 años en un viaje en interrail descubriendo ecoaldeas y comunidades sostenibles de Europa.",
-    "ca": "Acompanyament a joves de 18 anys en un viatge en interrail descobrint ecoaldees i comunitats sostenibles d'Europa.",
-    "en": "Guiding 18-year-olds on an interrail journey discovering ecovillages and sustainable communities across Europe."
-  },
-  "stats": [
-    {
-      "value": "4",
-      "label": {
-        "es": "jóvenes",
-        "ca": "joves",
-        "en": "young people"
+  "es": {
+    "title": "Ecoexperiences",
+    "theme": [
+      "youth",
+      "nature"
+    ],
+    "tag": "Naturaleza",
+    "youtubeId": "RY4lQUcJbK4",
+    "meta": "Discover EU Inclusion",
+    "description": "Acompañamiento a jóvenes de 18 años en un viaje en interrail descubriendo ecoaldeas y comunidades sostenibles de Europa.",
+    "stats": [
+      {
+        "value": "4",
+        "label": "jóvenes"
+      },
+      {
+        "value": "4",
+        "label": "comunidades visitadas"
       }
-    },
-    {
-      "value": "4",
-      "label": {
-        "es": "comunidades visitadas",
-        "ca": "comunitats visitades",
-        "en": "communities visited"
+    ],
+    "featured": false,
+    "order": 1
+  },
+  "ca": {
+    "title": "Ecoexperiences",
+    "tag": "Natura",
+    "description": "Acompanyament a joves de 18 anys en un viatge en interrail descobrint ecoaldees i comunitats sostenibles d'Europa.",
+    "stats": [
+      {
+        "value": "4",
+        "label": "joves"
+      },
+      {
+        "value": "4",
+        "label": "comunitats visitades"
       }
-    }
-  ],
-  "featured": false,
-  "order": 1
+    ]
+  },
+  "en": {
+    "title": "Ecoexperiences",
+    "tag": "Nature",
+    "description": "Guiding 18-year-olds on an interrail journey discovering ecovillages and sustainable communities across Europe.",
+    "stats": [
+      {
+        "value": "4",
+        "label": "young people"
+      },
+      {
+        "value": "4",
+        "label": "communities visited"
+      }
+    ]
+  }
 }

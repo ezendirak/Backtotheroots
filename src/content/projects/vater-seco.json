@@ -1,42 +1,48 @@
 {
-  "title": {
-    "es": "Taller de váter seco",
-    "ca": "Taller de vàter sec",
-    "en": "Dry toilet workshop"
-  },
-  "theme": [
-    "nature",
-    "youth"
-  ],
-  "tag": {
-    "es": "Sostenibilidad",
-    "ca": "Sostenibilitat",
-    "en": "Sustainability"
-  },
-  "youtubeId": "ZRcMsRyeqYo",
-  "meta": "Eat your waste · 2024",
-  "description": {
-    "es": "Un curso formativo que empoderó a jóvenes a cambiar su relación con los residuos, reduciendo desechos y reciclando materia orgánica.",
-    "ca": "Un curs formatiu que va empoderar joves a canviar la seva relació amb els residus, reduint deixalles i reciclant matèria orgànica.",
-    "en": "A training course that empowered young people to change their relationship with waste, reducing it and recycling organic matter."
-  },
-  "summary": {
-    "es": "Un curso formativo que empoderó a 18 jóvenes a cambiar su relación con los residuos.",
-    "ca": "Un curs formatiu que va empoderar 18 joves a canviar la seva relació amb els residus.",
-    "en": "A training course that empowered 18 young people to change their relationship with waste."
-  },
-  "stats": [
-    {
-      "value": "18",
-      "label": {
-        "es": "jóvenes",
-        "ca": "joves",
-        "en": "young people"
+  "es": {
+    "title": "Taller de váter seco",
+    "theme": [
+      "nature",
+      "youth"
+    ],
+    "tag": "Sostenibilidad",
+    "youtubeId": "ZRcMsRyeqYo",
+    "meta": "Eat your waste · 2024",
+    "description": "Un curso formativo que empoderó a jóvenes a cambiar su relación con los residuos, reduciendo desechos y reciclando materia orgánica.",
+    "summary": "Un curso formativo que empoderó a 18 jóvenes a cambiar su relación con los residuos.",
+    "stats": [
+      {
+        "value": "18",
+        "label": "jóvenes"
       }
-    }
-  ],
-  "date": "2024",
-  "featured": true,
-  "order": 2,
-  "homeOrder": 2
+    ],
+    "date": "2024",
+    "featured": true,
+    "order": 2,
+    "homeOrder": 2
+  },
+  "ca": {
+    "title": "Taller de vàter sec",
+    "tag": "Sostenibilitat",
+    "description": "Un curs formatiu que va empoderar joves a canviar la seva relació amb els residus, reduint deixalles i reciclant matèria orgànica.",
+    "summary": "Un curs formatiu que va empoderar 18 joves a canviar la seva relació amb els residus.",
+    "stats": [
+      {
+        "value": "18",
+        "label": "joves"
+      }
+    ]
+  },
+  "en": {
+    "title": "Dry toilet workshop",
+    "tag": "Sustainability",
+    "description": "A training course that empowered young people to change their relationship with waste, reducing it and recycling organic matter.",
+    "summary": "A training course that empowered 18 young people to change their relationship with waste.",
+    "stats": [
+      {
+        "value": "18",
+        "label": "young people"
+      }
+    ]
+  }
 }

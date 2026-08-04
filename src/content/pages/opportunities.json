@@ -1,80 +1,78 @@
 {
-  "seo": {
-    "title": {
-      "es": "Oportunidades · TerraTribe 2026 · Back to the Roots"
+  "es": {
+    "seo": {
+      "title": "Oportunidades · TerraTribe 2026 · Back to the Roots",
+      "description": "Inscripciones abiertas para TerraTribe 2026, intercambio juvenil entre España y Francia. Consulta requisitos, fechas y cómo apuntarte."
     },
-    "description": {
-      "es": "Inscripciones abiertas para TerraTribe 2026, intercambio juvenil entre España y Francia. Consulta requisitos, fechas y cómo apuntarte."
+    "hero": {
+      "eyebrow": "Oportunidades",
+      "h1": "Extendemos nuestras ramas",
+      "p": "Como un árbol que crece y llega cada vez más lejos, nuestras acciones conectan personas, ideas y territorios. Participa en nuestras convocatorias de intercambios y formaciones para jóvenes y entidades."
+    },
+    "section": {
+      "eyebrow": "Inscripciones abiertas",
+      "h2": "TerraTribe 2026",
+      "p": "Tras el éxito del año pasado, TerraTribe vuelve con más fuerza para ofrecer a jóvenes de 14 a 17 años una experiencia transformadora, llena de naturaleza, convivencia y conexiones internacionales."
+    },
+    "card": {
+      "cta1": "Inscríbete ahora",
+      "cta2": "Ver infopack (PDF)"
+    },
+    "note": {
+      "text": "¿Buscas más convocatorias? Escríbenos a"
+    },
+    "archive": {
+      "eyebrow": "Trayectoria",
+      "h2": "Convocatorias anteriores",
+      "p": "Algunas de las oportunidades que hemos coordinado en los últimos años."
     }
   },
-  "hero": {
-    "eyebrow": {
-      "es": "Oportunidades",
-      "ca": "Oportunitats",
-      "en": "Opportunities"
+  "ca": {
+    "hero": {
+      "eyebrow": "Oportunitats",
+      "h1": "Estenem les nostres branques",
+      "p": "Com un arbre que creix i arriba cada cop més lluny, les nostres accions connecten persones, idees i territoris. Participa en les nostres convocatòries d'intercanvis i formacions per a joves i entitats."
     },
-    "h1": {
-      "es": "Extendemos nuestras ramas",
-      "ca": "Estenem les nostres branques",
-      "en": "We spread our branches"
+    "section": {
+      "eyebrow": "Inscripcions obertes",
+      "h2": "TerraTribe 2026",
+      "p": "Després de l'èxit de l'any passat, TerraTribe torna amb més força per oferir a joves de 14 a 17 anys una experiència transformadora, plena de natura, convivència i connexions internacionals."
     },
-    "p": {
-      "es": "Como un árbol que crece y llega cada vez más lejos, nuestras acciones conectan personas, ideas y territorios. Participa en nuestras convocatorias de intercambios y formaciones para jóvenes y entidades.",
-      "ca": "Com un arbre que creix i arriba cada cop més lluny, les nostres accions connecten persones, idees i territoris. Participa en les nostres convocatòries d'intercanvis i formacions per a joves i entitats.",
-      "en": "Like a tree that grows and reaches ever further, our actions connect people, ideas and territories. Take part in our calls for exchanges and training for young people and organisations."
+    "card": {
+      "cta1": "Inscriu-t'hi ara",
+      "cta2": "Veure infopack (PDF)"
+    },
+    "note": {
+      "text": "Busques més convocatòries? Escriu-nos a"
+    },
+    "archive": {
+      "eyebrow": "Trajectòria",
+      "h2": "Convocatòries anteriors",
+      "p": "Algunes de les oportunitats que hem coordinat els darrers anys."
     }
   },
-  "section": {
-    "eyebrow": {
-      "es": "Inscripciones abiertas",
-      "ca": "Inscripcions obertes",
-      "en": "Registration open"
+  "en": {
+    "hero": {
+      "eyebrow": "Opportunities",
+      "h1": "We spread our branches",
+      "p": "Like a tree that grows and reaches ever further, our actions connect people, ideas and territories. Take part in our calls for exchanges and training for young people and organisations."
     },
-    "h2": {
-      "es": "TerraTribe 2026",
-      "ca": "TerraTribe 2026",
-      "en": "TerraTribe 2026"
+    "section": {
+      "eyebrow": "Registration open",
+      "h2": "TerraTribe 2026",
+      "p": "After last year's success, TerraTribe returns stronger than ever to offer young people aged 14 to 17 a transformative experience full of nature, togetherness and international connections."
     },
-    "p": {
-      "es": "Tras el éxito del año pasado, TerraTribe vuelve con más fuerza para ofrecer a jóvenes de 14 a 17 años una experiencia transformadora, llena de naturaleza, convivencia y conexiones internacionales.",
-      "ca": "Després de l'èxit de l'any passat, TerraTribe torna amb més força per oferir a joves de 14 a 17 anys una experiència transformadora, plena de natura, convivència i connexions internacionals.",
-      "en": "After last year's success, TerraTribe returns stronger than ever to offer young people aged 14 to 17 a transformative experience full of nature, togetherness and international connections."
-    }
-  },
-  "card": {
-    "cta1": {
-      "es": "Inscríbete ahora",
-      "ca": "Inscriu-t'hi ara",
-      "en": "Register now"
+    "card": {
+      "cta1": "Register now",
+      "cta2": "View infopack (PDF)"
     },
-    "cta2": {
-      "es": "Ver infopack (PDF)",
-      "ca": "Veure infopack (PDF)",
-      "en": "View infopack (PDF)"
-    }
-  },
-  "note": {
-    "text": {
-      "es": "¿Buscas más convocatorias? Escríbenos a",
-      "ca": "Busques més convocatòries? Escriu-nos a",
-      "en": "Looking for more calls? Write to us at"
-    }
-  },
-  "archive": {
-    "eyebrow": {
-      "es": "Trayectoria",
-      "ca": "Trajectòria",
-      "en": "Track record"
+    "note": {
+      "text": "Looking for more calls? Write to us at"
     },
-    "h2": {
-      "es": "Convocatorias anteriores",
-      "ca": "Convocatòries anteriors",
-      "en": "Past calls"
-    },
-    "p": {
-      "es": "Algunas de las oportunidades que hemos coordinado en los últimos años.",
-      "ca": "Algunes de les oportunitats que hem coordinat els darrers anys.",
-      "en": "Some of the opportunities we've coordinated over the past few years."
+    "archive": {
+      "eyebrow": "Track record",
+      "h2": "Past calls",
+      "p": "Some of the opportunities we've coordinated over the past few years."
     }
   }
 }

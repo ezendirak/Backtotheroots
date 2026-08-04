@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { pickText } from '../lib/content';
+import { localize } from '../lib/content';
 import type { Locale } from '../i18n';
 
 interface Props {
@@ -19,14 +19,18 @@ interface Props {
 
 const { partners, lang, texts } = Astro.props;
 
+/* Cada ficha ya aplanada al idioma de la página: lo que no esté traducido sale
+   en castellano. */
+const fichas = partners.map((p) => ({ id: p.id, ...localize(p.data, lang) }));
+
 /* Lo único que necesita el navegador: dónde va cada punto y de qué color.
    Los textos ya están escritos en el HTML de abajo, así que no viajan dos veces. */
-const points = partners.map((p) => ({
+const points = fichas.map((p) => ({
   id: p.id,
-  name: p.data.name,
-  lat: p.data.lat,
-  lng: p.data.lng,
-  color: p.data.color,
+  name: p.name,
+  lat: p.location.lat,
+  lng: p.location.lng,
+  color: p.color,
 }));
 ---
 
@@ -43,20 +47,20 @@ const points = partners.map((p) => ({
     </p>
 
     {
-      partners.map((partner) => (
+      fichas.map((partner) => (
         <div class="colabpanel__card" data-org={partner.id}>
-          <div class="colabpanel__logo" style={`background:${partner.data.color}`}>
-            {partner.data.initials}
+          <div class="colabpanel__logo" style={`background:${partner.color}`}>
+            {partner.initials}
           </div>
-          <h3>{partner.data.name}</h3>
+          <h3>{partner.name}</h3>
           <span class="colabpanel__place">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
               <path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z" />
               <circle cx="12" cy="10" r="2.5" />
             </svg>
-            <span>{pickText(partner.data.place, lang)}</span>
+            <span>{partner.place}</span>
           </span>
-          <p class="colabpanel__desc">{pickText(partner.data.description, lang)}</p>
+          <p class="colabpanel__desc">{partner.description}</p>
         </div>
       ))
     }
@@ -71,7 +75,7 @@ const points = partners.map((p) => ({
 </div>
 
 <ul class="colablist" id="colablist" aria-label={texts.mapLabel}>
-  {partners.map((partner) => <li><button type="button" data-org={partner.id}>{partner.data.name}</button></li>)}
+  {fichas.map((partner) => <li><button type="button" data-org={partner.id}>{partner.name}</button></li>)}
   <li><button type="button" data-org="join">{texts.joinName}</button></li>
 </ul>
 

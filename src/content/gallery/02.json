@@ -1,11 +1,15 @@
 {
-  "image": "../../assets/img/shining.jpg",
-  "alt": {
-    "es": "Actividad en grupo de Back to the Roots",
-    "ca": "Actividad en grupo de Back to the Roots",
-    "en": "Actividad en grupo de Back to the Roots"
+  "es": {
+    "image": "../../assets/img/shining.jpg",
+    "alt": "Actividad en grupo de Back to the Roots",
+    "instagramUrl": "https://www.instagram.com/backtotheroots.eu/",
+    "credit": "@yompyz",
+    "order": 2
   },
-  "instagramUrl": "https://www.instagram.com/backtotheroots.eu/",
-  "credit": "@yompyz",
-  "order": 2
+  "ca": {
+    "alt": "Actividad en grupo de Back to the Roots"
+  },
+  "en": {
+    "alt": "Actividad en grupo de Back to the Roots"
+  }
 }
