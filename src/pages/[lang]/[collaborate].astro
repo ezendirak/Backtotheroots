@@ -4,9 +4,10 @@ import { getCollection, getEntry } from 'astro:content';
 import ecosystemsLogo from '../../assets/img/ecosystems-logo.png';
 import vaterSeco from '../../assets/img/vater-seco.jpg';
 import PageHero from '../../components/PageHero.astro';
+import PartnerMap from '../../components/PartnerMap.astro';
 import Base from '../../layouts/Base.astro';
 import { localePath, pathsFor, type Locale } from '../../i18n';
-import { pickText, usePageText } from '../../lib/content';
+import { usePageText } from '../../lib/content';
 
 export const getStaticPaths = () => pathsFor('collaborate');
 
@@ -107,27 +108,19 @@ const DOWNLOAD_ICON =
         <p>{t('map.p')}</p>
       </div>
 
-      {/* Fase 3: esta rejilla la sustituye el mapa de Leaflet con su panel lateral.
-          Los datos ya son los definitivos, solo cambia cómo se presentan. */}
-      <div class="partners">
-        {
-          partners.map((partner) => (
-            <article class="partner reveal">
-              <div class="partner__logo" style={`background:${partner.data.color}`}>
-                {partner.data.initials}
-              </div>
-              <h3>{partner.data.name}</h3>
-              <p class="partner__place">{pickText(partner.data.place, lang)}</p>
-              <p>{pickText(partner.data.description, lang)}</p>
-            </article>
-          ))
-        }
-        <article class="partner partner--join reveal">
-          <div class="partner__logo partner__logo--dark">+</div>
-          <h3>{t('join.name')}</h3>
-          <p>{t('join.desc')}</p>
-          <a class="btn btn--moss" href={localePath(lang, 'contact')}>{t('join.cta')}</a>
-        </article>
+      <div class="reveal">
+        <PartnerMap
+          partners={partners}
+          lang={lang}
+          texts={{
+            empty: t('map.empty'),
+            mapLabel: t('map.h2'),
+            joinName: t('join.name'),
+            joinDesc: t('join.desc'),
+            joinCta: t('join.cta'),
+            joinHref: localePath(lang, 'contact'),
+          }}
+        />
       </div>
     </div>
   </section>
@@ -229,59 +222,6 @@ const DOWNLOAD_ICON =
     transform: translateX(4px);
   }
 
-  .partners {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-  .partner {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    padding: 22px 18px;
-    text-align: center;
-    transition:
-      transform 0.25s var(--ease),
-      box-shadow 0.25s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  .partner:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -26px rgba(30, 43, 34, 0.5);
-  }
-  .partner__logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--ff-display);
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: #fff;
-  }
-  .partner__logo--dark {
-    background: var(--ink);
-  }
-  .partner h3 {
-    font-size: 1.02rem;
-  }
-  .partner p {
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-  .partner__place {
-    color: var(--moss-600);
-    font-weight: 700;
-  }
-  .partner .btn {
-    margin-top: auto;
-  }
-
   .ecosys {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -335,8 +275,7 @@ const DOWNLOAD_ICON =
   }
 
   @media (max-width: 900px) {
-    .help,
-    .partners {
+    .help {
       grid-template-columns: 1fr 1fr;
     }
   }
@@ -355,8 +294,7 @@ const DOWNLOAD_ICON =
     }
   }
   @media (max-width: 520px) {
-    .help,
-    .partners {
+    .help {
       grid-template-columns: 1fr;
     }
   }

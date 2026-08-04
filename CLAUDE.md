@@ -158,8 +158,17 @@ Campos mínimos por colección:
 
 ### Mapa de colaboradores (`/colabora`)
 
-- Leaflet cargado **solo** en esta página y **solo** cuando el contenedor entra en
-  viewport (`client:visible`). Leaflet entra como **dependencia npm**, nunca desde un CDN.
+- Leaflet cargado **solo** en esta página y **solo** cuando hace falta. Entra como
+  **dependencia npm**, nunca desde un CDN.
+- **No es una isla de framework.** `client:visible` exige React, Preact o similar, y meter
+  un framework entero para un mapa es justo lo contrario de lo que persigue este proyecto.
+  El componente es un `.astro` normal con un `<script>` que hace `import()` dinámico de
+  Leaflet cuando el contenedor entra en viewport **o** cuando alguien pulsa un chip, lo que
+  ocurra antes. Mismo resultado, cero framework: el HTML no referencia Leaflet, solo se
+  descarga al usarlo.
+- **Sin JavaScript la página sigue leyéndose**: las fichas de los colaboradores se
+  renderizan en el servidor y se ven todas apiladas; el mapa y los chips solo aparecen
+  cuando el JS confirma que puede manejarlos.
 - Marcadores personalizados: círculo con el color del colaborador y borde blanco. Los
   colores actuales son **provisionales**: solo tienen que distinguirse entre sí. La
   intención a futuro es usar los logos de cada entidad, así que el componente no debe

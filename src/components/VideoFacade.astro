@@ -1,0 +1,223 @@
+---
+interface Props {
+  youtubeId: string;
+  title: string;
+  /** Texto alternativo de la miniatura. */
+  alt?: string;
+}
+
+const { youtubeId, title, alt } = Astro.props;
+
+/* La miniatura viene de YouTube. Es la única petición a un tercero que se
+   mantiene, decidido en CLAUDE.md §4. El iframe NO se carga aquí: solo se
+   inyecta al pulsar play, y contra youtube-nocookie.com. */
+const thumb = `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`;
+const watch = `https://www.youtube.com/watch?v=${youtubeId}`;
+---
+
+<div class="facade" data-video={youtubeId} data-title={title}>
+  <img class="facade__thumb" src={thumb} alt={alt ?? title} loading="lazy" width="1280" height="720" />
+  <a class="facade__cover" href={watch} target="_blank" rel="noopener" aria-label={`${title} — YouTube`}></a>
+  <span class="facade__yt" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+      <path
+        d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"
+      ></path>
+    </svg>
+    YouTube
+  </span>
+  <button class="facade__play" type="button" data-play-label={title}>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M8 5v14l11-7z"></path>
+    </svg>
+    <span class="facade__sr">{title}</span>
+  </button>
+</div>
+
+<script>
+  const facades = document.querySelectorAll<HTMLElement>('.facade[data-video]');
+
+  function play(facade: HTMLElement) {
+    if (facade.classList.contains('is-playing')) return;
+    const id = facade.dataset.video;
+    if (!id) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.className = 'facade__frame';
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+    iframe.title = facade.dataset.title ?? 'YouTube';
+    iframe.setAttribute('loading', 'lazy');
+    iframe.setAttribute(
+      'allow',
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+    );
+    iframe.setAttribute('allowfullscreen', '');
+    facade.appendChild(iframe);
+    facade.classList.add('is-playing');
+  }
+
+  function stop(facade: HTMLElement) {
+    facade.querySelector('.facade__frame')?.remove();
+    facade.classList.remove('is-playing');
+  }
+
+  for (const facade of facades) {
+    facade.querySelector('.facade__play')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      play(facade);
+    });
+
+    /* Miniatura robusta: cuando no existe `maxresdefault`, YouTube devuelve un
+       marcador gris de 120x90 con estado 200, así que `onerror` no salta. Se
+       comprueba el ancho real y se cae a `hqdefault`, que existe siempre. */
+    const img = facade.querySelector<HTMLImageElement>('.facade__thumb');
+    const id = facade.dataset.video;
+    if (!img || !id) continue;
+
+    const fallback = () => {
+      if (img.dataset.fellback) return;
+      img.dataset.fellback = '1';
+      img.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+    };
+    const check = () => {
+      if (!img.naturalWidth || img.naturalWidth <= 120) fallback();
+    };
+
+    img.addEventListener('error', fallback);
+    img.addEventListener('load', check);
+    if (img.complete) check();
+  }
+
+  /* Al filtrar en /proyectos se paran los vídeos en marcha. La página avisa
+     con este evento en lugar de que el facade conozca los filtros. */
+  document.addEventListener('btr:videos-stop', () => {
+    for (const facade of facades) stop(facade);
+  });
+</script>
+
+<style>
+  .facade {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background: var(--forest-900);
+    overflow: hidden;
+  }
+  .facade__thumb {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      transform 0.5s var(--ease),
+      filter 0.3s;
+  }
+  .facade:hover .facade__thumb {
+    transform: scale(1.04);
+    filter: brightness(0.9);
+  }
+
+  /* Capa-enlace sobre la miniatura: abre el vídeo en YouTube. */
+  .facade__cover {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+  }
+
+  .facade__yt {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: rgba(16, 16, 16, 0.72);
+    backdrop-filter: blur(2px);
+    transition: background 0.2s;
+  }
+  .facade__yt svg {
+    color: #ff0033;
+    transition: color 0.2s;
+  }
+  .facade:hover .facade__yt {
+    background: #ff0033;
+  }
+  .facade:hover .facade__yt svg {
+    color: #fff;
+  }
+
+  /* Play: reproduce dentro de la propia página. */
+  .facade__play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(22, 33, 26, 0.62);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.65);
+    transition:
+      transform 0.25s var(--ease),
+      background 0.25s,
+      color 0.25s;
+  }
+  .facade__play svg {
+    margin-left: 3px;
+  }
+  .facade:hover .facade__play {
+    background: var(--sun);
+    color: var(--forest-950);
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+  .facade__play:focus-visible {
+    outline: 3px solid var(--sun);
+    outline-offset: 3px;
+  }
+  /* El título del vídeo, para lectores de pantalla. */
+  .facade__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .facade :global(.facade__frame) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    z-index: 6;
+    background: #000;
+  }
+  .facade.is-playing .facade__thumb,
+  .facade.is-playing .facade__cover,
+  .facade.is-playing .facade__yt,
+  .facade.is-playing .facade__play {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+</style>

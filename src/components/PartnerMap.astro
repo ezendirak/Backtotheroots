@@ -1,0 +1,371 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { pickText } from '../lib/content';
+import type { Locale } from '../i18n';
+
+interface Props {
+  partners: CollectionEntry<'partners'>[];
+  lang: Locale;
+  texts: {
+    /** Mensaje del panel antes de elegir un colaborador. */
+    empty: string;
+    mapLabel: string;
+    joinName: string;
+    joinDesc: string;
+    joinCta: string;
+    joinHref: string;
+  };
+}
+
+const { partners, lang, texts } = Astro.props;
+
+/* Lo único que necesita el navegador: dónde va cada punto y de qué color.
+   Los textos ya están escritos en el HTML de abajo, así que no viajan dos veces. */
+const points = partners.map((p) => ({
+  id: p.id,
+  name: p.data.name,
+  lat: p.data.lat,
+  lng: p.data.lng,
+  color: p.data.color,
+}));
+---
+
+<div class="colabgrid" id="colabgrid">
+  <div class="colabmap" id="colabmap" role="application" aria-label={texts.mapLabel}></div>
+
+  <div class="colabpanel" id="colabpanel">
+    <p class="colabpanel__empty" id="colabpanel-empty">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"></path>
+        <circle cx="12" cy="10" r="2.5"></circle>
+      </svg>
+      <span>{texts.empty}</span>
+    </p>
+
+    {
+      partners.map((partner) => (
+        <div class="colabpanel__card" data-org={partner.id}>
+          <div class="colabpanel__logo" style={`background:${partner.data.color}`}>
+            {partner.data.initials}
+          </div>
+          <h3>{partner.data.name}</h3>
+          <span class="colabpanel__place">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+              <path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+            <span>{pickText(partner.data.place, lang)}</span>
+          </span>
+          <p class="colabpanel__desc">{pickText(partner.data.description, lang)}</p>
+        </div>
+      ))
+    }
+
+    <div class="colabpanel__card colabpanel__card--join" data-org="join">
+      <div class="colabpanel__logo colabpanel__logo--dark">+</div>
+      <h3>{texts.joinName}</h3>
+      <p class="colabpanel__desc">{texts.joinDesc}</p>
+      <a class="btn btn--moss colabpanel__cta" href={texts.joinHref}>{texts.joinCta}</a>
+    </div>
+  </div>
+</div>
+
+<ul class="colablist" id="colablist" aria-label={texts.mapLabel}>
+  {partners.map((partner) => <li><button type="button" data-org={partner.id}>{partner.data.name}</button></li>)}
+  <li><button type="button" data-org="join">{texts.joinName}</button></li>
+</ul>
+
+<script type="application/json" id="colabdata" set:html={JSON.stringify(points)} is:inline></script>
+
+<script>
+  import 'leaflet/dist/leaflet.css';
+  import type { Map as LeafletMap, Marker } from 'leaflet';
+
+  const grid = document.getElementById('colabgrid');
+  const mapEl = document.getElementById('colabmap');
+  const dataEl = document.getElementById('colabdata');
+
+  type Point = { id: string; name: string; lat: number; lng: number; color: string };
+
+  if (grid && mapEl && dataEl?.textContent) {
+    const points: Point[] = JSON.parse(dataEl.textContent);
+    const cards = document.querySelectorAll<HTMLElement>('.colabpanel__card');
+    const chips = document.querySelectorAll<HTMLButtonElement>('.colablist button');
+    const empty = document.getElementById('colabpanel-empty');
+    const panel = document.getElementById('colabpanel');
+
+    /* Con JS el panel muestra una ficha cada vez y aparecen el mapa y los chips.
+       Sin JS las fichas se quedan todas visibles y se leen igual. */
+    grid.classList.add('is-live');
+    document.getElementById('colablist')?.classList.add('is-live');
+
+    const markers = new Map<string, Marker>();
+    let map: LeafletMap | null = null;
+
+    async function activate(id: string) {
+      /* La ficha y los chips responden al instante, sin esperar al mapa. */
+      for (const card of cards) card.classList.toggle('show', card.dataset.org === id);
+      for (const chip of chips) {
+        const active = chip.dataset.org === id;
+        chip.classList.toggle('active', active);
+        chip.setAttribute('aria-pressed', String(active));
+      }
+      if (empty) empty.hidden = true;
+      if (panel) panel.scrollTop = 0;
+
+      await ensureMap();
+
+      for (const [org, marker] of markers) {
+        marker.getElement()?.querySelector('.colabdot')?.classList.toggle('active', org === id);
+      }
+      const marker = markers.get(id);
+      if (map && marker) map.flyTo(marker.getLatLng(), 12, { duration: 0.6 });
+    }
+
+    for (const chip of chips) {
+      chip.addEventListener('click', () => void activate(chip.dataset.org ?? ''));
+    }
+
+    async function initMap() {
+      const L = await import('leaflet');
+
+      map = L.map(mapEl as HTMLElement, { scrollWheelZoom: false, attributionControl: true });
+
+      /* Atribución obligatoria de los tres: quien sirve los tiles, quien hace el
+         estilo y quien pone los datos. */
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution:
+          '&copy; <a href="https://carto.com/attributions">CARTO</a> ' +
+          '&copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> ' +
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        subdomains: 'abcd',
+        maxZoom: 19,
+      }).addTo(map);
+
+      const bounds: [number, number][] = [];
+      for (const point of points) {
+        const icon = L.divIcon({
+          className: '',
+          html: `<span class="colabdot" style="background:${point.color}"></span>`,
+          iconSize: [18, 18],
+          iconAnchor: [9, 9],
+        });
+        const marker = L.marker([point.lat, point.lng], {
+          icon,
+          title: point.name,
+          keyboard: true,
+          riseOnHover: true,
+        }).addTo(map);
+
+        marker.bindTooltip(point.name, { direction: 'top', offset: [0, -8] });
+        marker.on('click', () => activate(point.id));
+        markers.set(point.id, marker);
+        bounds.push([point.lat, point.lng]);
+      }
+
+      map.fitBounds(bounds, { padding: [45, 45] });
+      /* El contenedor puede haber entrado con la animación de aparición. */
+      setTimeout(() => map?.invalidateSize(), 300);
+    }
+
+    /* Leaflet se descarga una sola vez, cuando el mapa está a punto de verse o
+       cuando alguien pulsa un chip, lo que pase antes. Lo segundo cubre los
+       casos en que el observador no llega a dispararse. */
+    let pending: Promise<void> | null = null;
+    function ensureMap(): Promise<void> {
+      pending ??= initMap();
+      return pending;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        void ensureMap();
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(mapEl);
+  }
+</script>
+
+<style>
+  .colabgrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 34px;
+    align-items: start;
+  }
+  .colabgrid.is-live {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .colabmap {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 460px;
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 50px -32px rgba(30, 43, 34, 0.4);
+    overflow: hidden;
+    z-index: 0;
+    background: #eef2e4;
+  }
+  .colabgrid.is-live .colabmap {
+    display: block;
+  }
+
+  .colabpanel {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .colabgrid.is-live .colabpanel {
+    min-height: 260px;
+    gap: 0;
+  }
+
+  .colabpanel__empty {
+    display: none;
+    margin: auto;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.98rem;
+    max-width: 26ch;
+  }
+  .colabgrid.is-live .colabpanel__empty {
+    display: block;
+  }
+  .colabpanel__empty svg {
+    color: var(--moss-500);
+    margin: 0 auto 12px;
+  }
+
+  .colabpanel__card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .colabgrid.is-live .colabpanel__card {
+    display: none;
+  }
+  .colabgrid.is-live .colabpanel__card.show {
+    display: flex;
+  }
+
+  .colabpanel__logo {
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+  .colabpanel__logo--dark {
+    background: var(--ink);
+  }
+  .colabpanel__place {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--moss-600);
+    font-weight: 700;
+    font-size: 0.82rem;
+    margin: 4px 0 12px;
+  }
+  .colabpanel__desc {
+    color: var(--muted);
+    font-size: 0.98rem;
+    margin-bottom: 18px;
+  }
+  .colabpanel__cta {
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+
+  .colablist {
+    list-style: none;
+    display: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+  }
+  .colablist.is-live {
+    display: flex;
+  }
+  .colablist button {
+    background: rgba(110, 139, 61, 0.1);
+    color: var(--forest-800);
+    border-radius: 999px;
+    padding: 7px 13px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  .colablist button:hover,
+  .colablist button.active {
+    background: var(--moss-500);
+    color: #fff;
+  }
+
+  @media (max-width: 860px) {
+    .colabgrid.is-live {
+      grid-template-columns: 1fr;
+    }
+    .colabmap {
+      height: 360px;
+    }
+  }
+</style>
+
+<!-- El marcador y los tiles los pinta Leaflet fuera del alcance del scope de
+     Astro, así que estas reglas son globales por necesidad, no por atajo. -->
+<style is:global>
+  .colabdot {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 6px 14px -4px rgba(30, 43, 34, 0.6);
+    cursor: pointer;
+    transition:
+      transform 0.2s var(--ease),
+      box-shadow 0.2s;
+  }
+  .colabdot:hover,
+  .colabdot.active {
+    transform: scale(1.28);
+    box-shadow: 0 9px 20px -5px rgba(30, 43, 34, 0.75);
+  }
+
+  /* `img { max-width: 100% }` de base.css descuadra los tiles. Se corrige con
+     más especificidad, no con !important. */
+  .colabmap .leaflet-container img {
+    max-width: none;
+  }
+  .colabmap .leaflet-container {
+    font: inherit;
+    background: #eef2e4;
+  }
+  .colabmap .leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 10px 26px -10px rgba(30, 43, 34, 0.5);
+  }
+  .colabmap .leaflet-popup-content {
+    font-weight: 700;
+    color: var(--forest-900);
+    margin: 9px 13px;
+    font-size: 0.9rem;
+  }
+</style>

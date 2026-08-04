@@ -74,6 +74,9 @@ const FILTERS = ['all', 'nature', 'art', 'youth'] as const;
 
   for (const filter of filters) {
     filter.addEventListener('click', () => {
+      /* Si hay un vídeo en marcha en una tarjeta que va a ocultarse, se para. */
+      document.dispatchEvent(new CustomEvent('btr:videos-stop'));
+
       for (const other of filters) {
         const active = other === filter;
         other.classList.toggle('on', active);

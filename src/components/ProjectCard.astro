@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import VideoFacade from './VideoFacade.astro';
 import { pickText } from '../lib/content';
 import type { Locale } from '../i18n';
 
@@ -17,20 +18,11 @@ const d = project.data;
 
 const title = pickText(d.title, lang);
 const text = short && d.summary ? pickText(d.summary, lang) : pickText(d.description, lang);
-
-/* Las miniaturas siguen viniendo de YouTube: es la única petición a un tercero
-   que se mantiene, y está decidido en CLAUDE.md §4. Si `maxresdefault` no
-   existe, YouTube devuelve un marcador gris; el reemplazo por `hqdefault` y el
-   reproductor en la propia página llegan con VideoFacade en la fase 3. */
-const thumb = `https://i.ytimg.com/vi/${d.youtubeId}/maxresdefault.jpg`;
-const watch = `https://www.youtube.com/watch?v=${d.youtubeId}`;
 ---
 
 <article class="project reveal" data-theme={d.theme.join(' ')}>
   <div class="project__img">
-    <a href={watch} target="_blank" rel="noopener" aria-label={`${title} — YouTube`}>
-      <img src={thumb} alt={title} loading="lazy" width="1280" height="720" />
-    </a>
+    <VideoFacade youtubeId={d.youtubeId} title={title} />
     <span class="project__tag">{pickText(d.tag, lang)}</span>
   </div>
   <div class="project__body">
@@ -76,17 +68,6 @@ const watch = `https://www.youtube.com/watch?v=${d.youtubeId}`;
     padding: 16px;
     background: var(--forest-800);
     overflow: hidden;
-  }
-  .project__img a {
-    position: absolute;
-    inset: 0;
-  }
-  .project__img img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
   .project__tag {
     position: relative;
