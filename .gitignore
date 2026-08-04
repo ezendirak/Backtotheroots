@@ -7,6 +7,9 @@ dist/
 # tipos generados por Astro
 .astro/
 
+# panel de Decap copiado desde node_modules por scripts/copiar-decap.mjs
+public/admin/decap/
+
 # variables de entorno
 .env
 .env.*

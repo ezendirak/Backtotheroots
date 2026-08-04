@@ -1,0 +1,969 @@
+# Panel de edición de Back to the Roots.
+#
+# Cada colección de aquí se corresponde con una carpeta de src/content/. Lo que
+# se guarda desde el panel es un commit en GitHub; Cloudflare Pages reconstruye
+# la web sola en un par de minutos.
+#
+# Reglas al tocar este fichero (CLAUDE.md §7):
+#  · Etiquetas y textos de ayuda SIEMPRE en castellano: quien edita no programa.
+#  · Todo campo visible lleva `hint` explicando qué se ve en pantalla.
+#  · Los campos traducibles llevan `i18n: true`. Los que no lo llevan solo se
+#    editan en castellano y no se copian a los otros idiomas: así lo hace Decap.
+#  · Si añades un campo aquí, añádelo también en src/content.config.ts o el
+#    build fallará. Es intencionado.
+
+backend:
+  name: git-gateway
+  repo: ezendirak/Backtotheroots
+  branch: main
+  # PENDIENTE: los dos valores que da DecapBridge al crear el sitio. Hasta que
+  # estén puestos, /admin carga pero no deja iniciar sesión.
+  identity_url: https://auth.decapbridge.com/sites/PENDIENTE-ID-DE-DECAPBRIDGE
+  gateway_url: https://gateway.decapbridge.com
+  commit_messages:
+    create: 'añade {{collection}} «{{slug}}»'
+    update: 'actualiza {{collection}} «{{slug}}»'
+    delete: 'borra {{collection}} «{{slug}}»'
+    uploadMedia: 'sube la imagen {{path}}'
+    deleteMedia: 'borra la imagen {{path}}'
+
+# Idioma del propio panel (botones, menús, avisos).
+locale: es
+
+# Al guardar se publica directamente. Sin revisiones intermedias: en una entidad
+# de tres personas, un paso más es un paso que nadie da.
+publish_mode: simple
+
+# Las imágenes van a src/assets/img para que Astro las optimice (AVIF/WebP).
+# `public_folder` es la ruta que se escribe dentro del JSON, relativa al fichero
+# de contenido: src/content/<coleccion>/x.json → ../../assets/img/
+media_folder: src/assets/img
+public_folder: ../../assets/img
+
+# El castellano es el idioma canónico. Lo que no esté traducido a catalán o
+# inglés sale en castellano, nunca en blanco.
+i18n:
+  structure: single_file
+  locales: [es, ca, en]
+  default_locale: es
+
+collections:
+  # ==========================================================================
+  # PROYECTOS
+  # ==========================================================================
+  - name: projects
+    label: Proyectos
+    label_singular: Proyecto
+    description: Los proyectos que se ven en la portada y en la página de proyectos.
+    folder: src/content/projects
+    extension: json
+    format: json
+    create: true
+    identifier_field: title
+    i18n: true
+    summary: '{{title}}'
+    sortable_fields: [order, title]
+    fields:
+      - name: title
+        label: Título
+        widget: string
+        i18n: true
+        hint: El nombre del proyecto tal y como se lee en la tarjeta.
+      - name: theme
+        label: Temáticas
+        widget: select
+        multiple: true
+        options:
+          - { label: Naturaleza, value: nature }
+          - { label: Arte, value: art }
+          - { label: Juventud, value: youth }
+        hint: Decide en qué filtros aparece el proyecto. Puedes marcar varias.
+      - name: tag
+        label: Etiqueta de la tarjeta
+        widget: string
+        i18n: true
+        hint: La palabra que sale sobre el vídeo, por ejemplo «Arte».
+      - name: youtubeId
+        label: ID del vídeo de YouTube
+        widget: string
+        pattern: ['^[A-Za-z0-9_-]{5,}$', 'Solo el identificador, sin la dirección entera.']
+        hint: >-
+          El trozo que va después de «v=» en la dirección de YouTube. En
+          https://www.youtube.com/watch?v=VCJAQsBgVBs sería VCJAQsBgVBs.
+      - name: meta
+        label: Programa y lugar
+        widget: string
+        hint: La línea pequeña sobre el título, por ejemplo «EFFIC · Ribes de Freser 2024».
+      - name: description
+        label: Descripción
+        widget: text
+        i18n: true
+        hint: El texto que se lee en la página de proyectos.
+      - name: summary
+        label: Descripción corta
+        widget: text
+        required: false
+        i18n: true
+        hint: Versión abreviada para la tarjeta de la portada. Si se deja vacía se usa la descripción larga.
+      - name: stats
+        label: Cifras
+        widget: list
+        required: false
+        i18n: true
+        label_singular: Cifra
+        summary: '{{fields.value}} {{fields.label}}'
+        hint: >-
+          Los datos que salen bajo el texto, por ejemplo «30 participantes». Al
+          traducir, usa arriba «copiar de» para no reescribir las cifras.
+        fields:
+          - { name: value, label: Cifra, widget: string, i18n: true, hint: 'Solo el número: 30.' }
+          - { name: label, label: Qué es, widget: string, i18n: true, hint: 'Lo que cuenta esa cifra: participantes.' }
+      - name: date
+        label: Año
+        widget: string
+        required: false
+        hint: Año del proyecto. Solo el número.
+      - name: featured
+        label: Sale en la portada
+        widget: boolean
+        default: false
+        hint: Marca esta casilla para que el proyecto aparezca también en la página de inicio.
+      - name: homeOrder
+        label: Orden en la portada
+        widget: number
+        required: false
+        value_type: int
+        hint: Solo si sale en la portada. Cuanto más bajo, más arriba aparece.
+      - name: order
+        label: Orden en la página de proyectos
+        widget: number
+        default: 99
+        value_type: int
+        hint: Cuanto más bajo, más arriba aparece.
+
+  # ==========================================================================
+  # COLABORADORES
+  # ==========================================================================
+  - name: partners
+    label: Colaboradores
+    label_singular: Colaborador
+    description: Las entidades del mapa de la página «Colabora».
+    folder: src/content/partners
+    extension: json
+    format: json
+    create: true
+    identifier_field: name
+    i18n: true
+    summary: '{{name}} · {{place}}'
+    sortable_fields: [order, name]
+    fields:
+      - name: name
+        label: Nombre de la entidad
+        widget: string
+        hint: 'No se traduce: es un nombre propio.'
+      - name: place
+        label: Ubicación
+        widget: string
+        i18n: true
+        hint: Lo que se lee en la ficha, por ejemplo «Castellgalí, Bages».
+      - name: location
+        label: Punto en el mapa
+        widget: map
+        type: Point
+        decimals: 5
+        hint: >-
+          Mueve el mapa hasta la sede de la entidad y haz clic para poner el
+          punto. No hace falta escribir coordenadas.
+      - name: color
+        label: Color del punto
+        widget: color
+        enable_alpha: false
+        allow_input: true
+        hint: >-
+          Color del círculo en el mapa. Solo tiene que distinguirse del resto de
+          entidades.
+      - name: initials
+        label: Iniciales
+        widget: string
+        pattern: ['^.{1,3}$', 'Entre una y tres letras.']
+        hint: Las letras que se ven dentro del círculo de la ficha. Una, dos o tres.
+      - name: description
+        label: Descripción
+        widget: text
+        i18n: true
+        hint: Qué hace la entidad. Dos o tres líneas.
+      - name: order
+        label: Orden
+        widget: number
+        default: 99
+        value_type: int
+        hint: Cuanto más bajo, más arriba sale en la lista.
+
+  # ==========================================================================
+  # OPORTUNIDADES
+  # ==========================================================================
+  - name: opportunities
+    label: Oportunidades
+    label_singular: Oportunidad
+    description: Las convocatorias abiertas, con su cartel y sus datos.
+    folder: src/content/opportunities
+    extension: json
+    format: json
+    create: true
+    identifier_field: title
+    i18n: true
+    summary: '{{title}}'
+    sortable_fields: [order, title]
+    fields:
+      - name: title
+        label: Nombre de la convocatoria
+        widget: string
+        hint: 'No se traduce: es el nombre propio del proyecto.'
+      - name: status
+        label: Estado
+        widget: select
+        default: abierta
+        options:
+          - { label: Abierta, value: abierta }
+          - { label: Cerrada, value: cerrada }
+        hint: Solo se muestran en la web las convocatorias abiertas.
+      - name: flag
+        label: Etiqueta sobre el cartel
+        widget: string
+        required: false
+        i18n: true
+        hint: El distintivo de la esquina, por ejemplo «Inscripciones abiertas».
+      - name: poster
+        label: Cartel
+        widget: image
+        choose_url: false
+        hint: Sube el cartel de la convocatoria. Cuanto mayor sea la imagen, mejor se verá.
+      - name: posterAlt
+        label: Descripción del cartel
+        widget: string
+        i18n: true
+        hint: >-
+          Qué se ve en el cartel. No se lee en pantalla: lo usan los lectores de
+          pantalla de las personas ciegas.
+      - name: where
+        label: Fechas y lugar
+        widget: string
+        i18n: true
+        hint: Por ejemplo «9–16 agosto · Casa de Colonias Alfar, Dosrius (Barcelona)».
+      - name: whereShort
+        label: Fechas y lugar (versión corta)
+        widget: string
+        required: false
+        i18n: true
+        hint: Para la tarjeta de la portada, donde cabe menos texto.
+      - name: summary
+        label: Descripción
+        widget: text
+        i18n: true
+        hint: De qué va la convocatoria.
+      - name: summaryShort
+        label: Descripción corta
+        widget: text
+        required: false
+        i18n: true
+        hint: Para la tarjeta de la portada. Si se deja vacía se usa la descripción larga.
+      - name: facts
+        label: Datos de un vistazo
+        widget: list
+        required: false
+        i18n: true
+        label_singular: Dato
+        field: { name: fact, label: Dato, widget: string }
+        hint: >-
+          Los cuatro datos con dibujo: participantes, países, idioma y qué está
+          incluido. Van en ese orden.
+      - name: findLabel
+        label: Título del apartado «Qué encontrarás»
+        widget: string
+        required: false
+        i18n: true
+      - name: findText
+        label: Texto de «Qué encontrarás»
+        widget: text
+        required: false
+        i18n: true
+      - name: signupUrl
+        label: Enlace de inscripción
+        widget: string
+        required: false
+        hint: Dirección completa del formulario de inscripción, empezando por https://
+      - name: infopackUrl
+        label: Enlace al dosier
+        widget: string
+        required: false
+        hint: Dirección completa del PDF o carpeta con la información, empezando por https://
+      - name: order
+        label: Orden
+        widget: number
+        default: 99
+        value_type: int
+        hint: Si hay varias abiertas, la del número más bajo es la que sale en la portada.
+
+  # ==========================================================================
+  # CONVOCATORIAS ANTERIORES
+  # ==========================================================================
+  - name: archive
+    label: Convocatorias anteriores
+    label_singular: Convocatoria
+    description: El listado de trayectoria al final de la página de oportunidades. Solo el nombre.
+    folder: src/content/archive
+    extension: json
+    format: json
+    create: true
+    identifier_field: title
+    summary: '{{title}}'
+    sortable_fields: [order, title]
+    fields:
+      - name: title
+        label: Nombre
+        widget: string
+        hint: El nombre del proyecto, tal cual. No se traduce.
+      - name: year
+        label: Año
+        widget: number
+        required: false
+        value_type: int
+        hint: Opcional. Hoy no se muestra en la web, pero sirve para ordenar.
+      - name: order
+        label: Orden
+        widget: number
+        default: 99
+        value_type: int
+        hint: Cuanto más bajo, más a la izquierda aparece.
+
+  # ==========================================================================
+  # EQUIPO
+  # ==========================================================================
+  - name: team
+    label: Equipo
+    label_singular: Persona
+    description: Las personas que salen en la página «Nosotras».
+    folder: src/content/team
+    extension: json
+    format: json
+    create: true
+    identifier_field: name
+    i18n: true
+    summary: '{{name}} · {{role}}'
+    sortable_fields: [order, name]
+    fields:
+      - name: name
+        label: Nombre y apellidos
+        widget: string
+      - name: role
+        label: Cargo
+        widget: string
+        i18n: true
+        hint: Por ejemplo «Presidente · Cofundador».
+      - name: bio
+        label: Biografía
+        widget: text
+        i18n: true
+      - name: photo
+        label: Foto
+        widget: image
+        required: false
+        choose_url: false
+        hint: Opcional. Quien no tenga foto sale con un dibujo.
+      - name: photoAlt
+        label: Descripción de la foto
+        widget: string
+        required: false
+        i18n: true
+        hint: Para lectores de pantalla. Si se deja vacía se usa el nombre.
+      - name: icon
+        label: Dibujo (si no hay foto)
+        widget: select
+        default: leaf
+        options:
+          - { label: Hoja, value: leaf }
+          - { label: Música, value: music }
+          - { label: Brote, value: sprout }
+      - name: lead
+        label: Ficha destacada
+        widget: boolean
+        default: false
+        hint: Solo una persona debería tenerlo marcado. Sale arriba y a lo ancho.
+      - name: order
+        label: Orden
+        widget: number
+        default: 99
+        value_type: int
+        hint: Cuanto más bajo, más arriba sale.
+
+  # ==========================================================================
+  # GALERÍA
+  # ==========================================================================
+  - name: gallery
+    label: Galería de Instagram
+    label_singular: Foto
+    description: >-
+      La tira de fotos de la página «Nosotras». La imagen se sube aquí; el enlace
+      lleva a la publicación de Instagram.
+    folder: src/content/gallery
+    extension: json
+    format: json
+    create: true
+    slug: 'foto-{{year}}{{month}}{{day}}-{{hour}}{{minute}}'
+    i18n: true
+    summary: '{{alt}}'
+    sortable_fields: [order]
+    fields:
+      - name: image
+        label: Imagen
+        widget: image
+        choose_url: false
+        hint: >-
+          Sube la foto desde tu ordenador. No pegues una dirección de Instagram:
+          esas caducan a los pocos días y la galería se quedaría en blanco.
+      - name: alt
+        label: Qué se ve en la foto
+        widget: string
+        i18n: true
+        hint: Para lectores de pantalla. Describe la escena en una frase.
+      - name: instagramUrl
+        label: Enlace a la publicación
+        widget: string
+        pattern:
+          ['^https://www\.instagram\.com/', 'Tiene que empezar por https://www.instagram.com/']
+        hint: >-
+          La dirección de la publicación concreta, del tipo
+          https://www.instagram.com/p/XXXXXXX/
+      - name: credit
+        label: Autoría de la foto
+        widget: string
+        required: false
+        hint: Opcional. Sale bajo la foto precedido de una cámara, por ejemplo «@yompyz».
+      - name: order
+        label: Orden
+        widget: number
+        default: 99
+        value_type: int
+
+  # ==========================================================================
+  # AJUSTES
+  # ==========================================================================
+  - name: config
+    label: Ajustes
+    files:
+      - name: site
+        label: Correo y redes sociales
+        file: src/content/config/site.json
+        description: El correo de contacto y los enlaces del pie de página.
+        fields:
+          - name: email
+            label: Correo de contacto
+            widget: string
+            hint: Sale en la página de contacto y en el pie. Es donde escribe la gente.
+          - name: social
+            label: Redes sociales
+            widget: list
+            label_singular: Red social
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Nombre, widget: string, hint: 'Instagram, Facebook, YouTube…' }
+              - { name: url, label: Dirección, widget: string, hint: 'Empezando por https://' }
+          - name: instagramProfile
+            label: Perfil de Instagram
+            widget: string
+            hint: La dirección del perfil, no de una publicación.
+
+  # ==========================================================================
+  # TEXTOS DE LAS PÁGINAS
+  #
+  # Todo lo que se lee en pantalla y no es una ficha de las colecciones de
+  # arriba: titulares, entradillas y textos de botón. Aquí no se crean ni se
+  # borran páginas, solo se cambia lo que dicen.
+  # ==========================================================================
+  - name: pages
+    label: Textos de las páginas
+    # Hace falta aquí Y en cada fichero: Decap descarta el i18n de un fichero si
+    # su colección no lo declara (actions/config.js), y la página se quedaría
+    # sin selector de idioma.
+    i18n: true
+    files:
+      # ---------------------------------------------------------------- INICIO
+      - name: home
+        label: Inicio
+        file: src/content/pages/home.json
+        i18n: true
+        fields:
+          - name: seo
+            label: Título y descripción para Google
+            widget: object
+            i18n: true
+            fields:
+              - name: title
+                label: Título
+                widget: string
+                i18n: true
+                hint: Lo que se lee en la pestaña del navegador y en los resultados de Google.
+              - name: description
+                label: Descripción
+                widget: text
+                i18n: true
+                hint: El párrafo gris bajo el título en los resultados de Google. Dos líneas.
+          - name: hero
+            label: Cabecera
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - name: title
+                label: Titular
+                widget: string
+                i18n: true
+                hint: 'Lo que va entre <em> y </em> se pinta en verde con subrayado.'
+              - { name: sub, label: Entradilla, widget: text, i18n: true }
+              - { name: cta1, label: Botón principal, widget: string, i18n: true }
+              - { name: cta2, label: Botón secundario, widget: string, i18n: true }
+              - name: scroll
+                label: Aviso de bajar
+                widget: string
+                i18n: true
+                hint: El texto pequeño junto al dibujo de la raíz.
+          - name: questions
+            label: Barra de preguntas
+            widget: object
+            i18n: true
+            hint: Las cinco preguntas de la franja oscura bajo la cabecera.
+            fields:
+              - { name: q1, label: Pregunta 1, widget: string, i18n: true }
+              - { name: q2, label: Pregunta 2, widget: string, i18n: true }
+              - { name: q3, label: Pregunta 3, widget: string, i18n: true }
+              - { name: q4, label: Pregunta 4, widget: string, i18n: true }
+              - { name: q5, label: Pregunta 5, widget: string, i18n: true }
+          - name: who
+            label: 'Bloque «Quiénes somos»'
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Texto, widget: text, i18n: true }
+              - { name: cta, label: Texto del botón, widget: string, i18n: true }
+          - name: doing
+            label: 'Bloque «Qué hacemos»'
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+              - { name: c1t, label: Tarjeta 1 · título, widget: string, i18n: true }
+              - { name: c1p, label: Tarjeta 1 · texto, widget: text, i18n: true }
+              - { name: c2t, label: Tarjeta 2 · título, widget: string, i18n: true }
+              - { name: c2p, label: Tarjeta 2 · texto, widget: text, i18n: true }
+              - { name: c3t, label: Tarjeta 3 · título, widget: string, i18n: true }
+              - { name: c3p, label: Tarjeta 3 · texto, widget: text, i18n: true }
+          - name: projects
+            label: Bloque de proyectos
+            widget: object
+            i18n: true
+            hint: Los proyectos que salen debajo se eligen en la colección «Proyectos».
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+              - { name: cta, label: Texto del botón, widget: string, i18n: true }
+          - name: opportunity
+            label: Bloque de la convocatoria abierta
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: cta1, label: Botón de detalles, widget: string, i18n: true }
+              - { name: cta2, label: Botón de inscripción, widget: string, i18n: true }
+          - name: cta
+            label: Bloque final
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: btn1, label: Botón principal, widget: string, i18n: true }
+              - { name: btn2, label: Botón secundario, widget: string, i18n: true }
+
+      # -------------------------------------------------------------- NOSOTRAS
+      - name: about
+        label: Nosotras
+        file: src/content/pages/about.json
+        i18n: true
+        fields:
+          - name: seo
+            label: Título y descripción para Google
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: description, label: Descripción, widget: text, i18n: true }
+          - name: hero
+            label: Cabecera
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h1, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+          - name: mission
+            label: 'Bloque «Quiénes somos»'
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p1, label: Párrafo 1, widget: text, i18n: true }
+              - { name: p2, label: Párrafo 2, widget: text, i18n: true }
+              - { name: p3, label: Párrafo 3, widget: text, i18n: true }
+              - name: v1
+                label: Valor 1
+                widget: string
+                i18n: true
+                hint: Las cinco etiquetas redondeadas bajo los párrafos.
+              - { name: v2, label: Valor 2, widget: string, i18n: true }
+              - { name: v3, label: Valor 3, widget: string, i18n: true }
+              - { name: v4, label: Valor 4, widget: string, i18n: true }
+              - { name: v5, label: Valor 5, widget: string, i18n: true }
+          - name: doing
+            label: 'Bloque «Qué hacemos»'
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+              - { name: c1t, label: Tarjeta 1 · título, widget: string, i18n: true }
+              - { name: c1p, label: Tarjeta 1 · texto, widget: text, i18n: true }
+              - { name: c2t, label: Tarjeta 2 · título, widget: string, i18n: true }
+              - { name: c2p, label: Tarjeta 2 · texto, widget: text, i18n: true }
+              - { name: c3t, label: Tarjeta 3 · título, widget: string, i18n: true }
+              - { name: c3p, label: Tarjeta 3 · texto, widget: text, i18n: true }
+          - name: learn
+            label: 'Bloque «Aprende con nosotras»'
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: toolkitTag, label: Recurso · etiqueta, widget: string, i18n: true }
+              - { name: toolkitTitle, label: Recurso · título, widget: string, i18n: true }
+              - { name: toolkitSub, label: Recurso · subtítulo, widget: string, i18n: true }
+              - { name: toolkitP, label: Recurso · texto, widget: text, i18n: true }
+              - { name: toolkitCta, label: Recurso · texto del botón, widget: string, i18n: true }
+              - { name: workshopsTag, label: Talleres · etiqueta, widget: string, i18n: true }
+              - { name: workshopsTitle, label: Talleres · título, widget: string, i18n: true }
+              - { name: workshopsP, label: Talleres · texto, widget: text, i18n: true }
+              - name: chip1
+                label: Taller 1
+                widget: string
+                i18n: true
+                hint: Las cinco etiquetas con los tipos de taller.
+              - { name: chip2, label: Taller 2, widget: string, i18n: true }
+              - { name: chip3, label: Taller 3, widget: string, i18n: true }
+              - { name: chip4, label: Taller 4, widget: string, i18n: true }
+              - { name: chip5, label: Taller 5, widget: string, i18n: true }
+              - { name: ctaText, label: Cierre · texto, widget: text, i18n: true }
+              - { name: ctaBtn, label: Cierre · texto del botón, widget: string, i18n: true }
+          - name: why
+            label: 'Bloque «Por qué lo hacemos»'
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: quote, label: Cita, widget: text, i18n: true }
+              - { name: text, label: Texto, widget: text, i18n: true }
+          - name: impact
+            label: Cifras de impacto
+            widget: object
+            i18n: true
+            hint: Cuatro cifras con su explicación.
+            fields:
+              - { name: stat1n, label: Cifra 1, widget: string, i18n: true }
+              - { name: stat1l, label: Cifra 1 · qué es, widget: string, i18n: true }
+              - { name: stat2n, label: Cifra 2, widget: string, i18n: true }
+              - { name: stat2l, label: Cifra 2 · qué es, widget: string, i18n: true }
+              - { name: stat3n, label: Cifra 3, widget: string, i18n: true }
+              - { name: stat3l, label: Cifra 3 · qué es, widget: string, i18n: true }
+              - { name: stat4n, label: Cifra 4, widget: string, i18n: true }
+              - { name: stat4l, label: Cifra 4 · qué es, widget: string, i18n: true }
+          - name: team
+            label: Bloque del equipo
+            widget: object
+            i18n: true
+            hint: Las personas que salen debajo se editan en la colección «Equipo».
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+          - name: cta
+            label: Bloque final
+            widget: object
+            i18n: true
+            fields:
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: btn1, label: Botón principal, widget: string, i18n: true }
+              - { name: btn2, label: Botón secundario, widget: string, i18n: true }
+
+      # ------------------------------------------------------------- PROYECTOS
+      - name: projects
+        label: Proyectos (textos de la página)
+        file: src/content/pages/projects.json
+        i18n: true
+        fields:
+          - name: seo
+            label: Título y descripción para Google
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: description, label: Descripción, widget: text, i18n: true }
+          - name: hero
+            label: Cabecera
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h1, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+          - name: section
+            label: Encabezado del listado
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+          - name: filters
+            label: Botones de filtro
+            widget: object
+            i18n: true
+            hint: Los cuatro botones que filtran los proyectos por temática.
+            fields:
+              - { name: all, label: Todos, widget: string, i18n: true }
+              - { name: nature, label: Naturaleza, widget: string, i18n: true }
+              - { name: art, label: Arte, widget: string, i18n: true }
+              - { name: youth, label: Juventud, widget: string, i18n: true }
+          - name: cta
+            label: Bloque final
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: btn1, label: Botón principal, widget: string, i18n: true }
+              - { name: btn2, label: Botón secundario, widget: string, i18n: true }
+
+      # --------------------------------------------------------- OPORTUNIDADES
+      - name: opportunities
+        label: Oportunidades (textos de la página)
+        file: src/content/pages/opportunities.json
+        i18n: true
+        fields:
+          - name: seo
+            label: Título y descripción para Google
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: description, label: Descripción, widget: text, i18n: true }
+          - name: hero
+            label: Cabecera
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h1, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+          - name: section
+            label: Encabezado de la convocatoria
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+          - name: card
+            label: Botones de la ficha
+            widget: object
+            i18n: true
+            fields:
+              - { name: cta1, label: Botón de inscripción, widget: string, i18n: true }
+              - { name: cta2, label: Botón del dosier, widget: string, i18n: true }
+          - name: note
+            label: Aviso bajo la ficha
+            widget: object
+            i18n: true
+            fields:
+              - name: text
+                label: Texto
+                widget: string
+                i18n: true
+                hint: El correo de contacto se añade solo al final. Se cambia en «Ajustes».
+          - name: archive
+            label: Convocatorias anteriores
+            widget: object
+            i18n: true
+            hint: El listado de nombres se edita en la colección «Convocatorias anteriores».
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+
+      # -------------------------------------------------------------- COLABORA
+      - name: collaborate
+        label: Colabora
+        file: src/content/pages/collaborate.json
+        i18n: true
+        fields:
+          - name: seo
+            label: Título y descripción para Google
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: description, label: Descripción, widget: text, i18n: true }
+          - name: hero
+            label: Cabecera
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h1, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+          - name: help
+            label: 'Bloque «Cómo ayudar»'
+            widget: object
+            i18n: true
+            hint: Las cuatro maneras de colaborar, cada una con su enlace.
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: c1t, label: Tarjeta 1 · título, widget: string, i18n: true }
+              - { name: c1p, label: Tarjeta 1 · texto, widget: text, i18n: true }
+              - { name: c1a, label: Tarjeta 1 · texto del enlace, widget: string, i18n: true }
+              - { name: c2t, label: Tarjeta 2 · título, widget: string, i18n: true }
+              - { name: c2p, label: Tarjeta 2 · texto, widget: text, i18n: true }
+              - { name: c2a, label: Tarjeta 2 · texto del enlace, widget: string, i18n: true }
+              - { name: c3t, label: Tarjeta 3 · título, widget: string, i18n: true }
+              - { name: c3p, label: Tarjeta 3 · texto, widget: text, i18n: true }
+              - { name: c3a, label: Tarjeta 3 · texto del enlace, widget: string, i18n: true }
+              - { name: c4t, label: Tarjeta 4 · título, widget: string, i18n: true }
+              - { name: c4p, label: Tarjeta 4 · texto, widget: text, i18n: true }
+              - { name: c4a, label: Tarjeta 4 · texto del enlace, widget: string, i18n: true }
+          - name: map
+            label: Bloque del mapa
+            widget: object
+            i18n: true
+            hint: Las entidades del mapa se editan en la colección «Colaboradores».
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+              - name: empty
+                label: Mensaje del panel vacío
+                widget: string
+                i18n: true
+                hint: Lo que se lee a la derecha del mapa antes de elegir una entidad.
+          - name: join
+            label: Ficha «Únete»
+            widget: object
+            i18n: true
+            hint: La última tarjeta del mapa, la que invita a sumarse.
+            fields:
+              - { name: name, label: Título, widget: string, i18n: true }
+              - { name: desc, label: Texto, widget: text, i18n: true }
+              - { name: cta, label: Texto del botón, widget: string, i18n: true }
+          - name: ecosystems
+            label: 'Bloque «Ecosistemas»'
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p1, label: Párrafo 1, widget: text, i18n: true }
+              - { name: p2, label: Párrafo 2, widget: text, i18n: true }
+          - name: give
+            label: Bloque de donaciones
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: p1, label: Párrafo 1, widget: text, i18n: true }
+              - { name: p2, label: Párrafo 2, widget: text, i18n: true }
+              - { name: p3, label: Párrafo 3, widget: text, i18n: true }
+              - { name: cta, label: Texto del botón, widget: string, i18n: true }
+
+      # -------------------------------------------------------------- CONTACTO
+      - name: contact
+        label: Contacto
+        file: src/content/pages/contact.json
+        i18n: true
+        fields:
+          - name: seo
+            label: Título y descripción para Google
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: description, label: Descripción, widget: text, i18n: true }
+          - name: intro
+            label: Cabecera
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: h1, label: Titular, widget: string, i18n: true }
+              - { name: p, label: Entradilla, widget: text, i18n: true }
+              - { name: loc, label: Ubicación, widget: string, i18n: true }
+          - name: form
+            label: Formulario
+            widget: object
+            i18n: true
+            hint: Los rótulos de las casillas y los mensajes al enviar.
+            fields:
+              - { name: name, label: Casilla del nombre, widget: string, i18n: true }
+              - { name: namePlaceholder, label: Ejemplo dentro de la casilla, widget: string, i18n: true }
+              - { name: email, label: Casilla del correo, widget: string, i18n: true }
+              - { name: message, label: Casilla del mensaje, widget: string, i18n: true }
+              - { name: messagePlaceholder, label: Ejemplo dentro del mensaje, widget: string, i18n: true }
+              - { name: send, label: Texto del botón de enviar, widget: string, i18n: true }
+              - { name: done, label: Mensaje de enviado, widget: string, i18n: true }
+              - { name: error, label: Mensaje de error, widget: string, i18n: true }
+          - name: faq
+            label: Bloque de enlaces rápidos
+            widget: object
+            i18n: true
+            fields:
+              - { name: h2, label: Titular, widget: string, i18n: true }
+              - { name: btn1, label: Enlace 1, widget: string, i18n: true }
+              - { name: btn2, label: Enlace 2, widget: string, i18n: true }
+              - { name: btn3, label: Enlace 3, widget: string, i18n: true }
+
+      # --------------------------------------------------------------- GRACIAS
+      - name: thanks
+        label: Gracias
+        file: src/content/pages/thanks.json
+        i18n: true
+        description: La página que se ve tras enviar el formulario de contacto.
+        fields:
+          - name: seo
+            label: Título y descripción para Google
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: description, label: Descripción, widget: text, i18n: true }
+          - name: main
+            label: Contenido
+            widget: object
+            i18n: true
+            fields:
+              - { name: h1, label: Titular, widget: string, i18n: true }
+              - { name: text, label: Texto, widget: text, i18n: true }
+              - { name: back, label: Texto del botón de volver, widget: string, i18n: true }

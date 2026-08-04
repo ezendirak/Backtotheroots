@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- El panel de edición no tiene por qué salir en Google. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Editar la web · Back to the Roots</title>
+    <link rel="icon" href="/assets/img/logo-icon.png" />
+  </head>
+  <body>
+    <!--
+      Decap se sirve desde nuestro propio dominio, no desde unpkg: entra como
+      dependencia npm y scripts/copiar-decap.mjs lo deja aquí (CLAUDE.md §15).
+      El bundle se pide bajo demanda en trozos, por eso vive en su propia
+      carpeta.
+    -->
+    <script src="/admin/decap/decap-cms.js"></script>
+  </body>
+</html>

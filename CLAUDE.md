@@ -5,7 +5,8 @@ Este fichero es la fuente de verdad sobre decisiones tomadas. Si algo aquí choc
 una intuición tuya, gana este fichero; si crees que este fichero se equivoca, dilo
 antes de escribir código.
 
-> Revisión 3 — 4 de agosto de 2026. Cambios de la revisión 2 en §12, los de la 3 en §13.
+> Revisión 4 — 4 de agosto de 2026. Cambios de la revisión 2 en §12, los de la 3 en §13,
+> los de la 4 en §15.
 
 ---
 
@@ -83,12 +84,13 @@ El proyecto Astro vive en la **raíz del repositorio**. La web antigua se conser
 src/
   content/
     partners/       irehom.json, cantonal.json, morera.json…
-    projects/       shining-together.md, …
-    opportunities/  terratribe-2026.md
+    projects/       shining-together.json, …
+    opportunities/  terratribe-2026.json
     archive/        convocatorias cerradas (solo título)
     team/           saul-nebot.json, …
     gallery/        (imagen subida + enlace al post de Instagram)
-    config/         site.json  (emails, redes, textos del footer)
+    config/         site.json  (email y redes sociales)
+    pages/          home.json, about.json…  (titulares y textos de botón)
   i18n/             es.json  ca.json  en.json   ← SOLO textos de UI
   components/       Header, Footer, VideoFacade, PartnerMap, ProjectCard, Gallery
   layouts/          Base.astro
@@ -96,8 +98,10 @@ src/
   styles/           tokens.css  base.css
 public/
   admin/            index.html + config.yml   (Decap CMS)
+    decap/          el panel copiado desde npm — no se versiona
   _redirects
   assets/img/
+scripts/            copiar-decap.mjs
 legacy/             la web actual, borrar al final
 ```
 
@@ -138,13 +142,18 @@ mapa, en la lista de chips y en el panel lateral, en los tres idiomas.
 ### Esquemas
 
 Todas las colecciones se definen con **Zod** en `src/content.config.ts`. Los campos
-obligatorios se validan en tiempo de build: si falta la latitud de un colaborador o el ID
+obligatorios se validan en tiempo de build: si falta la ubicación de un colaborador o el ID
 de vídeo de un proyecto, **el build falla**. Es intencionado — mejor romper el deploy que
 publicar una página rota.
 
+Las colecciones traducibles se componen con el ayudante `traducible(compartido, traducido)`,
+que genera la forma de §7: `es` con todo y obligatorio, `ca`/`en` opcionales y parciales.
+`archive` y `config` no llevan i18n — son nombres propios, correos y URLs.
+
 Campos mínimos por colección:
 
-- **partners**: `name`, `place`, `lat`, `lng`, `color`, `description` (por idioma), `badge?`
+- **partners**: `name`, `place`, `location` (punto GeoJSON del widget de mapa), `color`,
+  `initials`, `description` (por idioma)
 - **projects**: `title`, `theme[]`, `youtubeId`, `description` (por idioma), `date`, `stats[]?`
 - **opportunities**: `title`, `dates`, `status` (abierta/cerrada), `pdf?`, `body`
 - **archive**: `title`, `year?`
@@ -181,7 +190,9 @@ Campos mínimos por colección:
   crear un fichero y marcar su sitio en el mapa.
 - Al pulsar un marcador o un chip de la lista: se resalta el punto, el mapa vuela hacia
   él y el panel lateral muestra su ficha.
-- Datos leídos de la colección `partners`. **Nada hardcodeado.**
+- Datos leídos de la colección `partners`. **Nada hardcodeado.** La coordenada llega como
+  punto GeoJSON en texto (lo que escribe el widget de mapa del CMS) y el esquema Zod la
+  convierte a `lat`/`lng`: fuera del contenido nadie tiene que saber qué es GeoJSON.
 - Atribución obligatoria en el mapa: `© CARTO © OpenMapTiles © OpenStreetMap contributors`
   (la atribución actual omite OpenMapTiles — corregirlo).
 - `scrollWheelZoom: false` para no secuestrar el scroll de la página.
@@ -321,17 +332,18 @@ configuración, no de código.
 
 ## 7. El CMS que verá la ONG
 
-Panel en `/admin`. Colecciones visibles, con etiquetas **en castellano** y textos de ayuda
-en cada campo:
+Panel en `/admin`. Ocho colecciones visibles, con etiquetas **en castellano** y textos de
+ayuda en cada campo:
 
 ```
-Proyectos       → título, tema, ID de YouTube, textos ES/CA/EN
+Proyectos       → título, tema, ID de YouTube, cifras, textos ES/CA/EN
 Colaboradores   → nombre, ubicación (selector de mapa), color, textos
-Oportunidades   → fechas, plazas, PDF, estado (abierta/cerrada)
+Oportunidades   → fechas, plazas, cartel, dosier, estado (abierta/cerrada)
 Convocatorias   → listado histórico, solo título
 Equipo          → nombre, rol, biografía, foto
 Galería         → imagen (subir) + enlace al post de Instagram
-Ajustes         → emails, redes sociales, textos del footer
+Ajustes         → email y redes sociales
+Textos de las páginas → titulares, entradillas y textos de botón de las 7 páginas
 ```
 
 Requisitos del panel:
@@ -340,9 +352,30 @@ Requisitos del panel:
   cuenta de GitHub ni entender qué es un commit.
 - La ubicación de un colaborador se elige con el **widget de mapa**, no escribiendo
   coordenadas a mano.
-- Los campos por idioma usan la configuración `i18n` nativa de Decap, con el castellano
-  como idioma por defecto.
+- Los campos por idioma usan la configuración `i18n` nativa de Decap con
+  `structure: single_file` y el castellano por defecto. **El idioma va en el primer nivel
+  del fichero**, no dentro de cada campo — ver §15.
 - Al final del proyecto: **guía corta en castellano** (con capturas) para la ONG.
+
+### Cómo se guarda un fichero traducido
+
+Es la decisión que gobierna el formato de todo `src/content/`, así que conviene tenerla
+delante antes de tocar un esquema:
+
+```json
+{
+  "es": { "name": "Irehom", "place": "Castellgalí, Bages", "color": "#6e8b3d", "…": "…" },
+  "ca": { "place": "Castellgalí, Bages", "description": "…" },
+  "en": { "place": "Castellgalí, Bages", "description": "…" }
+}
+```
+
+El castellano lleva **todos** los campos; catalán e inglés, **solo los traducibles**. No es
+una convención nuestra: en `config.yml`, un campo sin `i18n: true` es `I18N_FIELD.NONE` y
+Decap ni lo muestra ni lo escribe fuera del idioma por defecto.
+
+En las plantillas eso se aplana con `localize(entry.data, lang)`, que parte del castellano
+y le encima lo traducido. **Un campo sin traducir sale en castellano, nunca en blanco.**
 
 ---
 
@@ -495,7 +528,7 @@ construye y publica solo.
 | 1 · Esqueleto | Hecha. Tokens, layout, 7 rutas × 3 idiomas con slug traducido, `_redirects` |
 | 2 · Contenido | Hecha. 8 colecciones, 39 ficheros, 240 de 242 claves migradas |
 | 3 · Componentes | Hecha. Mapa de Leaflet diferido y facade de vídeo |
-| 4 · CMS | **Siguiente** |
+| 4 · CMS | **Casi.** Panel escrito y probado; falta el alta en DecapBridge |
 | 5 · Pulido y corte | Pendiente |
 
 Las 2 claves sin migrar (`about.learn.toolkit.soon`, `collab.ecosys.cta`) son huérfanas:
@@ -509,17 +542,22 @@ npm run dev      # localhost:4321
 npm run check    # tipos: tiene que dar 0 errores
 ```
 
-### Lo siguiente: fase 4 (CMS)
+### Lo que falta de la fase 4
 
-1. `public/admin/index.html` + `public/admin/config.yml` con las colecciones de §7,
-   etiquetas en castellano y textos de ayuda en cada campo.
-2. Alta en DecapBridge y `backend` apuntando ahí. **Necesita la URL pública**: el login no
-   se puede probar en local, por eso esta fase va después del despliegue.
-3. Widget de mapa para la ubicación de colaboradores, nunca coordenadas a mano.
-4. `i18n` nativo de Decap con el castellano por defecto.
-5. Invitar a una editora de prueba y comprobar el ciclo entero: entrar, cambiar un texto,
-   guardar, ver el cambio publicado.
-6. Guía corta en castellano con capturas.
+Hecho: `public/admin/index.html` y `config.yml` con las ocho colecciones, etiquetas y
+ayudas en castellano, widget de mapa, `i18n` nativo, y el contenido reestructurado al
+formato de Decap. Verificado en local con el backend `test-repo`: el panel carga sin
+errores de configuración, muestra las columnas ES/CA/EN y **lee correctamente los ficheros
+ya migrados**, con los campos no traducibles ocultos fuera del castellano.
+
+Lo que queda **necesita la cuenta de la ONG y la URL pública**, no se puede hacer en local:
+
+1. Alta del sitio en [decapbridge.com](https://decapbridge.com) enlazando el repo
+   `ezendirak/Backtotheroots`. Devuelve un `identity_url` con el ID del sitio.
+2. Sustituir `PENDIENTE-ID-DE-DECAPBRIDGE` en `public/admin/config.yml` por ese ID.
+3. Invitar a una editora y comprobar el ciclo entero: entrar, cambiar un texto, guardar,
+   ver el cambio publicado en `backtotheroots.pages.dev`.
+4. Guía corta en castellano con capturas.
 
 ### Y después: fase 5
 
@@ -537,3 +575,44 @@ Web3Forms (falta la access key), sitemap con `hreflang`, Lighthouse, dominio
 Con todo Cataluña encuadrado, los tres puntos de Barcelona se ven pegados: están a 1,9 km
 el más cercano, unos 8 píxeles a ese zoom. Al pulsar un chip el mapa vuela a zoom 12 y se
 separan bien. Pendiente de decidir si el encuadre inicial molesta; se ajusta con una línea.
+
+---
+
+## 15. Cambios de la revisión 4 (4 de agosto de 2026)
+
+Escritos durante la fase 4, tras leer el código de Decap en vez de fiarse de la
+documentación. Los dos primeros son correcciones a lo que prometían las revisiones
+anteriores:
+
+- **La i18n de Decap guarda el idioma arriba, no dentro de cada campo** (§7). La revisión 3
+  dio por hecho lo segundo y la fase 2 escribió los 39 ficheros con la forma
+  `campo: { es, ca, en }`. Con `structure: single_file`, Decap escribe
+  `{ es: {…}, ca: {…} }` — verificado en `decap-cms-core/lib/i18n.js`, función
+  `getI18nFiles`. El contenido se reestructuró y `pickText(campo, lang)` pasó a ser
+  `localize(ficha, lang)`, que además deja las plantillas más limpias: `p.place` en vez de
+  `pickText(p.data.place, lang)`.
+- **Los colaboradores guardan un punto GeoJSON, no `lat` y `lng`** (§3, §4). Es lo que
+  escribe el widget de mapa que §7 exige, y no había alternativa: pedir coordenadas a mano
+  era justo lo que se quería evitar. El esquema Zod las desempaqueta, así que el cambio no
+  sale de `content.config.ts`.
+- **Decap entra por npm y se sirve desde nuestro dominio** (§6, §8). Lo habitual es un
+  `<script>` a unpkg; se descarta por el mismo motivo que Leaflet en §12.
+  `scripts/copiar-decap.mjs` copia el bundle a `public/admin/decap/` en `postinstall` y
+  antes de cada `dev` y `build`. No se versiona: son 5,8 MB que regenera `npm install`.
+  Consecuencia: hubo que excluir esa carpeta en `tsconfig.json` o `astro check` se queda
+  sin memoria intentando analizarla.
+- **Una colección de ficheros necesita `i18n` en la colección Y en cada fichero.** Si falta
+  el de la colección, Decap descarta silenciosamente el de los ficheros
+  (`actions/config.js`) y las páginas salen sin selector de idioma. Lo detectó la prueba
+  con el backend `test-repo`, no la lectura del código.
+- **`archive` y `config` no llevan i18n**: nombres propios de proyecto, correos y URLs.
+- **Las imágenes siguen en `src/assets/img`** para que Astro las optimice, con
+  `public_folder: ../../assets/img`. La miniatura del panel no se rompe: Decap resuelve la
+  vista previa contra `media_folder` en el repo, no contra la URL guardada.
+- **El panel publica directo a `main`** (`publish_mode: simple`). Una pantalla de revisión
+  intermedia es un paso más que nadie daría en una entidad de tres personas.
+- **El widget de mapa del panel pide teselas a OpenStreetMap.** Es un tercero, pero solo en
+  `/admin` y solo para quien edita. La regla de cero terceros de §4 es sobre la web
+  pública, y ahí se mantiene intacta.
+
+---
