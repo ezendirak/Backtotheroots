@@ -586,6 +586,13 @@ la dirección va en el correo de invitación.
 Web3Forms (falta la access key), sitemap con `hreflang`, Lighthouse, dominio
 `backtotheroots.cat`, borrar `legacy/` y dar de baja Netlify.
 
+**Falta una página 404** (detectado el 5 de agosto de 2026). Cloudflare Pages sirve
+`index.html` cuando no encuentra una ruta, y ese fichero es el redirector de `/` a `/es/`,
+así que hoy **cualquier dirección inexistente responde 200** en vez de 404. Lo amortigua
+que esa página lleva `noindex` y `canonical` a `/es/`, pero Google puede indexar URLs que
+no existen. Se arregla con un `src/pages/404.astro`: Astro lo compila a `dist/404.html` y
+Cloudflare pasa a devolver el código correcto. Hace falta que la ONG dé el texto.
+
 Al conectar el dominio hay **tres sitios** que apuntan todavía a `*.pages.dev`, y los tres
 se cambian el mismo día:
 
