@@ -3,7 +3,9 @@ import { LOCALES, localePath, useTranslations, type Locale, type PageId, type UI
 
 interface Props {
   lang: Locale;
-  page: PageId;
+  /* Ausente en la 404: entonces ningún enlace lleva `aria-current`, que es lo
+     correcto — no estamos en ninguna de las siete páginas. */
+  page?: PageId;
 }
 
 const { lang, page } = Astro.props;

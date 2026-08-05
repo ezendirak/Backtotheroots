@@ -11,7 +11,10 @@ import { DEFAULT_LOCALE, LOCALES, localePath, useTranslations, type Locale, type
 
 interface Props {
   lang: Locale;
-  page: PageId;
+  /* Ausente solo en la 404: no es una de las 7 páginas, no tiene URL propia y
+     se sirve desde cualquier dirección. Sin `page` no hay canonical ni hreflang
+     —apuntarían a una URL que no es esta— y se emite `noindex`. */
+  page?: PageId;
   title: string;
   description: string;
   ogImage?: string;
@@ -21,7 +24,7 @@ const { lang, page, title, description, ogImage } = Astro.props;
 const t = useTranslations(lang);
 
 /* Absolutas, no relativas: es lo que exigen canonical, hreflang y Open Graph. */
-const canonical = new URL(localePath(lang, page), Astro.site);
+const canonical = page ? new URL(localePath(lang, page), Astro.site) : undefined;
 const image = new URL(ogImage ?? '/assets/img/logo-icon.png', Astro.site);
 ---
 
@@ -33,20 +36,30 @@ const image = new URL(ogImage ?? '/assets/img/logo-icon.png', Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/assets/img/logo-icon.png" />
-    <link rel="canonical" href={canonical} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {!page && <meta name="robots" content="noindex" />}
 
     {
-      LOCALES.map((code) => (
-        <link rel="alternate" hreflang={code} href={new URL(localePath(code, page), Astro.site)} />
-      ))
+      page &&
+        LOCALES.map((code) => (
+          <link rel="alternate" hreflang={code} href={new URL(localePath(code, page), Astro.site)} />
+        ))
     }
-    <link rel="alternate" hreflang="x-default" href={new URL(localePath(DEFAULT_LOCALE, page), Astro.site)} />
+    {
+      page && (
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={new URL(localePath(DEFAULT_LOCALE, page), Astro.site)}
+        />
+      )
+    }
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
-    <meta property="og:url" content={canonical} />
+    {canonical && <meta property="og:url" content={canonical} />}
   </head>
 
   <body>

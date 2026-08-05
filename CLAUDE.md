@@ -468,7 +468,6 @@ bloquea el cierre de la fase 5.
 | Logos de las entidades colaboradoras | Sustituir los círculos de color del mapa | A futuro |
 | Traducción de los títulos y descripciones SEO | `pages/*.json`, campo `seo`. Solo existen en castellano; las versiones CA y EN caen al castellano y eso les resta posicionamiento | Pendiente |
 | Titular y botón de la página de gracias | Textos nuevos: "¡Gracias!" y "Volver al inicio", con sus versiones CA y EN. El cuerpo sí reutiliza el mensaje de confirmación que ya existía traducido | Pendiente de confirmar |
-| Texto de la página 404 | No existe todavía y hace falta para que las rutas inexistentes dejen de responder 200 (§14) | Pendiente |
 | Divergencias CA/EN respecto al castellano | Se irán listando aquí durante la fase 2 | Por detectar |
 
 Dominio `backtotheroots.cat`: **comprado y en producción** desde el 5 de agosto de 2026 (§16).
@@ -592,15 +591,13 @@ Queda solo **invitar a las editoras** desde «Manage collaborators» en DecapBri
 
 ### Y después: fase 5
 
-Web3Forms (falta la access key), sitemap con `hreflang`, Lighthouse, la página 404, borrar
-`legacy/` y dar de baja Netlify. El dominio ya está hecho (§16).
+Web3Forms (falta la access key), sitemap con `hreflang`, Lighthouse, borrar `legacy/` y dar
+de baja Netlify. El dominio propio y la página 404 ya están hechos (§16).
 
-**Falta una página 404** (detectado el 5 de agosto de 2026). Cloudflare Pages sirve
-`index.html` cuando no encuentra una ruta, y ese fichero es el redirector de `/` a `/es/`,
-así que hoy **cualquier dirección inexistente responde 200** en vez de 404. Lo amortigua
-que esa página lleva `noindex` y `canonical` a `/es/`, pero Google puede indexar URLs que
-no existen. Se arregla con un `src/pages/404.astro`: Astro lo compila a `dist/404.html` y
-Cloudflare pasa a devolver el código correcto. Hace falta que la ONG dé el texto.
+**La página 404 ya existe** (`src/pages/404.astro`, 5 de agosto de 2026). Antes, Cloudflare
+Pages servía `index.html` al no encontrar una ruta —el redirector de `/` a `/es/`—, así que
+**cualquier dirección inexistente respondía 200**. Astro compila esa página a
+`dist/404.html` y Cloudflare pasa a devolver el código correcto. Ver §16.
 
 Al conectar el dominio había **cuatro sitios** apuntando a `*.pages.dev`. Los cuatro se
 cambiaron el mismo día, el 5 de agosto de 2026 (§16). Se dejan anotados porque son la
@@ -706,5 +703,19 @@ Escritos al abrir la fase 5, con el dominio propio ya sirviendo en producción.
   correo por el que llegan participantes acaba en spam. No es un extra.
 - **Cloudflare Email Routing no se activa nunca** en esta zona. El panel lo ofrece con
   insistencia y **reescribe los MX**, así que rompería el correo de Google.
+- **La página 404 va solo en castellano, y no puede ser de otra manera.** La sirve
+  Cloudflare para direcciones que no existen, así que no hay ruta de la que deducir el
+  idioma de quien llega. Y tampoco cabe una por idioma: con `trailingSlash: 'always'` un
+  fichero dentro de `[lang]/` se compila a `/es/404/index.html`, mientras que Cloudflare
+  busca un `404.html` literal. Astro solo trata de forma especial el de la raíz. El
+  castellano es el idioma canónico (§2) y el destino de `/`, así que es la caída natural.
+  Los enlaces del bloque «sigue explorando» reutilizan las etiquetas del menú, que ya están
+  traducidas: la 404 no añade textos nuevos que mantener.
+- **`page` pasa a ser opcional en `Base.astro` y `Header.astro`.** La 404 no es una de las
+  siete páginas: no tiene URL propia, así que sin `page` no se emiten `canonical` ni
+  `hreflang` —apuntarían a una dirección que no es esta— y sí se emite `noindex`. Ningún
+  enlace del menú lleva `aria-current`, que es lo correcto.
+- **El texto de la 404 lo escribió el asistente**, a petición explícita del cliente, en vez
+  de esperar a la ONG como pedía §10. Queda como excepción anotada, no como precedente.
 
 ---

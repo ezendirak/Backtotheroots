@@ -968,3 +968,41 @@ collections:
               - { name: h1, label: Titular, widget: string, i18n: true }
               - { name: text, label: Texto, widget: text, i18n: true }
               - { name: back, label: Texto del botón de volver, widget: string, i18n: true }
+
+      # ------------------------------------------------------------ NO ENCONTRADA
+      - name: '404'
+        label: Página no encontrada
+        file: src/content/pages/404.json
+        i18n: true
+        description: >-
+          La página que se ve cuando alguien llega a una dirección que no existe.
+          Se muestra siempre en castellano, aunque quien llegue viniera de la
+          versión en catalán o en inglés: al no existir la dirección, no hay forma
+          de saber en qué idioma navegaba. Lo que escribas en las otras dos
+          columnas no se llega a ver en ningún sitio.
+        fields:
+          - name: seo
+            label: Título y descripción para Google
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: description, label: Descripción, widget: text, i18n: true }
+          - name: main
+            label: Contenido
+            widget: object
+            i18n: true
+            fields:
+              - name: code
+                label: Etiqueta pequeña
+                widget: string
+                i18n: true
+                hint: La línea manuscrita sobre el titular.
+              - { name: h1, label: Titular, widget: string, i18n: true }
+              - { name: text, label: Texto, widget: text, i18n: true }
+              - { name: back, label: Texto del botón de volver, widget: string, i18n: true }
+              - name: explore
+                label: Texto antes de los enlaces
+                widget: string
+                i18n: true
+                hint: Los nombres de las páginas enlazadas salen del menú, no se escriben aquí.

@@ -1,0 +1,114 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { DEFAULT_LOCALE, localePath, useTranslations, type PageId } from '../i18n';
+import { usePageText } from '../lib/content';
+
+/* Cloudflare Pages sirve este fichero para cualquier ruta que no exista. Sin él
+   devuelve el redirector de `/`, y entonces TODA dirección inventada responde
+   200 en vez de 404 (CLAUDE.md §14).
+
+   Va en castellano y solo en castellano: llega gente desde cualquier idioma y
+   aquí no hay forma de saber cuál era. El castellano es el idioma canónico (§2)
+   y el destino de la raíz del sitio, así que es la caída natural.
+
+   Tampoco puede haber una por idioma: con `trailingSlash: 'always'` un fichero
+   dentro de `[lang]/` se compila a `/es/404/index.html`, y Cloudflare busca un
+   `404.html` literal. Astro solo trata de forma especial el de la raíz. */
+const lang = DEFAULT_LOCALE;
+const t = useTranslations(lang);
+
+const page = await getEntry('pages', '404');
+if (!page) throw new Error('Falta src/content/pages/404.json');
+const p = usePageText(page.data, '404', lang);
+
+/* Las etiquetas salen del diccionario de interfaz, que ya está traducido: la
+   404 no añade textos nuevos que mantener. */
+const LINKS: Array<{ page: PageId; label: 'common.nav.projects' | 'common.nav.opportunities' | 'common.nav.contact' }> = [
+  { page: 'projects', label: 'common.nav.projects' },
+  { page: 'opportunities', label: 'common.nav.opportunities' },
+  { page: 'contact', label: 'common.nav.contact' },
+];
+---
+
+<Base lang={lang} title={p('seo.title')} description={p('seo.description')}>
+  <section class="section section--center notfound" aria-labelledby="notfound-h">
+    <div class="wrap">
+      <span class="notfound__mark" aria-hidden="true">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 9c-3 1.6-4.6 4-4.6 6.6a4.6 4.6 0 009.2 0C16.6 13 15 10.6 12 9z"
+            fill="currentColor"></path>
+          <path
+            d="M12 9V3M12 5.4c-1.1 0-2.1.6-2.6 1.6M12 5.4c1.1 0 1.9.6 2.3 1.6"
+            stroke="currentColor"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"></path>
+        </svg>
+      </span>
+      <p class="notfound__code">{p('main.code')}</p>
+      <h1 id="notfound-h">{p('main.h1')}</h1>
+      <p class="notfound__text">{p('main.text')}</p>
+
+      <div class="hero__cta hero__cta--center hero__cta--spaced">
+        <a class="btn btn--moss" href={localePath(lang)}>{p('main.back')}</a>
+      </div>
+
+      <p class="notfound__explore">
+        <span>{p('main.explore')}</span>
+        {
+          LINKS.map((link) => (
+            <a href={localePath(lang, link.page)}>{t(link.label)}</a>
+          ))
+        }
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notfound {
+    padding-block: 110px;
+  }
+  .notfound__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: rgba(110, 139, 61, 0.14);
+    color: var(--moss-600);
+    margin-bottom: 24px;
+  }
+  .notfound__code {
+    font-family: var(--ff-hand);
+    font-size: 1.45rem;
+    color: var(--moss-600);
+    margin-bottom: 4px;
+  }
+  .notfound h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    color: var(--forest-950);
+  }
+  .notfound__text {
+    margin: 16px auto 0;
+    max-width: 46ch;
+    color: #4a4f40;
+    font-size: 1.08rem;
+  }
+  .notfound__explore {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    justify-content: center;
+    align-items: baseline;
+    color: #4a4f40;
+  }
+  .notfound__explore a {
+    color: var(--moss-600);
+    text-underline-offset: 3px;
+  }
+</style>

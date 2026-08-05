@@ -1,0 +1,15 @@
+{
+  "es": {
+    "seo": {
+      "title": "Página no encontrada · Back to the Roots",
+      "description": "La página que buscas no existe o ha cambiado de dirección."
+    },
+    "main": {
+      "code": "Error 404",
+      "h1": "Por aquí no crece nada",
+      "text": "La página que buscas no existe o ha cambiado de dirección. Puede que el enlace que has seguido se haya quedado antiguo, o que se colara una errata al escribirla.",
+      "back": "Volver al inicio",
+      "explore": "O sigue explorando:"
+    }
+  }
+}
