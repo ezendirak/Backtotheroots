@@ -600,8 +600,8 @@ que esa página lleva `noindex` y `canonical` a `/es/`, pero Google puede indexa
 no existen. Se arregla con un `src/pages/404.astro`: Astro lo compila a `dist/404.html` y
 Cloudflare pasa a devolver el código correcto. Hace falta que la ONG dé el texto.
 
-Al conectar el dominio hay **tres sitios** que apuntan todavía a `*.pages.dev`, y los tres
-se cambian el mismo día:
+Al conectar el dominio hay **cuatro sitios** que apuntan todavía a `*.pages.dev`, y los
+cuatro se cambian el mismo día:
 
 1. `site` en `astro.config.mjs` — de ahí salen los `canonical`, los `hreflang` y el sitemap.
 2. **«Decap CMS login URL» en la ficha del sitio en DecapBridge** — es a dónde devuelve
@@ -610,7 +610,11 @@ se cambian el mismo día:
    por la otra, el login rebota a la primera. No rompe nada, pero desconcierta. Nada más de
    DecapBridge depende del dominio: `identity_url` y `gateway_url` son suyos, y `repo` es
    de GitHub.
-3. Los `_redirects` de las URLs viejas, para comprobar que siguen resolviendo.
+3. **La dirección del panel escrita en `public/admin/guia.html`**, que la revisión 4 pasó
+   por alto. El enlace es relativo y funciona igual, pero el texto que lee la ONG decía
+   `backtotheroots.pages.dev/admin/`. Es la única dirección que se les pide memorizar.
+4. Los `_redirects` de las URLs viejas, para comprobar que siguen resolviendo. No hay nada
+   que editar: son rutas relativas, sin dominio.
 
 ### Lo que hoy se ve a medias, a propósito
 
