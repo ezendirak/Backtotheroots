@@ -1,12 +1,13 @@
 {
   "es": {
-    "name": "Saúl Nebot",
+    "name": "Saúl Nebot Maquina",
     "role": "Presidente · Cofundador",
     "bio": "Graduado en Ciencias Ambientales y especializado en Diseño Sostenible y Agroecología, cuenta con más de ocho años de experiencia en trabajo con jóvenes y educación ambiental. Ha colaborado con administraciones públicas en sensibilización sobre sostenibilidad, residuos cero y compostaje.",
     "photo": "../../assets/img/saul-nebot.jpg",
     "photoAlt": "Saúl Nebot, presidente y cofundador de Back to the Roots",
     "lead": true,
-    "order": 1
+    "order": 1,
+    "icon": "leaf"
   },
   "ca": {
     "role": "President · Cofundador",
