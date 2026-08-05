@@ -5,8 +5,8 @@ Este fichero es la fuente de verdad sobre decisiones tomadas. Si algo aquí choc
 una intuición tuya, gana este fichero; si crees que este fichero se equivoca, dilo
 antes de escribir código.
 
-> Revisión 4 — 4 de agosto de 2026. Cambios de la revisión 2 en §12, los de la 3 en §13,
-> los de la 4 en §15.
+> Revisión 5 — 5 de agosto de 2026. Cambios de la revisión 2 en §12, los de la 3 en §13,
+> los de la 4 en §15, los de la 5 en §16.
 
 ---
 
@@ -429,8 +429,8 @@ una URL pública.
    dominio propio (`backtotheroots.cat`) y baja del sitio antiguo en Netlify una vez el
    nuevo esté verificado en producción. Borrar `legacy/`.
 
-El dominio **no se conecta a Pages hasta la fase 5**. Hasta entonces se trabaja sobre la
-URL `*.pages.dev`.
+El dominio se conectó a Pages al abrir la fase 5, antes que el resto de la fase: el
+`.pages.dev` sirvió de URL de trabajo hasta ese momento. Ver §16.
 
 ---
 
@@ -463,14 +463,15 @@ bloquea el cierre de la fase 5.
 | Enlaces de los posts de Instagram + sus imágenes | Colección `gallery`. Hoy las 4 figuras apuntan al perfil, no a publicaciones, y reutilizan fotos de la propia web | Pendiente |
 | Biografía de Gisela Saló | Colección `team`. Hoy dice "Biografía en camino" | Pendiente |
 | PDF del PIF | `/colabora`. Hoy el botón "Descargar PIF" es un `mailto:`, no un PDF | Pendiente, a futuro |
-| Access key de Web3Forms | Formulario de contacto. Se genera en web3forms.com con el email de la ONG y llega por correo | Pendiente |
+| Correo de la ONG en el dominio nuevo | Sustituir `info@backtotheroots-ngo.com`, que es de un proveedor que desaparece y nunca se usó. Aparece en `config/site.json`, en el `EMAIL` hardcodeado de `Footer.astro` y en el mensaje de error de `pages/contact.json` en los 3 idiomas | Pendiente: Google for Nonprofits validando la entidad |
+| Access key de Web3Forms | Formulario de contacto. Se genera en web3forms.com con el email de la ONG y llega por correo. **Va después del buzón**, o la key queda atada a una dirección provisional | Pendiente |
 | Logos de las entidades colaboradoras | Sustituir los círculos de color del mapa | A futuro |
 | Traducción de los títulos y descripciones SEO | `pages/*.json`, campo `seo`. Solo existen en castellano; las versiones CA y EN caen al castellano y eso les resta posicionamiento | Pendiente |
 | Titular y botón de la página de gracias | Textos nuevos: "¡Gracias!" y "Volver al inicio", con sus versiones CA y EN. El cuerpo sí reutiliza el mensaje de confirmación que ya existía traducido | Pendiente de confirmar |
 | Texto de la página 404 | No existe todavía y hace falta para que las rutas inexistentes dejen de responder 200 (§14) | Pendiente |
 | Divergencias CA/EN respecto al castellano | Se irán listando aquí durante la fase 2 | Por detectar |
 
-Dominio `backtotheroots.cat`: **comprado**. Se conecta en la fase 5.
+Dominio `backtotheroots.cat`: **comprado y en producción** desde el 5 de agosto de 2026 (§16).
 
 ---
 
@@ -527,8 +528,9 @@ Escritos al cerrar la fase 1, con el esqueleto ya desplegado y verificado:
 
 ## 14. Dónde estamos (5 de agosto de 2026)
 
-**Fases 0 a 4 cerradas y verificadas en `backtotheroots.pages.dev`.** Cada push a `main`
-construye y publica solo.
+**Fases 0 a 4 cerradas y verificadas.** La fase 5 está en curso y el sitio ya se sirve en
+**`backtotheroots.cat`** (§16); el `.pages.dev` sigue vivo pero ya no es la dirección
+canónica. Cada push a `main` construye y publica solo.
 
 | Fase | Estado |
 |---|---|
@@ -537,7 +539,7 @@ construye y publica solo.
 | 2 · Contenido | Hecha. 8 colecciones, 39 ficheros, 240 de 242 claves migradas |
 | 3 · Componentes | Hecha. Mapa de Leaflet diferido y facade de vídeo |
 | 4 · CMS | Hecha. Panel, DecapBridge, ciclo de edición probado en producción y guía con capturas |
-| 5 · Pulido y corte | **Siguiente** |
+| 5 · Pulido y corte | **En curso.** Dominio propio conectado; falta lo demás |
 
 Las 2 claves sin migrar (`about.learn.toolkit.soon`, `collab.ecosys.cta`) son huérfanas:
 no las referenciaba ningún HTML de la web anterior.
@@ -590,8 +592,8 @@ Queda solo **invitar a las editoras** desde «Manage collaborators» en DecapBri
 
 ### Y después: fase 5
 
-Web3Forms (falta la access key), sitemap con `hreflang`, Lighthouse, dominio
-`backtotheroots.cat`, borrar `legacy/` y dar de baja Netlify.
+Web3Forms (falta la access key), sitemap con `hreflang`, Lighthouse, la página 404, borrar
+`legacy/` y dar de baja Netlify. El dominio ya está hecho (§16).
 
 **Falta una página 404** (detectado el 5 de agosto de 2026). Cloudflare Pages sirve
 `index.html` cuando no encuentra una ruta, y ese fichero es el redirector de `/` a `/es/`,
@@ -600,8 +602,9 @@ que esa página lleva `noindex` y `canonical` a `/es/`, pero Google puede indexa
 no existen. Se arregla con un `src/pages/404.astro`: Astro lo compila a `dist/404.html` y
 Cloudflare pasa a devolver el código correcto. Hace falta que la ONG dé el texto.
 
-Al conectar el dominio hay **cuatro sitios** que apuntan todavía a `*.pages.dev`, y los
-cuatro se cambian el mismo día:
+Al conectar el dominio había **cuatro sitios** apuntando a `*.pages.dev`. Los cuatro se
+cambiaron el mismo día, el 5 de agosto de 2026 (§16). Se dejan anotados porque son la
+lista de comprobación si algún día vuelve a moverse el dominio:
 
 1. `site` en `astro.config.mjs` — de ahí salen los `canonical`, los `hreflang` y el sitemap.
 2. **«Decap CMS login URL» en la ficha del sitio en DecapBridge** — es a dónde devuelve
@@ -666,5 +669,42 @@ anteriores:
 - **El widget de mapa del panel pide teselas a OpenStreetMap.** Es un tercero, pero solo en
   `/admin` y solo para quien edita. La regla de cero terceros de §4 es sobre la web
   pública, y ahí se mantiene intacta.
+
+---
+
+## 16. Cambios de la revisión 5 (5 de agosto de 2026)
+
+Escritos al abrir la fase 5, con el dominio propio ya sirviendo en producción.
+
+- **El dominio se conecta al principio de la fase 5, no al final.** §9 lo dejaba para el
+  cierre. Se adelantó por dos motivos: Google for Nonprofits comprueba que haya una web
+  viva en el dominio de la solicitud mientras valida la entidad, y cada día sirviendo el
+  sitio en `.cat` mientras los `canonical` apuntan a `.pages.dev` es un día de señales
+  contradictorias para Google.
+- **El DNS de `backtotheroots.cat` vive en Cloudflare**, no en el registrador. Es la
+  condición para que funcionen las Redirect Rules, y deja web y correo en un solo panel
+  —que es lo que va a tener delante la ONG—. El orden importaba: mover los nameservers
+  **después** de haber puesto registros en el registrador los habría borrado, empezando por
+  el TXT de verificación de Google y, más tarde, los MX.
+- **`www` redirige al apex con un 301; no sirve la web.** `www.backtotheroots.cat` existe
+  solo como CNAME proxied más una Redirect Rule **dinámica** que conserva la ruta
+  (`concat("https://backtotheroots.cat", http.request.uri.path)`). Con una estática, toda
+  URL con `www` caería en la portada. **No se añade a los Custom domains de Pages**: eso
+  serviría la misma web en dos direcciones y Google la vería duplicada. El apex es el
+  canónico.
+- **Cuarto sitio con el dominio escrito a mano: `public/admin/guia.html`.** La revisión 4
+  listaba tres. El enlace era relativo y seguía funcionando, pero el texto que lee la ONG
+  daba la dirección vieja, y es la única que se les pide memorizar.
+- **El correo de la ONG pasa a `backtotheroots.cat` con Google Workspace for Nonprofits**,
+  gratuito para entidades elegibles; la validación la hace un partner externo y tarda días
+  o semanas. `info@backtotheroots-ngo.com` era de un proveedor que desaparece y **nunca
+  llegó a usarse**: solo estaba publicitado en la web antigua. Hasta que exista el buzón no
+  se puede ni sustituir la dirección en el contenido ni generar la access key de Web3Forms
+  (§11).
+- **Al activar el correo hacen falta SPF, DKIM y DMARC**, y en Workspace **DKIM viene
+  desactivado de fábrica**. Un dominio recién estrenado no tiene reputación: sin eso, el
+  correo por el que llegan participantes acaba en spam. No es un extra.
+- **Cloudflare Email Routing no se activa nunca** en esta zona. El panel lo ofrece con
+  insistencia y **reescribe los MX**, así que rompería el correo de Google.
 
 ---
