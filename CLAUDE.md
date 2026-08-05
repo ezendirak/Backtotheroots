@@ -98,6 +98,7 @@ src/
   styles/           tokens.css  base.css
 public/
   admin/            index.html + config.yml   (Decap CMS)
+    guia.html       guía para la ONG, y guia/ con sus capturas
     decap/          el panel copiado desde npm — no se versiona
   _redirects
   assets/img/
@@ -466,6 +467,7 @@ bloquea el cierre de la fase 5.
 | Logos de las entidades colaboradoras | Sustituir los círculos de color del mapa | A futuro |
 | Traducción de los títulos y descripciones SEO | `pages/*.json`, campo `seo`. Solo existen en castellano; las versiones CA y EN caen al castellano y eso les resta posicionamiento | Pendiente |
 | Titular y botón de la página de gracias | Textos nuevos: "¡Gracias!" y "Volver al inicio", con sus versiones CA y EN. El cuerpo sí reutiliza el mensaje de confirmación que ya existía traducido | Pendiente de confirmar |
+| Texto de la página 404 | No existe todavía y hace falta para que las rutas inexistentes dejen de responder 200 (§14) | Pendiente |
 | Divergencias CA/EN respecto al castellano | Se irán listando aquí durante la fase 2 | Por detectar |
 
 Dominio `backtotheroots.cat`: **comprado**. Se conecta en la fase 5.
@@ -523,9 +525,9 @@ Escritos al cerrar la fase 1, con el esqueleto ya desplegado y verificado:
 
 ---
 
-## 14. Dónde estamos (4 de agosto de 2026)
+## 14. Dónde estamos (5 de agosto de 2026)
 
-**Fases 0 a 3 cerradas y verificadas en `backtotheroots.pages.dev`.** Cada push a `main`
+**Fases 0 a 4 cerradas y verificadas en `backtotheroots.pages.dev`.** Cada push a `main`
 construye y publica solo.
 
 | Fase | Estado |
@@ -534,8 +536,8 @@ construye y publica solo.
 | 1 · Esqueleto | Hecha. Tokens, layout, 7 rutas × 3 idiomas con slug traducido, `_redirects` |
 | 2 · Contenido | Hecha. 8 colecciones, 39 ficheros, 240 de 242 claves migradas |
 | 3 · Componentes | Hecha. Mapa de Leaflet diferido y facade de vídeo |
-| 4 · CMS | **Casi.** Panel escrito, probado y enlazado a DecapBridge; falta probar el login real e invitar |
-| 5 · Pulido y corte | Pendiente |
+| 4 · CMS | Hecha. Panel, DecapBridge, ciclo de edición probado en producción y guía con capturas |
+| 5 · Pulido y corte | **Siguiente** |
 
 Las 2 claves sin migrar (`about.learn.toolkit.soon`, `collab.ecosys.cta`) son huérfanas:
 no las referenciaba ningún HTML de la web anterior.
@@ -548,38 +550,43 @@ npm run dev      # localhost:4321
 npm run check    # tipos: tiene que dar 0 errores
 ```
 
-### Lo que falta de la fase 4
+### La fase 4, cerrada
 
-Hecho: `public/admin/index.html` y `config.yml` con las ocho colecciones, etiquetas y
-ayudas en castellano, widget de mapa, `i18n` nativo, y el contenido reestructurado al
-formato de Decap. Verificado en local con el backend `test-repo`: el panel carga sin
-errores de configuración, muestra las columnas ES/CA/EN y **lee correctamente los ficheros
-ya migrados**, con los campos no traducibles ocultos fuera del castellano.
+`public/admin/index.html` y `config.yml` con las ocho colecciones, etiquetas y ayudas en
+castellano, widget de mapa, `i18n` nativo, y el contenido reestructurado al formato de
+Decap.
 
-Hecha también el alta en DecapBridge: el sitio está creado y su `identity_url` ya está en
-`public/admin/config.yml`. El token de GitHub (contenido, lectura y escritura, solo este
-repositorio) lo guarda DecapBridge; **no está ni debe estar en el repositorio**. Si algún
-día caduca, el panel deja de guardar y hay que generar otro y actualizarlo allí.
+El sitio está dado de alta en DecapBridge y su `identity_url` está en `config.yml`. **No es
+un secreto**: viaja en ese fichero, que se sirve al navegador de cualquiera. El secreto es
+el token de GitHub (contenido, lectura y escritura, solo este repositorio), y ese lo guarda
+DecapBridge. Si algún día caduca, el panel deja de guardar y hay que generar otro y
+actualizarlo allí.
 
-**El ciclo entero está probado en producción** (5 de agosto de 2026): entrar, cambiar un
-texto, guardar y ver el cambio publicado. Los commits del panel confirman que escribe la
-forma de §7 y que **respeta la ruta relativa de las imágenes**, que era el riesgo serio:
-si la reescribiera, Astro dejaría de optimizarlas. Solo añade los valores por defecto que
-antes ponía Zod en silencio (`icon`, por ejemplo), lo cual es inofensivo.
+**El ciclo entero está probado en producción**: entrar, cambiar un texto, guardar y ver el
+cambio publicado. Los commits que escribe el panel confirman que usa la forma de §7 y que
+**respeta la ruta relativa de las imágenes**, que era el riesgo serio: si la reescribiera,
+Astro dejaría de optimizarlas sin que se notase hasta el siguiente build. Solo añade los
+valores por defecto que antes ponía Zod en silencio (`icon`, por ejemplo), lo cual es
+inofensivo.
 
-Queda:
+La **guía para la ONG** está en `public/admin/guia.html`, con sus cinco capturas en
+`public/admin/guia/`. Vive junto al panel y no pide iniciar sesión. Se eligió esa ubicación
+en vez de un PDF o un fichero del repo por §2: quien mantiene el contenido no debería tener
+que pisar GitHub ni rescatar un adjunto de hace un año. No se enlaza desde dentro del panel
+porque esta versión de Decap no tiene API para añadir enlaces a su menú, así que la
+dirección va en el correo de invitación.
 
-1. Invitar a las editoras desde «Manage collaborators» en DecapBridge.
-2. Las capturas de la guía. El texto ya está escrito en `public/admin/guia.html`, con cinco
-   huecos marcados (`.captura`) que se sustituyen por `<img>` cuando lleguen las imágenes.
-   No las puede hacer el asistente: exigen estar dentro del panel con las credenciales de
-   la ONG.
+Dos cosas que se ven en el panel y no son fallos nuestros:
 
-La guía vive en `/admin/guia.html`, junto al panel y sin necesidad de entrar. Se eligió esa
-ubicación en vez de un PDF o un fichero del repo por §2: quien mantiene el contenido no
-debería tener que pisar GitHub ni buscar un adjunto de hace un año. No se enlaza desde
-dentro del panel porque esta versión de Decap no tiene API para añadir enlaces a su menú;
-la dirección va en el correo de invitación.
+- Los rótulos **«Writing in ES»** y **«Fill in from another locale»** salen en inglés porque
+  el fichero de castellano de `decap-cms-locales` no incluye esas frases y cae al inglés.
+  Se decidió dejarlo: el equipo lee inglés y arreglarlo obliga a arrancar Decap en modo
+  manual. La guía los nombra tal y como se ven en pantalla.
+- El panel muestra los campos no traducibles también en las columnas de catalán e inglés,
+  pero **ocultos** (`visibility: hidden`), así que dejan un hueco en blanco. Es cosa de
+  Decap, no se pierde ni se escribe nada.
+
+Queda solo **invitar a las editoras** desde «Manage collaborators» en DecapBridge.
 
 ### Y después: fase 5
 
