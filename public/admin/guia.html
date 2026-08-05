@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Guía para editar la web · Back to the Roots</title>
+    <link rel="icon" href="/assets/img/logo-icon.png" />
+    <style>
+      /* Página autocontenida a propósito: vive fuera de Astro, en public/, para
+         que siga estando ahí aunque el sitio se rehaga. Colores tomados de
+         src/styles/tokens.css. */
+      :root {
+        --forest-900: #1e2b22;
+        --moss-500: #6e8b3d;
+        --moss-600: #5e7a34;
+        --sprout: #b7ce55;
+        --clay: #c0743e;
+        --clay-deep: #a65c2e;
+        --oat-50: #faf7ef;
+        --oat-100: #f4efe2;
+        --oat-200: #eae1ce;
+        --ink: #20261d;
+        --muted: #6c7162;
+        --line: rgba(32, 38, 29, 0.14);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--oat-50);
+        color: var(--ink);
+        font: 400 17px/1.65 system-ui, -apple-system, 'Segoe UI', sans-serif;
+      }
+      .wrap {
+        max-width: 46rem;
+        margin: 0 auto;
+        padding: 0 1.25rem 5rem;
+      }
+      header.top {
+        background: var(--forest-900);
+        color: var(--oat-100);
+        padding: 2.5rem 0 2.75rem;
+        margin-bottom: 2.5rem;
+      }
+      header.top .wrap {
+        padding-bottom: 0;
+      }
+      header.top h1 {
+        margin: 0 0 0.4rem;
+        font-size: clamp(1.9rem, 5vw, 2.6rem);
+        line-height: 1.15;
+      }
+      header.top p {
+        margin: 0;
+        color: #c9d2bf;
+      }
+      h2 {
+        font-size: 1.5rem;
+        margin: 3rem 0 0.75rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--line);
+      }
+      h2:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+        margin-top: 1rem;
+      }
+      h3 {
+        font-size: 1.15rem;
+        margin: 2rem 0 0.5rem;
+      }
+      p,
+      ul,
+      ol {
+        margin: 0 0 1rem;
+      }
+      ul,
+      ol {
+        padding-left: 1.35rem;
+      }
+      li {
+        margin-bottom: 0.4rem;
+      }
+      a {
+        color: var(--moss-600);
+      }
+      code {
+        background: var(--oat-200);
+        padding: 0.1em 0.4em;
+        border-radius: 5px;
+        font-size: 0.9em;
+      }
+      /* Recorrido de una colección a su sitio en la web. */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.25rem;
+        font-size: 0.95rem;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.6rem 0.75rem;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        background: var(--oat-100);
+        font-weight: 600;
+      }
+      .tabla-scroll {
+        overflow-x: auto;
+      }
+      /* Avisos. El de ojo es informativo; el de cuidado, para lo que rompe cosas. */
+      .nota,
+      .cuidado {
+        border-left: 4px solid var(--moss-500);
+        background: var(--oat-100);
+        padding: 0.9rem 1.1rem;
+        border-radius: 0 10px 10px 0;
+        margin: 1.25rem 0;
+      }
+      .cuidado {
+        border-left-color: var(--clay);
+        background: #f9ece2;
+      }
+      .nota strong,
+      .cuidado strong {
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+      .cuidado strong {
+        color: var(--clay-deep);
+      }
+      /* Hueco de captura. Se sustituye por <img> cuando lleguen las imágenes. */
+      .captura {
+        border: 2px dashed var(--oat-200);
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem 1.25rem;
+        margin: 1.25rem 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      .captura b {
+        color: var(--ink);
+      }
+      figure {
+        margin: 1.25rem 0;
+      }
+      figure img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+      }
+      figcaption {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-top: 0.5rem;
+      }
+      .indice {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1.25rem 1.5rem;
+      }
+      .indice ol {
+        margin-bottom: 0;
+      }
+      footer.pie {
+        margin-top: 3.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--line);
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      @media print {
+        header.top {
+          background: #fff;
+          color: var(--ink);
+        }
+        header.top p {
+          color: var(--muted);
+        }
+        .captura {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap">
+        <h1>Cómo editar la web</h1>
+        <p>Guía para el equipo de Back to the Roots. No hace falta saber programar.</p>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="indice">
+        <strong>En esta guía</strong>
+        <ol>
+          <li><a href="#entrar">Entrar en el panel</a></li>
+          <li><a href="#donde">Dónde está cada cosa</a></li>
+          <li><a href="#cambiar">Cambiar un texto</a></li>
+          <li><a href="#idiomas">Los tres idiomas</a></li>
+          <li><a href="#anadir">Añadir cosas nuevas</a></li>
+          <li><a href="#guardar">Qué pasa al guardar</a></li>
+          <li><a href="#problemas">Si algo va mal</a></li>
+        </ol>
+      </div>
+
+      <h2 id="entrar">1. Entrar en el panel</h2>
+
+      <p>
+        El panel está en
+        <a href="/admin/">backtotheroots.pages.dev/admin/</a>. Guárdalo en favoritos: es la
+        única dirección que necesitas.
+      </p>
+      <p>
+        Se entra con tu <strong>correo electrónico y una contraseña</strong>. La recibes por
+        invitación: te llega un email con un enlace para elegir tu contraseña la primera vez.
+      </p>
+
+      <div class="captura">
+        <b>Captura pendiente:</b> la pantalla de acceso, con los campos de email y contraseña.
+      </div>
+
+      <div class="nota">
+        <strong>¿Has olvidado la contraseña?</strong>
+        Se recupera sola desde la pantalla de acceso, sin tener que pedírselo a nadie.
+      </div>
+
+      <h2 id="donde">2. Dónde está cada cosa</h2>
+
+      <p>
+        A la izquierda hay ocho apartados. Esta tabla es la parte más útil de la guía: dice
+        qué apartado toca según lo que quieras cambiar.
+      </p>
+
+      <div class="tabla-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Si quieres cambiar…</th>
+              <th>Ve a…</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Un titular, una entradilla o el texto de un botón</td>
+              <td><strong>Textos de las páginas</strong>, y dentro la página que toque</td>
+            </tr>
+            <tr>
+              <td>Un proyecto, su vídeo o sus cifras</td>
+              <td><strong>Proyectos</strong></td>
+            </tr>
+            <tr>
+              <td>Una entidad del mapa de «Colabora»</td>
+              <td><strong>Colaboradores</strong></td>
+            </tr>
+            <tr>
+              <td>La convocatoria abierta: fechas, cartel, inscripción</td>
+              <td><strong>Oportunidades</strong></td>
+            </tr>
+            <tr>
+              <td>La lista de proyectos pasados</td>
+              <td><strong>Convocatorias anteriores</strong></td>
+            </tr>
+            <tr>
+              <td>Quién sale en el equipo, su cargo o su biografía</td>
+              <td><strong>Equipo</strong></td>
+            </tr>
+            <tr>
+              <td>Las fotos que enlazan a Instagram</td>
+              <td><strong>Galería de Instagram</strong></td>
+            </tr>
+            <tr>
+              <td>El correo de contacto o los enlaces de redes</td>
+              <td><strong>Ajustes</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="captura">
+        <b>Captura pendiente:</b> el panel recién abierto, con la lista de los ocho apartados
+        a la izquierda.
+      </div>
+
+      <div class="nota">
+        <strong>La duda más habitual</strong>
+        El titular de la portada <em>no</em> está en «Proyectos» ni en «Ajustes»: está en
+        <strong>Textos de las páginas → Inicio → Cabecera</strong>. Los apartados de fichas
+        (Proyectos, Equipo, Colaboradores…) guardan cosas que se repiten; los textos sueltos
+        de cada página están todos juntos en «Textos de las páginas».
+      </div>
+
+      <h2 id="cambiar">3. Cambiar un texto</h2>
+
+      <ol>
+        <li>Entra en el apartado y pulsa sobre la ficha o la página que quieras.</li>
+        <li>Cambia lo que necesites. Debajo de cada casilla hay una explicación de qué es y
+          dónde se ve en la web.</li>
+        <li>Arriba a la derecha, pulsa <strong>Publicar → Publicar ahora</strong>.</li>
+      </ol>
+
+      <div class="captura">
+        <b>Captura pendiente:</b> una ficha abierta, con el botón «Publicar» arriba a la
+        derecha bien visible.
+      </div>
+
+      <h2 id="idiomas">4. Los tres idiomas</h2>
+
+      <p>
+        La web está en castellano, catalán e inglés. Al abrir una ficha verás
+        <strong>dos columnas</strong>, y arriba de cada una un selector para elegir qué idioma
+        estás escribiendo.
+      </p>
+      <p>
+        El <strong>castellano manda</strong>. Es el idioma completo: ahí están todos los
+        campos. En catalán e inglés solo aparecen los que se traducen — el resto (una fecha,
+        un color, el ID de un vídeo) se rellenan una sola vez en castellano y valen para los
+        tres.
+      </p>
+
+      <div class="nota">
+        <strong>Puedes dejar traducciones en blanco</strong>
+        Si el catalán está vacío, esa frase sale en castellano. No se queda un hueco ni se
+        rompe nada. Puedes traducir poco a poco.
+      </div>
+
+      <p>
+        Para no reescribirlo todo desde cero, usa el botón
+        <strong>«Fill in from another locale»</strong> («rellenar desde otro idioma») que hay
+        sobre cada columna: copia lo del idioma que elijas y ya solo tienes que traducirlo
+        encima. Es especialmente útil en las listas, como las cifras de un proyecto.
+      </p>
+
+      <div class="captura">
+        <b>Captura pendiente:</b> una ficha con las dos columnas de idioma visibles, señalando
+        el selector de idioma y el botón de copiar de otro idioma.
+      </div>
+
+      <h2 id="anadir">5. Añadir cosas nuevas</h2>
+
+      <h3>Un colaborador en el mapa</h3>
+      <p>
+        En <strong>Colaboradores</strong>, pulsa «＋ Colaborador». El único campo distinto es
+        <strong>«Punto en el mapa»</strong>: mueve el mapa hasta la sede de la entidad y haz
+        clic encima para colocar el punto. No hay que escribir coordenadas.
+      </p>
+      <p>
+        Con eso basta: la entidad aparece sola en el mapa, en la lista de botones y en la
+        ficha lateral, en los tres idiomas.
+      </p>
+
+      <div class="captura">
+        <b>Captura pendiente:</b> el campo «Punto en el mapa» con un punto ya colocado.
+      </div>
+
+      <h3>Un proyecto</h3>
+      <p>
+        En <strong>Proyectos</strong>. El campo que más se atasca es el
+        <strong>ID del vídeo de YouTube</strong>: no es la dirección entera, solo el trozo que
+        va después de <code>v=</code>. En
+        <code>youtube.com/watch?v=VCJAQsBgVBs</code> el ID es <code>VCJAQsBgVBs</code>.
+      </p>
+      <p>
+        Marca <strong>«Sale en la portada»</strong> si además quieres que aparezca en la
+        página de inicio.
+      </p>
+
+      <h3>Una foto en la galería</h3>
+      <p>
+        En <strong>Galería de Instagram</strong>: subes la foto desde tu ordenador y pegas la
+        dirección de la publicación.
+      </p>
+
+      <div class="cuidado">
+        <strong>La foto se sube, no se enlaza</strong>
+        Sube el archivo desde tu ordenador. No pegues una dirección de imagen copiada de
+        Instagram: esas direcciones caducan a los pocos días y la galería se quedaría en
+        blanco. Lo que sí se pega es el enlace de la <em>publicación</em>, del tipo
+        <code>instagram.com/p/XXXXXXX/</code>.
+      </div>
+
+      <h2 id="guardar">6. Qué pasa al guardar</h2>
+
+      <p>
+        Al pulsar «Publicar ahora», el cambio se guarda y la web se reconstruye sola.
+        <strong>Tarda un par de minutos</strong> en verse. Si recargas al instante y sigue
+        igual, espera un poco y vuelve a mirar: es normal.
+      </p>
+      <p>
+        No hay pantalla de revisión ni nadie que tenga que aprobar nada. Lo que publicas, se
+        publica.
+      </p>
+
+      <div class="nota">
+        <strong>Nada se pierde</strong>
+        Cada cambio queda guardado con su fecha y quién lo hizo, y siempre se puede volver
+        atrás. Si te equivocas, no has roto nada irreversible.
+      </div>
+
+      <h2 id="problemas">7. Si algo va mal</h2>
+
+      <h3>No me deja publicar</h3>
+      <p>
+        Falta algo obligatorio. El panel marca en rojo la casilla que falla y explica qué
+        espera. Rellénala y vuelve a publicar. Que avise antes es a propósito: es preferible
+        a publicar una página a medias.
+      </p>
+
+      <h3>He publicado y la web no cambia</h3>
+      <p>
+        Dale dos o tres minutos y recarga. Si pasados diez minutos sigue igual, avisa a quien
+        lleve la parte técnica: puede ser que el permiso de guardado haya caducado.
+      </p>
+
+      <h3>He borrado algo sin querer</h3>
+      <p>
+        Se puede recuperar. Avisa y dile qué era y más o menos cuándo: queda registrado.
+      </p>
+
+      <footer class="pie">
+        Back to the Roots · Guía del panel de edición. Si algo de esta guía no coincide con lo
+        que ves en pantalla, gana lo que ves en pantalla — y avisa para corregirla.
+      </footer>
+    </div>
+  </body>
+</html>

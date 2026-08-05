@@ -570,7 +570,16 @@ antes ponía Zod en silencio (`icon`, por ejemplo), lo cual es inofensivo.
 Queda:
 
 1. Invitar a las editoras desde «Manage collaborators» en DecapBridge.
-2. Guía corta en castellano con capturas.
+2. Las capturas de la guía. El texto ya está escrito en `public/admin/guia.html`, con cinco
+   huecos marcados (`.captura`) que se sustituyen por `<img>` cuando lleguen las imágenes.
+   No las puede hacer el asistente: exigen estar dentro del panel con las credenciales de
+   la ONG.
+
+La guía vive en `/admin/guia.html`, junto al panel y sin necesidad de entrar. Se eligió esa
+ubicación en vez de un PDF o un fichero del repo por §2: quien mantiene el contenido no
+debería tener que pisar GitHub ni buscar un adjunto de hace un año. No se enlaza desde
+dentro del panel porque esta versión de Decap no tiene API para añadir enlaces a su menú;
+la dirección va en el correo de invitación.
 
 ### Y después: fase 5
 
