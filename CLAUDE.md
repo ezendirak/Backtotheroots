@@ -561,12 +561,16 @@ Hecha también el alta en DecapBridge: el sitio está creado y su `identity_url`
 repositorio) lo guarda DecapBridge; **no está ni debe estar en el repositorio**. Si algún
 día caduca, el panel deja de guardar y hay que generar otro y actualizarlo allí.
 
-Lo que queda **necesita la URL pública**, no se puede hacer en local:
+**El ciclo entero está probado en producción** (5 de agosto de 2026): entrar, cambiar un
+texto, guardar y ver el cambio publicado. Los commits del panel confirman que escribe la
+forma de §7 y que **respeta la ruta relativa de las imágenes**, que era el riesgo serio:
+si la reescribiera, Astro dejaría de optimizarlas. Solo añade los valores por defecto que
+antes ponía Zod en silencio (`icon`, por ejemplo), lo cual es inofensivo.
 
-1. Probar el login real en `backtotheroots.pages.dev/admin/`.
-2. Invitar a una editora y comprobar el ciclo entero: entrar, cambiar un texto, guardar,
-   ver el cambio publicado.
-3. Guía corta en castellano con capturas.
+Queda:
+
+1. Invitar a las editoras desde «Manage collaborators» en DecapBridge.
+2. Guía corta en castellano con capturas.
 
 ### Y después: fase 5
 
