@@ -1,15 +1,15 @@
 {
   "es": {
     "name": "Genís Escribano",
-    "role": "Sonido · Música",
-    "bio": "Ingeniero de sonido y productor musical con más de 8 años coordinando el sonido de eventos en Barcelona. Formador en técnicas musicales y dibujo.",
+    "role": "Sonido · Música · Dibujo",
+    "bio": "Nuestro técnico de sonido y apasionado de la música y el dibujo. Como formador, acompaña la exploración artística y musical, creando espacios donde experimentar, escuchar y expresarse a través del sonido.",
     "lead": false,
     "order": 3,
     "icon": "music"
   },
   "ca": {
-    "role": "So · Música",
-    "bio": "Enginyer de so i productor musical amb més de 8 anys coordinant el so d'esdeveniments a Barcelona. Formador en tècniques musicals i dibuix."
+    "role": "So · Música · Dibuix",
+    "bio": "El nostre tècnic de so, apassionat per la música i el dibuix. Com a formador, acompanya l’exploració artística i musical, creant espais on experimentar, escoltar i expressar-se a través del so.\n\n"
   },
   "en": {
     "role": "Sound · Music",
