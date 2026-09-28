@@ -1,17 +1,17 @@
 {
   "es": {
     "name": "Saúl Nebot",
-    "role": "Gestoy de proyectos",
-    "bio": "Graduado en Ciencias Ambientales y especializado en Diseño Sostenible y Agroecología.",
+    "role": "Medi ambient · Creació artística",
+    "bio": "Graduado en Ciencias Ambientales y especializado en Diseño Sostenible y Agroecología. Le apasiona crear espacios donde encontrarnos, experimentar y conectar a través de la comunicación audiovisual y la expresión artística.",
     "photo": "",
     "photoAlt": "",
-    "lead": true,
+    "lead": false,
     "order": 1,
     "icon": "leaf"
   },
   "ca": {
-    "role": "Gestor de projectes",
-    "bio": "Graduat en Ciències Ambientals i especialitzat en Disseny Sostenible i Agroecologia, compta amb més de vuit anys d'experiència en treball amb joves i educació ambiental. Ha col·laborat amb administracions públiques en sensibilització sobre sostenibilitat, residus zero i compostatge.",
+    "role": "Medi ambient · Creació artística",
+    "bio": "Graduat en Ciències Ambientals i especialitzat en Disseny Sostenible i Agroecologia. Li apassiona crear espais on trobar-nos, experimentar i connectar a través de la comunicació audiovisual i l’expressió artística.",
     "photoAlt": ""
   },
   "en": {
