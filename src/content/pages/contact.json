@@ -18,13 +18,13 @@
       "messagePlaceholder": "Cuéntanos tu idea…",
       "send": "Enviar mensaje",
       "done": "¡Gracias! Hemos recibido tu mensaje. Te responderemos pronto.",
-      "error": "Ups, algo ha fallado. Escríbenos directamente a info@backtotheroots-ngo.com."
+      "error": "Ups, algo ha fallado. Escríbenos directamente a info@backtotheroots.cat"
     },
     "faq": {
       "h2": "¿Buscabas otra cosa?",
       "btn1": "Oportunidades abiertas",
       "btn2": "Cómo colaborar",
-      "btn3": "Sobre nosotras"
+      "btn3": "¿Quién somos?"
     }
   },
   "ca": {
@@ -42,13 +42,13 @@
       "messagePlaceholder": "Explica'ns la teva idea…",
       "send": "Enviar missatge",
       "done": "Gràcies! Hem rebut el teu missatge. Et respondrem aviat.",
-      "error": "Ui, alguna cosa ha fallat. Escriu-nos directament a info@backtotheroots-ngo.com."
+      "error": "Ui, alguna cosa ha fallat. Escriu-nos directament a info@backtotheroots.cat"
     },
     "faq": {
       "h2": "Buscaves una altra cosa?",
       "btn1": "Oportunitats obertes",
       "btn2": "Com col·laborar",
-      "btn3": "Sobre nosaltres"
+      "btn3": "Qui som?"
     }
   },
   "en": {
