@@ -1,0 +1,32 @@
+{
+  "es": {
+    "meta": "TC Eat your Waste Febrero 2024",
+    "theme": [
+      "nature"
+    ],
+    "featured": true,
+    "order": 5,
+    "title": "Fermentando vegetales -TC Eat your waste",
+    "tag": "Sostenibilidad, aprovechamiento alimentario",
+    "description": "Taller de fermentación durante el curso formativo \"Eat your waste\". Un curso de formación que capacitó a los jóvenes para cambiar su relación con los residuos, reduciendo sus residuos y reciclando la materia orgánica.",
+    "youtubeId": "F-rt-7oZe0k",
+    "stats": [
+      {
+        "value": "+25",
+        "label": "Verduras fermentadas"
+      }
+    ]
+  },
+  "ca": {
+    "tag": "Sostenibilitat, Aprofitametn alimentari",
+    "title": "Fermentant vegetals - TC Eat your waste",
+    "description": "Taller de fermentació durant el curs formatiu \"Eat your waste\". Un curs de formació que va capacitar els joves per canviar la seva relació amb els residus, reduint-ne els residus i reciclant la matèria orgànica.",
+    "stats": [
+      {
+        "value": "+25 ",
+        "label": "Verdures fermentades"
+      }
+    ]
+  },
+  "en": {}
+}
