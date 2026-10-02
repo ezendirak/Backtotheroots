@@ -1,15 +1,19 @@
 {
   "es": {
-    "title": "Curso formativo “Reaction”",
+    "meta": "Pujalt · 2023",
+    "summary": "24 participantes de 6 nacionalidades experimentaron con improvisación teatral e inclusión.",
     "theme": [
       "art",
       "youth"
     ],
-    "tag": "Inclusión",
-    "youtubeId": "hMfMesNzRuw",
-    "meta": "Pujalt · 2023",
+    "featured": true,
+    "order": 5,
+    "date": "2023",
+    "homeOrder": "",
+    "title": "Curso formativo “Reaction”",
+    "tag": "Inclusió, teatro",
     "description": "24 participantes de 6 nacionalidades experimentaron con improvisación teatral y expresión artística para la inclusión y la conexión.",
-    "summary": "24 participantes de 6 nacionalidades experimentaron con improvisación teatral e inclusión.",
+    "youtubeId": "hMfMesNzRuw",
     "stats": [
       {
         "value": "24",
@@ -19,15 +23,11 @@
         "value": "6",
         "label": "nacionalidades"
       }
-    ],
-    "date": "2023",
-    "featured": true,
-    "order": 4,
-    "homeOrder": 3
+    ]
   },
   "ca": {
     "title": "Curs formatiu «Reaction»",
-    "tag": "Inclusió",
+    "tag": "Inclusió, Teatre",
     "description": "24 participants de 6 nacionalitats van experimentar amb improvisació teatral i expressió artística per a la inclusió i la connexió.",
     "summary": "24 participants de 6 nacionalitats van experimentar amb improvisació teatral i inclusió.",
     "stats": [
