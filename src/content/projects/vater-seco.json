@@ -1,25 +1,25 @@
 {
   "es": {
-    "title": "Taller de váter seco",
+    "meta": "Eat your waste · 2024",
+    "summary": "Un curso formativo que empoderó a 18 jóvenes a cambiar su relación con los residuos.",
     "theme": [
       "nature",
       "youth"
     ],
+    "featured": true,
+    "order": 3,
+    "date": "2024",
+    "homeOrder": 3,
+    "title": "Taller de váter seco",
     "tag": "Sostenibilidad",
-    "youtubeId": "ZRcMsRyeqYo",
-    "meta": "Eat your waste · 2024",
     "description": "Un curso formativo que empoderó a jóvenes a cambiar su relación con los residuos, reduciendo desechos y reciclando materia orgánica.",
-    "summary": "Un curso formativo que empoderó a 18 jóvenes a cambiar su relación con los residuos.",
+    "youtubeId": "ZRcMsRyeqYo",
     "stats": [
       {
         "value": "18",
         "label": "jóvenes"
       }
-    ],
-    "date": "2024",
-    "featured": true,
-    "order": 2,
-    "homeOrder": 2
+    ]
   },
   "ca": {
     "title": "Taller de vàter sec",
