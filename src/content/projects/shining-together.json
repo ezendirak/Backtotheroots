@@ -1,25 +1,25 @@
 {
   "es": {
-    "title": "Videoclip “Shining Together”",
+    "meta": "EFFIC · Ribes de Freser 2024",
+    "summary": "30 jóvenes exploraron música, dibujo y teatro improvisado para expresar sus ideas y emociones.",
     "theme": [
       "art",
       "youth"
     ],
+    "featured": true,
+    "order": 4,
+    "date": "2024",
+    "homeOrder": 1,
+    "title": "Videoclip “Shining Together”",
     "tag": "Arte",
-    "youtubeId": "VCJAQsBgVBs",
-    "meta": "EFFIC · Ribes de Freser 2024",
     "description": "Intercambio juvenil donde 30 jóvenes exploraron música, dibujo y teatro improvisado para expresar sus ideas y emociones.",
-    "summary": "30 jóvenes exploraron música, dibujo y teatro improvisado para expresar sus ideas y emociones.",
+    "youtubeId": "VCJAQsBgVBs",
     "stats": [
       {
         "value": "30",
         "label": "participantes"
       }
-    ],
-    "date": "2024",
-    "featured": true,
-    "order": 3,
-    "homeOrder": 1
+    ]
   },
   "ca": {
     "title": "Videoclip «Shining Together»",
