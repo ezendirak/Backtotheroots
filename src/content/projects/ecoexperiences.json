@@ -1,14 +1,16 @@
 {
   "es": {
-    "title": "Ecoexperiences",
+    "meta": "Discover EU Inclusion",
     "theme": [
       "youth",
       "nature"
     ],
-    "tag": "Naturaleza",
-    "youtubeId": "RY4lQUcJbK4",
-    "meta": "Discover EU Inclusion",
+    "featured": false,
+    "order": 1,
+    "title": "Ecoexperiences",
+    "tag": "Naturaleza, Ecoaldeas",
     "description": "Acompañamiento a jóvenes de 18 años en un viaje en interrail descubriendo ecoaldeas y comunidades sostenibles de Europa.",
+    "youtubeId": "RY4lQUcJbK4",
     "stats": [
       {
         "value": "4",
@@ -18,13 +20,11 @@
         "value": "4",
         "label": "comunidades visitadas"
       }
-    ],
-    "featured": false,
-    "order": 1
+    ]
   },
   "ca": {
     "title": "Ecoexperiences",
-    "tag": "Natura",
+    "tag": "Natura, Eco-viles",
     "description": "Acompanyament a joves de 18 anys en un viatge en interrail descobrint ecoaldees i comunitats sostenibles d'Europa.",
     "stats": [
       {
