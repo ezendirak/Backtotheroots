@@ -1,6 +1,6 @@
 {
   "es": {
-    "featured": false,
+    "featured": true,
     "order": 99,
     "theme": [
       "art"
@@ -8,13 +8,13 @@
     "tag": "Arte, Hip hop ",
     "youtubeId": "UDVddqb1bFo",
     "meta": "Hip hop State of Mind · La Cremallera, Ribes de Freser, Abril 2026",
-    "title": "Hip hop state of Mind - Intercambio juvenil Erasmus +",
-    "description": "Del 19 al 28 de abril de 2026, La Cremallera, en Ribes de Freser acogió el intercambio juvenil Erasmus+ Hip Hop State of Mind, reuniendo a jóvenes de Alemania, Bélgica, Francia, Italia, Polonia y España.\n\nDurante diez días compartimos talleres, música, danza, arte urbano, actividades interculturales y muchos momentos de convivencia, utilizando la cultura Hip Hop como herramienta de expresión, creatividad, inclusión y conexión entre jóvenes de distintos países"
+    "title": "Intercambio juvenil - Hip hop state of Mind",
+    "description": "Del 19 al 28 de abril de 2026, La Cremallera, en Ribes de Freser acogió un intercambio dónde compartimos talleres, música, danza, arte urbano, actividades interculturales y muchos momentos de convivencia, utilizando la cultura Hip Hop como herramienta de expresión, creatividad, inclusión y conexión entre jóvenes de distintos países"
   },
   "ca": {
-    "title": "Hip hop state of Mind - Intercanvi juvenil Erasmus +",
+    "title": "Intercanvi juvenil - Hip hop state of Mind",
     "tag": "Arte, Hip hop",
-    "description": "Del 19 al 28 d’abril de 2026, La Cremallera, a Ribes de Freser va acollir l’intercanvi juvenil Erasmus+ Hip Hop State of Mind, reunint joves d’Alemanya, Bèlgica, França, Itàlia, Polònia i Espanya.\n\nDurant deu dies vam compartir tallers, música, dansa, art urbà, activitats interculturals i molts moments de convivència, utilitzant la cultura Hip Hop com a eina d’expressió, creativitat, inclusió i connexió entre joves de diferents països"
+    "description": "Del 19 al 28 d’abril de 2026, La Cremallera, a Ribes de Freser va acollir l’intercanvi juvenil on vam compartir tallers, música, dansa, art urbà, activitats interculturals i molts moments de convivència, utilitzant la cultura Hip Hop com a eina d’expressió, creativitat, inclusió i connexió entre joves de diferents països"
   },
   "en": {}
 }
