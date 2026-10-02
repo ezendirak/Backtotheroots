@@ -10,20 +10,20 @@
       "p": "El micelio une, nutre y hace crecer todo lo que toca. Nosotros creemos en esa misma fuerza: personas conectadas que generan oportunidades. Seas quien seas, siempre hay una manera de formar parte de esta red y hacerla crecer."
     },
     "help": {
+      "c3p": "Suma tu tiempo y talento a nuestras actividades de educación ambiental y expresión artística.",
+      "c2p": "¿Necesitas una entidad socia para tu proyecto? Descarga nuestro último PIF (Partner Identification Form) y hablemos.",
+      "c1p": "Participa en un intercambio o formación y vive una experiencia internacional en plena naturaleza.",
+      "c4t": "Difunde",
+      "c3t": "Voluntariado",
+      "c2t": "Entidades",
+      "c1t": "Jóvenes",
       "eyebrow": "Formas de participar",
       "h2": "Elige tu raíz",
-      "c1t": "Jóvenes",
-      "c1p": "Participa en un intercambio o formación y vive una experiencia internacional en plena naturaleza.",
-      "c1a": "Ver oportunidades",
-      "c2t": "Entidades",
-      "c2p": "¿Necesitas una entidad socia para tu proyecto? Descarga nuestro último PIF (Partner Identification Form) y hablemos.",
-      "c2a": "Descargar PIF",
-      "c3t": "Voluntariado",
-      "c3p": "Suma tu tiempo y talento a nuestras actividades de educación ambiental y expresión artística.",
+      "c4a": "Síguenos",
       "c3a": "Quiero ayudar",
-      "c4t": "Difunde",
-      "c4p": "Comparte nuestros proyectos en redes sociales y ayúdanos a llegar a más jóvenes y comunidades.",
-      "c4a": "Síguenos"
+      "c2a": "Descargar PIF",
+      "c1a": "Ver oportunidades",
+      "c4p": "Comparte nuestros proyectos en redes sociales y ayúdanos a llegar a más jóvenes y comunidades."
     },
     "map": {
       "eyebrow": "Colaboraciones",
@@ -37,9 +37,9 @@
       "cta": "Escríbenos →"
     },
     "ecosystems": {
-      "eyebrow": "Proyecto europeo",
+      "eyebrow": "Expandiendo la red",
       "h2": "ECOSystems: creciendo en comunidad",
-      "p1": "Formamos parte de ECOSystems, una iniciativa europea que une jóvenes, comunidades y organizaciones para promover la sostenibilidad, la inclusión y la educación ambiental.",
+      "p1": "Formamos parte de ECOSystems, una iniciativa europea que une jóvenes, comunidades y organizaciones para promover la sostenibilidad, la inclusión y la educación ambiental.\n\nCosulta la web https://opencommunities.eu/",
       "p2": "Un espacio para compartir aprendizajes, crear conexiones y descubrir nuevas formas de cuidar nuestro entorno desde la participación y la acción colectiva."
     },
     "give": {
@@ -58,20 +58,20 @@
       "p": "El miceli uneix, nodreix i fa créixer tot el que toca. Nosaltres creiem en aquesta mateixa força: persones connectades que generen oportunitats. Siguis qui siguis, sempre hi ha una manera de formar part d'aquesta xarxa i fer-la créixer."
     },
     "help": {
+      "c3p": "Suma el teu temps i talent a les nostres activitats d'educació ambiental i expressió artística.",
+      "c2p": "Necessites una entitat sòcia per al teu projecte? Descarrega el nostre darrer PIF (Partner Identification Form) i parlem.",
+      "c1p": "Participa en un intercanvi o formació i viu una experiència internacional en plena natura.",
+      "c4t": "Difon",
+      "c3t": "Voluntariat",
+      "c2t": "Entitats",
+      "c1t": "Joves",
       "eyebrow": "Formes de participar",
       "h2": "Tria la teva arrel",
-      "c1t": "Joves",
-      "c1p": "Participa en un intercanvi o formació i viu una experiència internacional en plena natura.",
-      "c1a": "Veure oportunitats",
-      "c2t": "Entitats",
-      "c2p": "Necessites una entitat sòcia per al teu projecte? Descarrega el nostre darrer PIF (Partner Identification Form) i parlem.",
-      "c2a": "Descarregar PIF",
-      "c3t": "Voluntariat",
-      "c3p": "Suma el teu temps i talent a les nostres activitats d'educació ambiental i expressió artística.",
+      "c4a": "Segueix-nos",
       "c3a": "Vull ajudar",
-      "c4t": "Difon",
-      "c4p": "Comparteix els nostres projectes a les xarxes socials i ajuda'ns a arribar a més joves i comunitats.",
-      "c4a": "Segueix-nos"
+      "c2a": "Descarregar PIF",
+      "c1a": "Veure oportunitats",
+      "c4p": "Comparteix els nostres projectes a les xarxes socials i ajuda'ns a arribar a més joves i comunitats."
     },
     "map": {
       "eyebrow": "Col·laboracions",
@@ -85,9 +85,9 @@
       "cta": "Escriu-nos →"
     },
     "ecosystems": {
-      "eyebrow": "Projecte europeu",
+      "eyebrow": "Expandint la xarxa",
       "h2": "ECOSystems: creixent en comunitat",
-      "p1": "Formem part d'ECOSystems, una iniciativa europea que uneix joves, comunitats i organitzacions per promoure la sostenibilitat, la inclusió i l'educació ambiental.",
+      "p1": "Formem part d'ECOSystems, una iniciativa europea que uneix joves, comunitats i organitzacions per promoure la sostenibilitat, la inclusió i l'educació ambiental.\n\nCosulta la web https://opencommunities.eu/",
       "p2": "Un espai per compartir aprenentatges, crear connexions i descobrir noves formes de tenir cura del nostre entorn des de la participació i l'acció col·lectiva."
     },
     "give": {
@@ -106,20 +106,20 @@
       "p": "Mycelium connects, nourishes and grows everything it touches. We believe in that same force: connected people who create opportunities. Whoever you are, there's always a way to be part of this network and help it grow."
     },
     "help": {
+      "c3p": "Add your time and talent to our environmental education and artistic expression activities.",
+      "c2p": "Need a partner organisation for your project? Download our latest PIF (Partner Identification Form) and let's talk.",
+      "c1p": "Join an exchange or training and live an international experience in the heart of nature.",
+      "c4t": "Spread the word",
+      "c3t": "Volunteering",
+      "c2t": "Organisations",
+      "c1t": "Young people",
       "eyebrow": "Ways to get involved",
       "h2": "Choose your root",
-      "c1t": "Young people",
-      "c1p": "Join an exchange or training and live an international experience in the heart of nature.",
-      "c1a": "See opportunities",
-      "c2t": "Organisations",
-      "c2p": "Need a partner organisation for your project? Download our latest PIF (Partner Identification Form) and let's talk.",
-      "c2a": "Download PIF",
-      "c3t": "Volunteering",
-      "c3p": "Add your time and talent to our environmental education and artistic expression activities.",
+      "c4a": "Follow us",
       "c3a": "I want to help",
-      "c4t": "Spread the word",
-      "c4p": "Share our projects on social media and help us reach more young people and communities.",
-      "c4a": "Follow us"
+      "c2a": "Download PIF",
+      "c1a": "See opportunities",
+      "c4p": "Share our projects on social media and help us reach more young people and communities."
     },
     "map": {
       "eyebrow": "Collaborations",
