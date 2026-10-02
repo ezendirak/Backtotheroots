@@ -6,10 +6,10 @@
       "art",
       "youth"
     ],
-    "featured": true,
+    "featured": false,
     "order": 4,
     "date": "2024",
-    "homeOrder": 4,
+    "homeOrder": -11,
     "title": "Videoclip “Shining Together”",
     "tag": "Arte, música",
     "description": "Intercambio juvenil donde 30 jóvenes exploraron música, dibujo y teatro improvisado para expresar sus ideas y emociones.",
